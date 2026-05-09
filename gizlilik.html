@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gizlilik Politikası | His Noktası</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .policy-container {
+            max-width: 900px;
+            margin: 8rem auto 4rem;
+            padding: 4rem;
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            color: var(--text-color);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        .policy-container h1 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 2.8rem;
+        }
+        .policy-container .date {
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+        .policy-container h2 {
+            color: var(--secondary);
+            margin-top: 2.5rem;
+            margin-bottom: 1.2rem;
+            font-size: 1.6rem;
+        }
+        .policy-container p {
+            color: var(--text-muted);
+            line-height: 1.9;
+            margin-bottom: 1.2rem;
+            font-size: 1.15rem;
+        }
+        .policy-container a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .policy-container a:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+        .policy-container ul {
+            list-style: none;
+            padding-left: 0;
+            color: var(--text-muted);
+            line-height: 1.9;
+            font-size: 1.15rem;
+            margin-bottom: 1.5rem;
+        }
+        .policy-container ul li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.8rem;
+        }
+        .policy-container ul li::before {
+            content: '\f054'; /* FontAwesome angle-right */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-effects">
+        <div class="glow blob-1"></div>
+        <div class="glow blob-2"></div>
+    </div>
+
+    <nav class="navbar scrolled">
+        <div class="logo">HisVera</div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="btn secondary" style="padding: 0.5rem 1.2rem;"><i class="fa-solid fa-arrow-left"></i> Ana Sayfaya Dön</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="policy-container">
+            <h1>His Noktası Gizlilik Politikası</h1>
+            <p class="date">Son Güncelleme: 19 Nisan 2026</p>
+
+            <h2>1. Toplanan Veriler:</h2>
+            <p>His Noktası, kullanıcı deneyimini sağlamak amacıyla Google ile Giriş (Google Sign-In) altyapısını kullanır. Bu işlem sırasında yalnızca temel profil bilgileriniz (ad, e-posta adresi) güvenli bir şekilde alınır ve hesap oluşturmak için kullanılır. Ayrıca, uygulama içerisinde kendi isteğinizle oluşturduğunuz içerikler (his seçimleriniz, yazdığınız metinler ve yüklediğiniz fotoğraflar) sunucularımızda saklanır.</p>
+
+            <h2>2. Konum Bilgileri:</h2>
+            <p>Uygulamamız, "Mood" (duygu) paylaşımlarınızı coğrafi bağlam ekleyebilmek için konum izninize ihtiyaç duyar. Konum verileriniz yalnızca anlık paylaşım anında kullanılır, arka planda sürekli takip edilmez ve üçüncü şahıslara satılmaz.</p>
+
+            <h2>3. Kamera ve Medya Erişimi (Kullanıcı Tarafından Oluşturulan İçerik):</h2>
+            <p>Kullanıcıların hislerini fotoğraflarla görselleştirebilmesi için cihazın kamerasına ve/veya fotoğraf galerisine erişim izni talep edilir. Yüklediğiniz fotoğraflar, uygulama içerisinde diğer kullanıcılar tarafından görülebilecek şekilde sunucularımızda saklanır. Kullanıcılar, yükledikleri görsellerden tamamen kendileri sorumludur ve uygunsuz (şiddet, çıplaklık, nefret söylemi vb.) içerikler diğer kullanıcılar tarafından "Şikayet Et" butonu ile bildirilip sistemden kalıcı olarak silinebilir.</p>
+
+            <h2>4. Reklamlar ve Üçüncü Taraf Hizmetler:</h2>
+            <p>Uygulamamız ücretsiz kalabilmek için Google AdMob reklam altyapısını kullanmaktadır. AdMob, size kişiselleştirilmiş reklamlar sunabilmek için cihazınızın Reklam Kimliğini (Advertising ID) kullanabilir. Ayrıca veri tabanı ve dosya (fotoğraf) depolama yönetimi için Supabase altyapısı kullanılmaktadır.</p>
+
+            <h2>5. Çocuk Güvenliği ve İstismarıyla Mücadele (CSAM Politikası):</h2>
+            <p>His Noktası olarak, çocukların güvenliğini en üst düzeyde tutmayı taahhüt ediyoruz. Platformumuzda Çocuk Cinsel İstismarı Materyalleri (CSAM) ve çocuk güvenliğini tehdit eden her türlü içeriğe karşı sıfır tolerans politikası uygulanmaktadır:</p>
+            <ul>
+                <li><strong>Yasaklı İçerikler:</strong> Çocukların istismarına yönelik hiçbir görsel, metin veya bağlantı platformumuzda barındırılamaz, paylaşılamaz. Bu tür içerikler tespit edildiği an sistemden kalıcı olarak silinir.</li>
+                <li><strong>Bildirme Mekanizması:</strong> Kullanıcılar, çocuk güvenliğini ihlal ettiğini düşündükleri her türlü içeriği uygulama içerisindeki "Şikayet Et" butonu üzerinden veya <a href="mailto:hisnoktasi@gmail.com">hisnoktasi@gmail.com</a> üzerinden 7/24 bizlere bildirebilirler.</li>
+                <li><strong>Hesap Feshi:</strong> Çocuk güvenliği standartlarımızı ihlal eden kullanıcıların hesapları hiçbir uyarı yapılmaksızın kalıcı olarak askıya alınır.</li>
+                <li><strong>Yasal Bildirim:</strong> Yasa dışı içerikler ve şüpheli durumlar, ilgili ulusal ve uluslararası makamlara (NCMEC vb.) ve yerel emniyet birimlerine derhal rapor edilir.</li>
+            </ul>
+
+            <h2>6. Veri Güvenliği ve Silme:</h2>
+            <p>Verileriniz ve yüklediğiniz medya dosyaları endüstri standartlarında güvenli sunucularda saklanmaktadır. İstediğiniz zaman hesap ayarlarından profilinizi ve yüklediğiniz fotoğraflar dahil tüm verilerinizi tamamen silebilirsiniz.</p>
+
+            <h2>7. Web Sitesi Analitiği (Google Analytics):</h2>
+            <p>Web sitemizin trafiğini ve kullanıcı etkileşimlerini analiz etmek amacıyla standart bir ölçüm aracı olan Google Analytics kullanılmaktadır. Google'ın verilerinizi nasıl kullandığı hakkında daha detaylı bilgi edinmek için <a href="https://policies.google.com/technologies/partner-sites" target="_blank">Google, hizmetlerimizi kullanan sitelerdeki veya uygulamalardaki bilgileri nasıl kullanır?</a> sayfasını ziyaret edebilirsiniz.</p>
+
+            <h2>İletişim:</h2>
+            <p>Gizlilik politikamızla ilgili sorularınız için bizimle <a href="mailto:hisnoktasi@gmail.com">hisnoktasi@gmail.com</a> adresi üzerinden iletişime geçebilirsiniz.</p>
+        </div>
+    </main>
+
+    <footer style="margin-top: 2rem; padding: 3rem 0; border-top: 1px solid var(--glass-border); text-align: center; background: rgba(15, 23, 42, 0.5);">
+        <div style="margin-bottom: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+            <a href="gizlilik.html" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'">Gizlilik Politikası</a>
+            <span style="color: rgba(255,255,255,0.1);">|</span>
+            <a href="kullanim-sartlari.html" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'">Kullanım Şartları</a>
+            <span style="color: rgba(255,255,255,0.1);">|</span>
+            <a href="hesap-silme.html" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'">Hesap Silme</a>
+        </div>
+        <p style="color: var(--text-muted);">&copy; 2026 HisVera. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
