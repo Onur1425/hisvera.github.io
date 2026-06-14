@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>His | hisvera</title>
+    <link rel="icon" type="image/jpeg" href="assets/images/HisVera.jpg">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .app-detail-hero {
+            text-align: center;
+            padding-top: 8rem;
+            min-height: auto;
+        }
+        .app-detail-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            margin: 0 auto 2rem;
+            display: block;
+            object-fit: cover;
+        }
+        .app-detail-cover {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            margin: 3rem auto;
+            display: block;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+            text-align: left;
+        }
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s, background 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-effects">
+        <div class="glow blob-1"></div>
+        <div class="glow blob-2"></div>
+    </div>
+
+    <nav class="navbar scrolled">
+        <div class="logo">HisVera</div>
+        <div class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/#ana-sayfa" class="btn secondary" style="padding: 0.5rem 1.2rem;" data-i18n="nav.back_to_home"><i class="fa-solid fa-arrow-left"></i> Ana Sayfaya Dön</a></li>
+            <li class="lang-switcher" style="display: flex; align-items: center; margin-left: 1rem;">
+                <a href="#" data-lang-switch="tr" class="active-lang" style="font-weight:600; font-size: 0.9rem;">TR</a>
+                <span style="color:var(--text-muted); font-size: 0.9rem; margin: 0 0.5rem;">|</span>
+                <a href="#" data-lang-switch="en" style="font-size: 0.9rem;">EN</a>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="app-detail-hero">
+            <div class="glass-card" style="max-width: 1000px; margin: 0 auto; padding: 4rem 2rem; text-align: center;">
+                <img src="assets/images/his-noktas%C4%B1-logo.png" alt="His Logo" class="app-detail-icon">
+                <h1 class="title" style="font-size: 4rem; margin-bottom: 1rem;">His</h1>
+                
+                <p style="max-width: 700px; margin: 0 auto 1rem; font-size: 1.4rem; font-style: italic; color: var(--secondary);" data-i18n="his.quote">
+                    Hiç bir yere gidip "burada bir şey var" diye hissettin mi?<br>
+                    Ya da bazı yerlerde sebepsizce huzurlu… bazılarında ise tedirgin?
+                </p>
+                
+                <div class="cta-buttons" style="justify-content: center; margin: 3rem 0 1.5rem 0; flex-wrap: wrap;">
+                    <a href="#" class="btn primary" style="opacity: 0.5; cursor: not-allowed;" onclick="event.preventDefault();"><i class="fa-brands fa-app-store-ios"></i> <span data-i18n="kuytu.store.appstore">App Store (Yakında)</span></a>
+                    <a href="#" class="btn primary" style="opacity: 0.5; cursor: not-allowed; background: linear-gradient(135deg, #dc2626, #991b1b);" onclick="event.preventDefault();"><i class="fa-brands fa-huawei"></i> <span data-i18n="kuytu.store.appgallery">AppGallery (Yakında)</span></a>
+                    <a href="https://play.google.com/store/apps/details?id=com.hisvera.hisnoktasi.app" target="_blank" class="btn primary" style="background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 10px 20px -10px #10b981;"><i class="fa-brands fa-google-play"></i> <span data-i18n="kuytu.store.googleplay">Google Play</span></a>
+                </div>
+
+                <div class="social-links" style="display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 3rem;">
+                    <a href="https://www.instagram.com/hisvera.studio" target="_blank" title="Instagram" style="color: var(--text-color); font-size: 2rem; transition: all 0.3s;" onmouseover="this.style.color='#E1306C'; this.style.transform='scale(1.1)';" onmouseout="this.style.color='var(--text-color)'; this.style.transform='scale(1)';">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@hisvera" target="_blank" title="YouTube" style="color: var(--text-color); font-size: 2rem; transition: all 0.3s;" onmouseover="this.style.color='#FF0000'; this.style.transform='scale(1.1)';" onmouseout="this.style.color='var(--text-color)'; this.style.transform='scale(1)';">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                </div>
+
+                <img src="assets/images/his-noktasi-%C3%96zellik%20grafik.png" data-i18n-src="his.bg_image" alt="His Özellikler" class="app-detail-cover">
+
+                <div style="margin-top: 5rem; text-align: left; background: rgba(0,0,0,0.2); padding: 3rem; border-radius: 24px; border: 1px solid var(--glass-border);">
+                    <h2 style="font-size: 2.2rem; margin-bottom: 1.5rem; color: var(--primary);" data-i18n="his.what.title">His Nedir?</h2>
+                    <p style="font-size: 1.1rem; line-height: 1.7; color: var(--text-muted);" data-i18n="his.what.p1">
+                        His, insanların yaşadıkları yerlerle ilgili gerçek duygularını paylaştığı bir dünyadır. Artık bir yere gitmeden önce sadece nasıl göründüğünü değil, nasıl hissettirdiğini de bilebilirsin.
+                    </p>
+                    <p style="font-size: 1.2rem; color: var(--text-muted); line-height: 1.8;" data-i18n="his.what.p2">
+                        Bir parkta huzur, bir sokakta merak, bir kafede yalnızlık… Her duygu burada bir iz bırakır.
+                    </p>
+                </div>
+
+                <div style="margin-top: 5rem; text-align: left;">
+                    <h2 style="font-size: 2.2rem; margin-bottom: 2rem; text-align: center;" data-i18n="his.how.title">Neler Yapabilirsin?</h2>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <i class="fa-solid fa-location-dot feature-icon"></i>
+                            <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;" data-i18n="his.how.f1_title">Konum Bazlı</h3>
+                            <p style="color: var(--text-muted); font-size: 1.05rem;" data-i18n="his.how.f1_desc">Bulunduğun yerde ne hissettiğini paylaş</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fa-solid fa-palette feature-icon"></i>
+                            <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;" data-i18n="his.how.f2_title">Özgür İfade</h3>
+                            <p style="color: var(--text-muted); font-size: 1.05rem;" data-i18n="his.how.f2_desc">Duygularını emoji ve renklerle ifade et</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fa-solid fa-comments feature-icon"></i>
+                            <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;" data-i18n="his.how.f3_title">Etkileşim</h3>
+                            <p style="color: var(--text-muted); font-size: 1.05rem;" data-i18n="his.how.f3_desc">Diğer insanların hislerini oku ve yorum yap</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fa-solid fa-magnifying-glass-location feature-icon"></i>
+                            <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;" data-i18n="his.how.f4_title">Keşif</h3>
+                            <p style="color: var(--text-muted); font-size: 1.05rem;" data-i18n="his.how.f4_desc">Yeni yerleri keşfederken duygularla yolunu bul</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 5rem; text-align: center; padding: 4rem 2rem; background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(6, 182, 212, 0.05)); border-radius: 24px; border: 1px solid var(--glass-border);">
+                    <h2 style="font-size: 2.2rem; margin-bottom: 2rem;" data-i18n="his.why.title">Neden His?</h2>
+                    <p style="font-size: 1.3rem; color: var(--text-muted); margin-bottom: 1rem;" data-i18n="his.why.p1">Çünkü bazı yerler sadece görülmez, hissedilir.</p>
+                    <p style="font-size: 1.3rem; color: var(--text-muted); margin-bottom: 1rem;" data-i18n="his.why.p2">Çünkü herkes aynı yeri farklı yaşar.</p>
+                    <p style="font-size: 1.3rem; color: var(--text-muted); margin-bottom: 2.5rem;" data-i18n="his.why.p3">Çünkü bazen bir yerin en doğru yorumu yıldızlar değil, hislerdir.</p>
+                    <p style="font-size: 1.4rem; font-weight: 600; margin-bottom: 4rem;" data-i18n="his.why.p4">His, sadece bir uygulama değil… insanların duygularıyla iz bıraktığı bir deneyim.</p>
+                    
+                    <h3 style="font-size: 3rem; background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" data-i18n="his.why.quote">Bir yer, bir his, bir iz.</h3>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="margin-top: 2rem; padding: 3rem 0; border-top: 1px solid var(--glass-border); text-align: center; background: rgba(15, 23, 42, 0.5);">
+        <div style="margin-bottom: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+            <a href="gizlilik-politikasi" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'" data-i18n="footer.privacy">Gizlilik Politikası</a>
+            <span style="color: rgba(255,255,255,0.1);">|</span>
+            <a href="kullanim-sartlari" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'" data-i18n="footer.terms">Kullanım Şartları</a>
+            <span style="color: rgba(255,255,255,0.1);">|</span>
+            <a href="hesap-silme" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'" data-i18n="footer.delete_account">Hesap Silme</a>
+        </div>
+        <p style="color: var(--text-muted);" data-i18n="footer.copyright">&copy; 2026 HisVera. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script src="i18n.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

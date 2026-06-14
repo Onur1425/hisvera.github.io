@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuytu | Fısıltıların Sığınağı</title>
+    <link rel="icon" type="image/jpeg" href="assets/images/HisVera.jpg">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .app-detail-hero {
+            text-align: center;
+            padding-top: 8rem;
+            min-height: auto;
+        }
+        .app-detail-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            margin: 0 auto 2rem;
+            display: block;
+            object-fit: cover;
+        }
+        .app-detail-cover {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            margin: 3rem auto;
+            display: block;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+            text-align: left;
+        }
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s, background 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-effects">
+        <div class="glow blob-1"></div>
+        <div class="glow blob-2"></div>
+    </div>
+
+    <nav class="navbar scrolled">
+        <div class="logo">HisVera</div>
+        <div class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/#ana-sayfa" class="btn secondary" style="padding: 0.5rem 1.2rem;" data-i18n="nav.back_to_home"><i class="fa-solid fa-arrow-left"></i> Ana Sayfaya Dön</a></li>
+            <li class="lang-switcher" style="display: flex; align-items: center; margin-left: 1rem;">
+                <a href="#" data-lang-switch="tr" class="active-lang" style="font-weight:600; font-size: 0.9rem;">TR</a>
+                <span style="color:var(--text-muted); font-size: 0.9rem; margin: 0 0.5rem;">|</span>
+                <a href="#" data-lang-switch="en" style="font-size: 0.9rem;">EN</a>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="app-detail-hero">
+            <div class="glass-card" style="max-width: 1000px; margin: 0 auto; padding: 4rem 2rem; text-align: center;">
+                <img src="assets/images/kuytu%20logo.png" alt="Kuytu Logo" class="app-detail-icon">
+                <h1 class="title" style="font-size: 3.5rem; margin-bottom: 1rem;" data-i18n="kuytu.title">Kuytu | Fısıltıların Sığınağı</h1>
+                
+                <p style="max-width: 700px; margin: 0 auto 1rem; font-size: 1.6rem; font-style: italic; color: var(--secondary);" data-i18n="kuytu.quote">
+                    "Dünya susar, Kuytu seni dinler."
+                </p>
+                
+                <div class="cta-buttons" style="justify-content: center; margin: 3rem 0; flex-wrap: wrap;">
+                    <a href="#" class="btn primary" style="opacity: 0.5; cursor: not-allowed;" onclick="event.preventDefault();"><i class="fa-brands fa-app-store-ios"></i> <span data-i18n="kuytu.store.appstore">App Store (Yakında)</span></a>
+                    <a href="#" class="btn primary" style="opacity: 0.5; cursor: not-allowed; background: linear-gradient(135deg, #dc2626, #991b1b);" onclick="event.preventDefault();"><i class="fa-brands fa-huawei"></i> <span data-i18n="kuytu.store.appgallery">AppGallery (Yakında)</span></a>
+                    <a href="https://play.google.com/store/apps/details?id=com.hisvera.kuytu.app" target="_blank" class="btn primary" style="background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 10px 20px -10px #10b981;"><i class="fa-brands fa-google-play"></i> <span data-i18n="kuytu.store.googleplay">Google Play</span></a>
+                </div>
+
+                <div class="social-links" style="display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 3rem;">
+                    <a href="https://www.instagram.com/hisvera.studio" target="_blank" title="Instagram" style="color: var(--text-color); font-size: 2rem; transition: all 0.3s;" onmouseover="this.style.color='#E1306C'; this.style.transform='scale(1.1)';" onmouseout="this.style.color='var(--text-color)'; this.style.transform='scale(1)';">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@hisvera" target="_blank" title="YouTube" style="color: var(--text-color); font-size: 2rem; transition: all 0.3s;" onmouseover="this.style.color='#FF0000'; this.style.transform='scale(1.1)';" onmouseout="this.style.color='var(--text-color)'; this.style.transform='scale(1)';">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                </div>
+                <img src="assets/images/kuytu%20slogan%20kapak.png" data-i18n-src="kuytu.bg_image" alt="Kuytu Özellikler" class="app-detail-cover">
+
+                <div style="margin-top: 5rem; text-align: left; background: rgba(0,0,0,0.2); padding: 3rem; border-radius: 24px; border: 1px solid var(--glass-border);">
+                    <h2 style="font-size: 2.2rem; margin-bottom: 1.5rem; color: var(--primary);" data-i18n="kuytu.what.title">Kuytu | Fısıltıların Sığınağı Nedir?</h2>
+                    <p style="font-size: 1.2rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem;" data-i18n="kuytu.what.p1">
+                        Gün içinde yanından geçip gittiğimiz yüzlerce insan, söylemek isteyip de yuttuğumuz yüzlerce kelime ve karanlığa karışan uçsuz bucaksız hislerimiz var. Çoğu zaman fark edilmiyoruz. Çoğu zaman da biz başkalarını fark etmiyoruz.
+                    </p>
+                    <p style="font-size: 1.2rem; color: var(--text-muted); line-height: 1.8;" data-i18n="kuytu.what.p2">
+                        Peki, bu kaybolan anlar nereye gidiyor? İşte bu uygulama, o sahipsiz kelimelerin ve gözden kaçan detayların sığınağıdır. Sesini yükseltmek zorunda olmadığın, yargılanmadığın ve sadece sana ait olan sessiz bir dijital günlük.
+                    </p>
+                </div>
+
+                <div style="margin-top: 5rem; text-align: left;">
+                    <h2 style="font-size: 2.2rem; margin-bottom: 2rem; text-align: center;" data-i18n="kuytu.how.title">Nasıl Çalışır?</h2>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <i class="fa-solid fa-pen-nib feature-icon"></i>
+                            <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;" data-i18n="kuytu.how.f1_title">Sessizce Fısılda</h3>
+                            <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.5;" data-i18n="kuytu.how.f1_desc">Karmaşanın içinde kendine dön. Her gün sana sorulan üç soruyla hislerini kaydet. Yargılanmadan, sadece kendine fısılda.</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fa-solid fa-wand-magic-sparkles feature-icon"></i>
+                            <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;" data-i18n="kuytu.how.f2_title">Hisler Şiire Dönüşsün</h3>
+                            <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.5;" data-i18n="kuytu.how.f2_desc">Yazdığın sade cümleler, akşam olduğunda Kuytu'nun estetik "Şiir Motoru" ile harmanlanır. Yazım hataları silinir, geriye hislerinin şiirsel bir yansıması kalır. İstersen hissettiğin bu yalnızlık, kardeş uygulamamız "His" sokaklarına yıldız tozu gibi dökülür.</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fa-solid fa-meteor feature-icon"></i>
+                            <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;" data-i18n="kuytu.how.f3_title">Yankılarını Duyur</h3>
+                            <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.5;" data-i18n="kuytu.how.f3_desc">Kendi İç Gökyüzünü Keşfet. Geçmişe sıkıcı listeler olarak değil, kendi yarattığın bir evren olarak bak. Yazdığın her fısıltıyı karanlıkta parlayan bir yıldıza dönüştürüyoruz.</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fa-solid fa-moon feature-icon"></i>
+                            <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;" data-i18n="kuytu.how.f4_title">🤫 Geceye Fısıltılar <br><span style="font-size: 1rem; color: var(--text-muted); font-weight: normal;">(24 Saatlik Anonim Alan)</span></h3>
+                            <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.5;" data-i18n="kuytu.how.f4_desc">İçinde birikenleri kimliksizce evrenin boşluğuna bırak. Rüzgara kapılmış gibi 24 saat sonra kaybolacak bu fısıltılarla, sadece o anın yankısında yalnız olmadığını hisset.</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fa-solid fa-hand-holding-heart feature-icon"></i>
+                            <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;" data-i18n="kuytu.how.f5_title">Sessiz İyilik</h3>
+                            <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.5;" data-i18n="kuytu.how.f5_desc">Kimsenin görmediği, alkış beklemeden dünyaya bıraktığın gizli güzelliklerin kaydı. Sokaktaki bir cana uzanan el ya da ufak bir tebessüm… Tüm bu sessiz iyilikler cuma günleri birikerek gökyüzünde yankılanır.</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fa-solid fa-street-view feature-icon"></i>
+                            <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;" data-i18n="kuytu.how.f6_title">Sakinler Kimdir?</h3>
+                            <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.5;" data-i18n="kuytu.how.f6_desc">Şehrin telaşında gözden kaçan, yanından sessizce geçip gittiğimiz görünmez ruhlara açılan edebi bir pencere. Her girişinde farklı bir hayata dokunur, başka bir canın hikayesine konuk olursun.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 5rem; text-align: left; padding: 4rem; background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(6, 182, 212, 0.05)); border-radius: 24px; border: 1px solid var(--glass-border);">
+                    <div style="display: flex; align-items: center; gap: 2rem; margin-bottom: 2rem;">
+                        <i class="fa-solid fa-lock" style="font-size: 3rem; color: var(--secondary);"></i>
+                        <h2 style="font-size: 2.2rem; margin: 0;" data-i18n="kuytu.privacy.title">Seni Dinleyen ama Sırrını Tutan Bir Dost</h2>
+                    </div>
+                    <p style="font-size: 1.3rem; color: var(--text-muted); margin-bottom: 1.5rem;" data-i18n="kuytu.privacy.p1">Bizim için en önemli şey güvenliğindir.</p>
+                    <p style="font-size: 1.3rem; color: var(--text-muted); margin-bottom: 1.5rem;" data-i18n="kuytu.privacy.p2">Yazdığın tüm fısıltılar bulut sunuculara veya başkalarının okuyabileceği alanlara yüklenmez.</p>
+                    <p style="font-size: 1.3rem; color: var(--text-muted); margin-bottom: 3rem;" data-i18n="kuytu.privacy.p3">Tüm kayıtların sadece senin cihazında, senin kontrolündedir. Yalnızca şiirlerin –sen de istersen– yıldız tozu gibi anonim olarak havaya karışır.</p>
+                    
+                    <div style="text-align: center; margin-top: 4rem;">
+                        <h3 style="font-size: 2.5rem; background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-style: italic;" data-i18n="kuytu.privacy.quote">Dünya susar, Kuytu seni dinler.</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="margin-top: 2rem; padding: 3rem 0; border-top: 1px solid var(--glass-border); text-align: center; background: rgba(15, 23, 42, 0.5);">
+        <div style="margin-bottom: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+            <a href="kuytu-gizlilik-politikasi" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'" data-i18n="footer.privacy">Gizlilik Politikası</a>
+            <span style="color: rgba(255,255,255,0.1);">|</span>
+            <a href="kuytu-kullanim-sartlari" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'" data-i18n="footer.terms">Kullanım Şartları</a>
+        </div>
+        <p style="color: var(--text-muted);" data-i18n="footer.copyright">&copy; 2026 HisVera. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script src="i18n.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
