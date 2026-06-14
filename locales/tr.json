@@ -1,0 +1,209 @@
+{
+  "nav": {
+    "home": "Ana Sayfa",
+    "about": "Hakkımızda",
+    "apps": "Uygulamalarımız",
+    "contact": "İletişim",
+    "back_to_home": "Ana Sayfaya Dön",
+    "back_to_kuytu": "Kuytu'ya Dön"
+  },
+  "footer": {
+    "privacy": "Gizlilik Politikası",
+    "terms": "Kullanım Şartları",
+    "delete_account": "Hesap Silme",
+    "copyright": "© 2026 HisVera. Tüm hakları saklıdır."
+  },
+  "index": {
+    "hero": {
+      "desc": "HisVera, sade, yenilikçi ve kullanıcı odaklı mobil uygulamalar geliştiren bağımsız bir uygulama geliştiricisidir. Sosyal deneyimler, duygusal paylaşımlar ve oyunlar üzerine projeler üretmektedir.",
+      "btn_explore": "Uygulamaları Keşfet",
+      "btn_contact": "İletişime Geç",
+      "digital_studio": "Dijital Stüdyo",
+      "kuytu_desc": "Sessiz dijital günlük",
+      "his_desc": "Duygularla iz bırak"
+    },
+    "about": {
+      "title": "Hakkımızda",
+      "dev_title": "Geliştirici Açıklaması",
+      "dev_p1": "Hisvera, insanların düşüncelerini, duygularını ve keşiflerini dijital dünyada ifade edebilecekleri uygulamalar geliştiren bağımsız bir geliştirici stüdyosudur.",
+      "dev_p2": "Amacımız; sade, anlamlı ve kullanıcı odaklı uygulamalar oluşturarak insanların günlük hayatına değer katmaktır. Sosyal deneyimlerden oyunlara kadar farklı alanlarda yenilikçi projeler üretmeye devam ediyoruz.",
+      "dev_p3": "Yeni fikirler üretmeye ve kullanıcılar için anlamlı deneyimler geliştirmeye devam ediyoruz.",
+      "story_title": "Hisvera – Marka Hikayesi",
+      "story_p1": "Hisvera, insanların düşüncelerini, duygularını ve hayal güçlerini dijital dünyaya taşıma fikrinden doğdu.",
+      "story_p2": "Her uygulama bir fikirle başlar. Bazen bir duygu, bazen bir düşünce, bazen de çözülmesi gereken bir bulmaca. Hisvera'nın amacı, bu fikirleri sade ve anlamlı mobil deneyimlere dönüştürmektir.",
+      "story_p3": "Hisvera tarafından geliştirilen uygulamalar; insanların kendilerini ifade edebilecekleri, yeni şeyler keşfedebilecekleri ve keyifli zaman geçirebilecekleri dijital alanlar oluşturmayı hedefler.",
+      "values_title": "Hisvera’nın yaklaşımı üç temel değer üzerine kuruludur:",
+      "val_simplicity": "Sadelik",
+      "val_simplicity_desc": "Karmaşık olmayan, anlaşılır ve kullanıcı dostu deneyimler.",
+      "val_meaning": "Anlam",
+      "val_meaning_desc": "İnsanların düşüncelerine ve duygularına dokunan uygulamalar.",
+      "val_discovery": "Keşif",
+      "val_discovery_desc": "Yeni fikirler, oyunlar ve dijital deneyimler üretmek.",
+      "conclusion_p1": "Bugün Hisvera; sosyal deneyimler, duygu paylaşımı ve oyunlar üzerine projeler geliştirmektedir.",
+      "conclusion_p2": "Yolculuk yeni başlıyor."
+    },
+    "apps": {
+      "title": "Uygulamalarımız",
+      "kuytu_desc": "Sessiz bir dijital günlük. Yargılanmadan hislerini kaydet, kelimelerin estetik bir şiire ve karanlıkta parlayan bir yıldıza dönüşsün.",
+      "his_desc": "Duygularınızı, düşüncelerinizi ve en özel anlarınızı anında paylaşabileceğiniz yepyeni bir mobil deneyim.",
+      "btn_details": "Detayları İncele",
+      "badge_new": "YENİ",
+      "coming_soon_title": "Çok Yakında...",
+      "coming_soon_desc": "Sizler için yeni, heyecan verici ve sıradışı bir dijital deneyim daha geliştiriyoruz. Bizi takipte kalın.",
+      "btn_soon": "Geliştirme Aşamasında"
+    },
+    "contact": {
+      "title": "Sorularınız mı var?",
+      "desc": "Daha fazla bilgi almak için <strong>hisvera.apps@gmail.com</strong> adresine yazın.",
+      "btn": "Bize Ulaşın"
+    }
+  },
+  "kuytu": {
+    "bg_image": "assets/images/kuytu slogan kapak.png",
+    "title": "Kuytu | Fısıltıların Sığınağı",
+    "quote": "\"Dünya susar, Kuytu seni dinler.\"",
+    "store": {
+      "appstore": "App Store (Yakında)",
+      "appgallery": "AppGallery (Yakında)",
+      "googleplay": "Google Play"
+    },
+    "what": {
+      "title": "Kuytu | Fısıltıların Sığınağı Nedir?",
+      "p1": "Gün içinde yanından geçip gittiğimiz yüzlerce insan, söylemek isteyip de yuttuğumuz yüzlerce kelime ve karanlığa karışan uçsuz bucaksız hislerimiz var. Çoğu zaman fark edilmiyoruz. Çoğu zaman da biz başkalarını fark etmiyoruz.",
+      "p2": "Peki, bu kaybolan anlar nereye gidiyor? İşte bu uygulama, o sahipsiz kelimelerin ve gözden kaçan detayların sığınağıdır. Sesini yükseltmek zorunda olmadığın, yargılanmadığın ve sadece sana ait olan sessiz bir dijital günlük."
+    },
+    "how": {
+      "title": "Nasıl Çalışır?",
+      "f1_title": "Sessizce Fısılda",
+      "f1_desc": "Karmaşanın içinde kendine dön. Her gün sana sorulan üç soruyla hislerini kaydet. Yargılanmadan, sadece kendine fısılda.",
+      "f2_title": "Hisler Şiire Dönüşsün",
+      "f2_desc": "Yazdığın sade cümleler, akşam olduğunda Kuytu'nun estetik \"Şiir Motoru\" ile harmanlanır. Yazım hataları silinir, geriye hislerinin şiirsel bir yansıması kalır. İstersen hissettiğin bu yalnızlık, kardeş uygulamamız \"His\" sokaklarına yıldız tozu gibi dökülür.",
+      "f3_title": "Yankılarını Duyur",
+      "f3_desc": "Kendi İç Gökyüzünü Keşfet. Geçmişe sıkıcı listeler olarak değil, kendi yarattığın bir evren olarak bak. Yazdığın her fısıltıyı karanlıkta parlayan bir yıldıza dönüştürüyoruz.",
+      "f4_title": "🤫 Geceye Fısıltılar <br><span style=\"font-size: 1rem; color: var(--text-muted); font-weight: normal;\">(24 Saatlik Anonim Alan)</span>",
+      "f4_desc": "İçinde birikenleri kimliksizce evrenin boşluğuna bırak. Rüzgara kapılmış gibi 24 saat sonra kaybolacak bu fısıltılarla, sadece o anın yankısında yalnız olmadığını hisset.",
+      "f5_title": "Sessiz İyilik",
+      "f5_desc": "Kimsenin görmediği, alkış beklemeden dünyaya bıraktığın gizli güzelliklerin kaydı. Sokaktaki bir cana uzanan el ya da ufak bir tebessüm… Tüm bu sessiz iyilikler cuma günleri birikerek gökyüzünde yankılanır.",
+      "f6_title": "Sakinler Kimdir?",
+      "f6_desc": "Şehrin telaşında gözden kaçan, yanından sessizce geçip gittiğimiz görünmez ruhlara açılan edebi bir pencere. Her girişinde farklı bir hayata dokunur, başka bir canın hikayesine konuk olursun."
+    },
+    "privacy": {
+      "title": "Seni Dinleyen ama Sırrını Tutan Bir Dost",
+      "p1": "Bizim için en önemli şey güvenliğindir.",
+      "p2": "Yazdığın tüm fısıltılar bulut sunuculara veya başkalarının okuyabileceği alanlara yüklenmez.",
+      "p3": "Tüm kayıtların sadece senin cihazında, senin kontrolündedir. Yalnızca şiirlerin –sen de istersen– yıldız tozu gibi anonim olarak havaya karışır.",
+      "quote": "Dünya susar, Kuytu seni dinler."
+    }
+  },
+  "his": {
+    "bg_image": "assets/images/his-noktasi-Özellik grafik.png",
+    "quote": "Hiç bir yere gidip \"burada bir şey var\" diye hissettin mi?<br>Ya da bazı yerlerde sebepsizce huzurlu… bazılarında ise tedirgin?",
+    "what": {
+      "title": "His Nedir?",
+      "p1": "His, insanların yaşadıkları yerlerle ilgili gerçek duygularını paylaştığı bir dünyadır. Artık bir yere gitmeden önce sadece nasıl göründüğünü değil, nasıl hissettirdiğini de bilebilirsin.",
+      "p2": "Bir parkta huzur, bir sokakta merak, bir kafede yalnızlık… Her duygu burada bir iz bırakır."
+    },
+    "how": {
+      "title": "Neler Yapabilirsin?",
+      "f1_title": "Konum Bazlı",
+      "f1_desc": "Bulunduğun yerde ne hissettiğini paylaş",
+      "f2_title": "Özgür İfade",
+      "f2_desc": "Duygularını emoji ve renklerle ifade et",
+      "f3_title": "Etkileşim",
+      "f3_desc": "Diğer insanların hislerini oku ve yorum yap",
+      "f4_title": "Keşif",
+      "f4_desc": "Yeni yerleri keşfederken duygularla yolunu bul"
+    },
+    "why": {
+      "title": "Neden His?",
+      "p1": "Çünkü bazı yerler sadece görülmez, hissedilir.",
+      "p2": "Çünkü herkes aynı yeri farklı yaşar.",
+      "p3": "Çünkü bazen bir yerin en doğru yorumu yıldızlar değil, hislerdir.",
+      "p4": "His, sadece bir uygulama değil… insanların duygularıyla iz bıraktığı bir deneyim.",
+      "quote": "Bir yer, bir his, bir iz."
+    }
+  },
+  "legal": {
+    "kuytu_privacy": {
+      "page_title": "Kuytu: Fısıltıların Sığınağı – Gizlilik Politikası",
+      "last_update": "Son Güncelleme: 14 Haziran 2026",
+      "intro": "Kuytu olarak, iç dünyanızın ve fısıltılarınızın size özel kalması gerektiğine inanıyoruz. Bu nedenle, gizlilik politikamızın temelinde <strong>\"mutlak kullanıcı kontrolü\"</strong> yer almaktadır.",
+      "sec1_title": "1. Veri Depolama:",
+      "sec1_p": "Uygulama içinde yanıtladığınız sorular, tuttuğunuz günlükler ve fısıltılarınız asla bulut sunucularımıza veya herhangi bir merkezi veritabanına yüklenmez. Tüm verileriniz sadece sizin cihazınızda yerel olarak saklanır. Uygulamayı silmeniz durumunda, yerel olarak tutulan bu verilere tarafımızca erişilemez.",
+      "sec2_title": "2. Geceye Fısıltılar ve 24 Saatlik Anonimlik (Küresel Alan):",
+      "sec2_p": "Kuytu içerisindeki \"Fısıltılar\" menüsünü kullanarak hislerinizi evrenin boşluğuna bırakmayı seçerseniz;",
+      "sec2_li1": "<strong>Kusursuz Anonimlik:</strong> Gönderdiğiniz fısıltı; adınız, cihaz bilgileriniz, IP adresiniz veya herhangi bir kimlik tanımlayıcı veri ile asla eşleştirilmez. Tamamen isimsiz ve izsiz bir metin olarak bulut veritabanımıza (Supabase) iletilir.",
+      "sec2_li2": "<strong>Otomatik Silinme:</strong> Evrenin boşluğuna bırakılan bu anonim fısıltılar, sistemimizde kalıcı olarak barındırılmaz. Paylaşılan her içerik, 24 saat sonra veritabanımızdan hiçbir iz bırakmayacak şekilde otomatik ve kalıcı olarak silinir.",
+      "sec3_title": "3. İçerik Raporlama ve Güvenli Alan:",
+      "sec3_p": "Kullanıcılarımızın huzurunu korumak en büyük önceliğimizdir. Küresel \"Fısıltılar\" akışında rahatsız edici bulduğunuz bir içerik olursa, bunu anında raporlayabilirsiniz. Rapor edilen içerik, sizin ekranınızdan derhal ve kalıcı olarak gizlenir. Bu sistem, topluluğumuzun güvenli ve yargısız bir alan olarak kalmasını sağlar.",
+      "sec4_title": "4. Yedekleme ve Dosya Erişimi:",
+      "sec4_p": "Kuytu, varsayılan olarak cihazınızın medya veya genel dosyalarına arka planda erişim talep etmez. Ancak, verilerinizi yedeklemek veya daha önce aldığınız bir yedeği cihaza yüklemek isterseniz, bu işlem cihazınızın güvenli dosya arayüzü üzerinden, tamamen sizin manuel seçiminizle gerçekleşir. Kuytu, galerinizdeki veya cihazınızdaki diğer kişisel dosyalara kesinlikle erişmez veya bu dosyaları taramaz; yalnızca sizin doğrudan seçtiğiniz ve onayladığınız dosya üzerinde okuma/yazma işlemi yapar.",
+      "sec5_title": "5. Şiir Motoru ve His Entegrasyonu:",
+      "sec5_p": "Yazdığınız fısıltılar cihazınızın yerel işlem gücüyle şiir formuna dönüştürülür. Eğer oluşturulan bu şiiri kardeş uygulamamız \"His\" sokaklarında paylaşmayı seçerseniz, bu paylaşım da tıpkı fısıltılarınız gibi tamamen anonim olarak aktarılır.",
+      "sec6_title": "6. Reklamlar ve Üçüncü Taraf Hizmetler:",
+      "sec6_p": "Uygulamamız ücretsiz kalabilmek için Google AdMob reklam altyapısını kullanmaktadır. AdMob, size kişiselleştirilmiş reklamlar sunabilmek için cihazınızın Reklam Kimliğini (Advertising ID) kullanabilir. Uygulama içindeki anonim \"yıldız tozu\" paylaşımı tamamen sizin onayınıza tabidir.",
+      "contact_title": "İletişim:",
+      "contact_p": "Gizlilikle ilgili her türlü sorunuz için <a href=\"mailto:Kuytu.Destek@gmail.com\">Kuytu.Destek@gmail.com</a> üzerinden bizimle iletişime geçebilirsiniz."
+    },
+    "kuytu_terms": {
+      "page_title": "Kuytu: Fısıltıların Sığınağı – Kullanım Şartları",
+      "last_update": "Son Güncelleme: 14 Haziran 2026",
+      "intro": "Kuytu, herkesin iç dünyasını yargılanmadan, özgürce ifade edebileceği güvenli ve sessiz bir alan olmayı amaçlar. Bu zarif atmosferi korumak için topluluğumuzun aşağıdaki esaslara uyması beklenir:",
+      "sec1_title": "1. Güvenli Alan ve Saygı:",
+      "sec1_p": "Kuytu, öncelikle kişisel bir iç dökme alanıdır. Yeni \"Fısıltılar\" menüsü üzerinden evrenin boşluğuna bıraktığınız 24 saatlik geçici paylaşımlarda veya \"His\"e gönderilen anonim şiirlerde; diğer kullanıcıları rahatsız edecek, nefret söylemi içeren, zorbalık, taciz, şiddet veya yasa dışı unsurlar barındıran içerikler kesinlikle paylaşılamaz.",
+      "sec2_title": "2. Topluluk Huzuru ve Raporlama Sistemi:",
+      "sec2_p": "Anonimlik, saygı çerçevesinde güzeldir. Küresel \"Fısıltılar\" akışında sizi rahatsız eden veya kurallarımızı ihlal ettiğini düşündüğünüz herhangi bir içeriği anında \"Rapor Et\" (Şikayet) butonuyla bildirme hakkına sahipsiniz. Raporladığınız içerik, sizin güvenli alanınızı korumak adına anında ve kalıcı olarak ekranınızdan gizlenir.",
+      "sec3_title": "3. Veri Sorumluluğu:",
+      "sec3_p": "Kişisel günlüğünüze aldığınız notlar sadece cihazınızda yerel olarak depolandığı için, cihaz güvenliğinden ve kişisel verilerinizin yedeklenmesinden tamamen siz sorumlusunuz. Cihaz değişikliği, uygulamanın silinmesi veya olası donanımsal arızalar durumunda cihazda tutulan yerel verilerin kaybolmasından Kuytu sorumlu tutulamaz.",
+      "sec4_title": "4. Hizmet Amacı ve Sağlık:",
+      "sec4_p": "Kuytu, kalabalıkların içinde kendinize dönmenizi sağlayan dijital, estetik ve şiirsel bir farkındalık deneyimi sunar. Uygulamanın sağladığı rahatlama alanı ve şiir motoru çıktıları tamamen sanatsal/estetik amaçlıdır; hiçbir koşulda profesyonel psikolojik danışmanlık, terapi veya tıbbi teşhis/tedavi yerine geçmez.",
+      "sec5_title": "5. Kardeş Uygulama Etkileşimi:",
+      "sec5_p": "Oluşturduğunuz şiirleri \"His\" sokaklarına göndermeyi seçtiğinizde, bu paylaşımların o platformun kendi topluluk kurallarına da uygun olması gerekir. Kurallara uymayan paylaşımların görünürlüğü kısıtlanabilir."
+    },
+    "his_privacy": {
+      "page_title": "His Gizlilik Politikası",
+      "last_update": "Son Güncelleme: 14 Haziran 2026",
+      "sec1_title": "1. Toplanan Veriler:",
+      "sec1_p": "His, kullanıcı deneyimini sağlamak amacıyla Google ile Giriş (Google Sign-In) altyapısını kullanır. Bu işlem sırasında yalnızca temel profil bilgileriniz (ad, e-posta adresi) güvenli bir şekilde alınır ve hesap oluşturmak için kullanılır. Ayrıca, uygulama içerisinde kendi isteğinizle oluşturduğunuz içerikler (his seçimleriniz, yazdığınız metinler ve yüklediğiniz fotoğraflar) sunucularımızda saklanır.",
+      "sec2_title": "2. Konum Bilgileri:",
+      "sec2_p": "Uygulamamız, \"Mood\" (duygu) paylaşımlarınızı coğrafi bağlam ekleyebilmek için konum izninize ihtiyaç duyar. Konum verileriniz yalnızca anlık paylaşım anında kullanılır, arka planda sürekli takip edilmez ve üçüncü şahıslara satılmaz.",
+      "sec3_title": "3. Kamera ve Medya Erişimi (Kullanıcı Tarafından Oluşturulan İçerik):",
+      "sec3_p": "Kullanıcıların hislerini fotoğraflarla görselleştirebilmesi için cihazın kamerasına ve/veya fotoğraf galerisine erişim izni talep edilir. Yüklediğiniz fotoğraflar, uygulama içerisinde diğer kullanıcılar tarafından görülebilecek şekilde sunucularımızda saklanır. Kullanıcılar, yükledikleri görsellerden tamamen kendileri sorumludur ve uygunsuz (şiddet, çıplaklık, nefret söylemi vb.) içerikler diğer kullanıcılar tarafından \"Şikayet Et\" butonu ile bildirilip sistemden kalıcı olarak silinebilir.",
+      "sec4_title": "4. Reklamlar ve Üçüncü Taraf Hizmetler:",
+      "sec4_p": "Uygulamamız ücretsiz kalabilmek için Google AdMob reklam altyapısını kullanmaktadır. AdMob, size kişiselleştirilmiş reklamlar sunabilmek için cihazınızın Reklam Kimliğini (Advertising ID) kullanabilir. Ayrıca veri tabanı ve dosya (fotoğraf) depolama yönetimi için Supabase altyapısı kullanılmaktadır.",
+      "sec5_title": "5. Çocuk Güvenliği ve İstismarıyla Mücadele (CSAM Politikası):",
+      "sec5_p": "His olarak, çocukların güvenliğini en üst düzeyde tutmayı taahhüt ediyoruz. Platformumuzda Çocuk Cinsel İstismarı Materyalleri (CSAM) ve çocuk güvenliğini tehdit eden her türlü içeriğe karşı sıfır tolerans politikası uygulanmaktadır:",
+      "sec5_li1": "<strong>Yasaklı İçerikler:</strong> Çocukların istismarına yönelik hiçbir görsel, metin veya bağlantı platformumuzda barındırılamaz, paylaşılamaz. Bu tür içerikler tespit edildiği an sistemden kalıcı olarak silinir.",
+      "sec5_li2": "<strong>Bildirme Mekanizması:</strong> Kullanıcılar, çocuk güvenliğini ihlal ettiğini düşündükleri her türlü içeriği uygulama içerisindeki \"Şikayet Et\" butonu üzerinden veya <a href=\"mailto:hisnoktasi@gmail.com\">hisnoktasi@gmail.com</a> üzerinden 7/24 bizlere bildirebilirler.",
+      "sec5_li3": "<strong>Hesap Feshi:</strong> Çocuk güvenliği standartlarımızı ihlal eden kullanıcıların hesapları hiçbir uyarı yapılmaksızın kalıcı olarak askıya alınır.",
+      "sec5_li4": "<strong>Yasal Bildirim:</strong> Yasa dışı içerikler ve şüpheli durumlar, ilgili ulusal ve uluslararası makamlara (NCMEC vb.) ve yerel emniyet birimlerine derhal rapor edilir.",
+      "sec6_title": "6. Veri Güvenliği ve Silme:",
+      "sec6_p": "Verileriniz ve yüklediğiniz medya dosyaları endüstri standartlarında güvenli sunucularda saklanmaktadır. İstediğiniz zaman hesap ayarlarından profilinizi ve yüklediğiniz fotoğraflar dahil tüm verilerinizi tamamen silebilirsiniz.",
+      "sec7_title": "7. Web Sitesi Analitiği (Google Analytics):",
+      "sec7_p": "Web sitemizin trafiğini ve kullanıcı etkileşimlerini analiz etmek amacıyla standart bir ölçüm aracı olan Google Analytics kullanılmaktadır. Google'ın verilerinizi nasıl kullandığı hakkında daha detaylı bilgi edinmek için <a href=\"https://policies.google.com/technologies/partner-sites\" target=\"_blank\">Google, hizmetlerimizi kullanan sitelerdeki veya uygulamalardaki bilgileri nasıl kullanır?</a> sayfasını ziyaret edebilirsiniz.",
+      "contact_title": "İletişim:",
+      "contact_p": "Gizlilik politikamızla ilgili sorularınız için bizimle <a href=\"mailto:hisnoktasi@gmail.com\">hisnoktasi@gmail.com</a> adresi üzerinden iletişime geçebilirsiniz."
+    },
+    "his_terms": {
+      "page_title": "His Kullanıcı Şartları",
+      "last_update": "Son Güncelleme: 14 Haziran 2026",
+      "sec1_title": "1. Kabul Etme:",
+      "sec1_p": "His uygulamasını indirerek ve kullanarak bu şartları kabul etmiş sayılırsınız.",
+      "sec2_title": "2. İçerik ve Davranış Kuralları:",
+      "sec2_p": "Kullanıcılar, uygulama içerisinde paylaştıkları metin ve fotoğraflarda (görsel içeriklerde) diğer kullanıcıları rahatsız edici, hakaret veya küfür içeren kelimeler kullanamaz; şiddet, çıplaklık, yasa dışı veya nefret söylemi barındıran görseller paylaşamazlar. Sistemimizde yer alan otomatik filtreleme sistemini aşmaya çalışmak veya zararlı içerik (görsel/metin) paylaşmak, hesabın kalıcı olarak kapatılmasına neden olabilir.",
+      "sec3_title": "3. Sorumluluk Reddi:",
+      "sec3_p": "His, kullanıcıların oluşturduğu içeriklerden (metinler ve yüklenen fotoğraflar) doğrudan sorumlu değildir. Ancak kullanıcılar, rahatsız edici buldukları içerikleri uygulama içindeki \"Şikayet Et\" butonu ile anında bildirebilirler. Kurallara aykırı içerikler tespit edildiğinde (veya şikayet edildiğinde) His bu içerikleri anında müdahale etme, silme ve ilgili kullanıcıyı platformdan uzaklaştırma hakkını saklı tutar.",
+      "sec4_title": "4. Hizmet Değişiklikleri:",
+      "sec4_p": "Uygulama geliştiricisi, önceden haber vermeksizin uygulamayı güncelleyebilir, bazı özelliklerini değiştirebilir veya hizmeti durdurabilir."
+    },
+    "his_delete": {
+      "page_title": "His Hesap ve Veri Silme Politikası",
+      "last_update": "Son Güncelleme: 14 Haziran 2026",
+      "intro": "His uygulamasındaki hesabınızı ve ilişkili tüm kişisel verilerinizi (yüklediğiniz fotoğraflar dahil) silmek için aşağıdaki iki yöntemden birini kullanabilirsiniz:",
+      "method1_title": "Yöntem 1: Uygulama İçinden (Otomatik)",
+      "method1_p": "Uygulamamıza giriş yaptıktan sonra <strong>Profil > Ayarlar > Gizlilik Ayarları</strong> menüsüne giderek <strong>\"Hesabımı Sil\"</strong> butonuna tıklayabilirsiniz. Hesabınız, paylaşımlarınız ve fotoğraflarınız dahil tüm verileriniz anında sistemden kalıcı olarak silinir.",
+      "method2_title": "Yöntem 2: E-posta ile Talep (Web)",
+      "method2_p": "Eğer uygulamaya erişiminiz yoksa veya uygulamayı cihazınızdan sildiyseniz, hesabınızın ve verilerinizin silinmesi için bize ulaşabilirsiniz. Lütfen uygulamaya kayıt olduğunuz e-posta adresinizden <a href=\"mailto:hisnoktasi@gmail.com\">hisnoktasi@gmail.com</a> adresine <strong>\"Hesap Silme Talebi\"</strong> başlıklı bir e-posta gönderin. Destek ekibimiz talebinizi alacak ve hesabınızı, fotoğraflarınızı ve tüm kişisel verilerinizi en geç 7 iş günü içinde kalıcı olarak silecektir."
+    }
+  }
+}

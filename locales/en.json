@@ -1,0 +1,209 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "apps": "Our Apps",
+    "contact": "Contact",
+    "back_to_home": "Back to Home",
+    "back_to_kuytu": "Back to Kuytu"
+  },
+  "footer": {
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "delete_account": "Delete Account",
+    "copyright": "© 2026 HisVera. All rights reserved."
+  },
+  "index": {
+    "hero": {
+      "desc": "HisVera is an independent app studio crafting simple, innovative, and user-centric mobile applications. We build projects focused on social experiences, emotional sharing, and games.",
+      "btn_explore": "Explore Apps",
+      "btn_contact": "Get in Touch",
+      "digital_studio": "Digital Studio",
+      "kuytu_desc": "Silent digital diary",
+      "his_desc": "Leave a trace of emotion"
+    },
+    "about": {
+      "title": "About Us",
+      "dev_title": "Developer's Note",
+      "dev_p1": "Hisvera is an independent development studio creating apps where people can express their thoughts, emotions, and discoveries in the digital world.",
+      "dev_p2": "Our goal is to add value to people's daily lives by creating simple, meaningful, and user-focused applications. We continue to produce innovative projects in various fields, from social experiences to games.",
+      "dev_p3": "We keep generating new ideas and developing meaningful experiences for our users.",
+      "story_title": "Hisvera – Brand Story",
+      "story_p1": "Hisvera was born from the idea of bringing people's thoughts, emotions, and imaginations into the digital realm.",
+      "story_p2": "Every app starts with an idea. Sometimes it's a feeling, sometimes a thought, and sometimes a puzzle waiting to be solved. Hisvera's purpose is to transform these ideas into pure, meaningful mobile experiences.",
+      "story_p3": "The applications developed by Hisvera aim to create digital spaces where people can express themselves, discover new things, and enjoy their time.",
+      "values_title": "Hisvera's approach is built upon three core values:",
+      "val_simplicity": "Simplicity",
+      "val_simplicity_desc": "Uncomplicated, clear, and user-friendly experiences.",
+      "val_meaning": "Meaning",
+      "val_meaning_desc": "Applications that touch people's thoughts and emotions.",
+      "val_discovery": "Discovery",
+      "val_discovery_desc": "Creating new ideas, games, and digital journeys.",
+      "conclusion_p1": "Today, Hisvera develops projects centered on social experiences, emotional sharing, and games.",
+      "conclusion_p2": "The journey has just begun."
+    },
+    "apps": {
+      "title": "Our Apps",
+      "kuytu_desc": "A silent digital diary. Record your feelings without judgment, let your words turn into an aesthetic poem and a star glowing in the dark.",
+      "his_desc": "A brand new mobile experience where you can instantly share your feelings, thoughts, and most special moments.",
+      "btn_details": "View Details",
+      "badge_new": "NEW",
+      "coming_soon_title": "Coming Soon...",
+      "coming_soon_desc": "We are developing another new, exciting and extraordinary digital experience for you. Stay tuned.",
+      "btn_soon": "In Development"
+    },
+    "contact": {
+      "title": "Have any questions?",
+      "desc": "For more information, write to us at <strong>hisvera.apps@gmail.com</strong>.",
+      "btn": "Contact Us"
+    }
+  },
+  "kuytu": {
+    "bg_image": "assets/images/kuytu arka plan.png",
+    "title": "Kuytu | Sanctuary of Whispers",
+    "quote": "\"The world goes silent, Kuytu listens to you.\"",
+    "store": {
+      "appstore": "App Store (Soon)",
+      "appgallery": "AppGallery (Soon)",
+      "googleplay": "Google Play"
+    },
+    "what": {
+      "title": "What is Kuytu | Sanctuary of Whispers?",
+      "p1": "There are hundreds of people we pass by during the day, hundreds of words we swallow down, and endless feelings that blend into the darkness. Most of the time we go unnoticed. And most of the time, we fail to notice others.",
+      "p2": "So, where do these lost moments go? This app is the sanctuary for those ownerless words and overlooked details. A silent digital diary where you don't have to raise your voice, where you aren't judged, and which belongs solely to you."
+    },
+    "how": {
+      "title": "How It Works?",
+      "f1_title": "Whisper Silently",
+      "f1_desc": "Return to yourself amidst the chaos. Record your feelings every day with three questions asked to you. Whisper only to yourself, without judgment.",
+      "f2_title": "Let Feelings Turn to Poetry",
+      "f2_desc": "The simple sentences you write are blended with Kuytu's aesthetic \"Poetry Engine\" when evening comes. Typos are erased, leaving a poetic reflection of your feelings. If you wish, this loneliness you feel pours into the streets of our sister app \"His\" like stardust.",
+      "f3_title": "Make Your Echoes Heard",
+      "f3_desc": "Discover Your Inner Sky. Look at the past not as boring lists, but as a universe you created. We transform every whisper you write into a star glowing in the dark.",
+      "f4_title": "🤫 Whispers to the Night <br><span style=\"font-size: 1rem; color: var(--text-muted); font-weight: normal;\">(24-Hour Anonymous Space)</span>",
+      "f4_desc": "Leave what builds up inside you to the void of the universe, without identity. With these whispers that will disappear after 24 hours as if carried by the wind, feel that you are not alone in the echo of that moment.",
+      "f5_title": "Silent Kindness",
+      "f5_desc": "The record of hidden beauties you leave to the world without anyone seeing, without expecting applause. A hand reaching out to a stray animal or a slight smile... All these silent kindnesses accumulate on Fridays and echo in the sky.",
+      "f6_title": "Who are the Residents?",
+      "f6_desc": "A literary window opening to the invisible souls we silently pass by, overlooked in the rush of the city. With every visit, you touch a different life, become a guest to the story of another soul."
+    },
+    "privacy": {
+      "title": "A Friend Who Listens But Keeps Your Secret",
+      "p1": "The most important thing for us is your security.",
+      "p2": "All the whispers you write are not uploaded to cloud servers or areas where others can read them.",
+      "p3": "All your records are solely on your device, under your control. Only your poems –if you wish– mix into the air anonymously like stardust.",
+      "quote": "The world goes silent, Kuytu listens to you."
+    }
+  },
+  "his": {
+    "bg_image": "assets/images/his arka plan .png",
+    "quote": "Have you ever gone somewhere and felt \"there is something here\"?<br>Or felt inexplicably peaceful in some places... and uneasy in others?",
+    "what": {
+      "title": "What is His?",
+      "p1": "His is a world where people share their true feelings about the places they experience. Now, before going somewhere, you can know not just what it looks like, but how it feels.",
+      "p2": "Peace in a park, curiosity on a street, loneliness in a cafe... Every emotion leaves a trace here."
+    },
+    "how": {
+      "title": "What Can You Do?",
+      "f1_title": "Location Based",
+      "f1_desc": "Share what you feel right where you are",
+      "f2_title": "Free Expression",
+      "f2_desc": "Express your emotions with emojis and colors",
+      "f3_title": "Interaction",
+      "f3_desc": "Read other people's feelings and comment",
+      "f4_title": "Discovery",
+      "f4_desc": "Find your way through emotions while exploring new places"
+    },
+    "why": {
+      "title": "Why His?",
+      "p1": "Because some places are not just seen, they are felt.",
+      "p2": "Because everyone experiences the same place differently.",
+      "p3": "Because sometimes the truest review of a place isn't stars, it's feelings.",
+      "p4": "His is not just an app... it's an experience where people leave traces with their emotions.",
+      "quote": "A place, a feeling, a trace."
+    }
+  },
+  "legal": {
+    "kuytu_privacy": {
+      "page_title": "Kuytu: Sanctuary of Whispers – Privacy Policy",
+      "last_update": "Last Update: June 14, 2026",
+      "intro": "As Kuytu, we believe that your inner world and whispers should remain private to you. Therefore, <strong>\"absolute user control\"</strong> lies at the core of our privacy policy.",
+      "sec1_title": "1. Data Storage:",
+      "sec1_p": "The questions you answer, the diaries you keep, and your whispers within the app are never uploaded to our cloud servers or any central database. All your data is stored locally only on your device. If you delete the app, this locally held data cannot be accessed by us.",
+      "sec2_title": "2. Whispers to the Night and 24-Hour Anonymity (Global Space):",
+      "sec2_p": "If you choose to leave your feelings to the void of the universe using the \"Whispers\" menu in Kuytu;",
+      "sec2_li1": "<strong>Flawless Anonymity:</strong> The whisper you send is never matched with your name, device information, IP address, or any personally identifiable data. It is transmitted to our cloud database (Supabase) as a completely nameless and untraceable text.",
+      "sec2_li2": "<strong>Auto-Deletion:</strong> These anonymous whispers left to the void of the universe are not permanently hosted on our system. Every shared content is automatically and permanently deleted from our database after 24 hours without leaving any trace.",
+      "sec3_title": "3. Content Reporting and Safe Space:",
+      "sec3_p": "Protecting the peace of our users is our top priority. If there is content you find disturbing in the global \"Whispers\" stream, you can report it instantly. Reported content is immediately and permanently hidden from your screen. This system ensures that our community remains a safe and judgment-free space.",
+      "sec4_title": "4. Backup and File Access:",
+      "sec4_p": "By default, Kuytu does not request background access to your device's media or general files. However, if you wish to back up your data or restore a previous backup to your device, this process occurs through your device's secure file interface, entirely by your manual selection. Kuytu absolutely does not access or scan your gallery or other personal files on your device; it only performs read/write operations on the file you directly select and approve.",
+      "sec5_title": "5. Poetry Engine and His Integration:",
+      "sec5_p": "The whispers you write are transformed into a poetic form using your device's local processing power. If you choose to share this generated poem on the streets of our sister app \"His\", this sharing is also transmitted completely anonymously, just like your whispers.",
+      "sec6_title": "6. Ads and Third-Party Services:",
+      "sec6_p": "To remain free, our app uses the Google AdMob advertising infrastructure. AdMob may use your device's Advertising ID to present personalized ads to you. Anonymous \"stardust\" sharing within the app is completely subject to your approval.",
+      "contact_title": "Contact:",
+      "contact_p": "For any questions regarding privacy, you can contact us at <a href=\"mailto:Kuytu.Destek@gmail.com\">Kuytu.Destek@gmail.com</a>."
+    },
+    "kuytu_terms": {
+      "page_title": "Kuytu: Sanctuary of Whispers – Terms of Use",
+      "last_update": "Last Update: June 14, 2026",
+      "intro": "Kuytu aims to be a safe and quiet space where everyone can freely express their inner world without judgment. To maintain this elegant atmosphere, our community is expected to adhere to the following principles:",
+      "sec1_title": "1. Safe Space and Respect:",
+      "sec1_p": "Kuytu is primarily a personal venting space. In the 24-hour temporary shares you leave to the void of the universe via the new \"Whispers\" menu or the anonymous poems sent to \"His\"; content that disturbs other users, contains hate speech, bullying, harassment, violence, or illegal elements can never be shared.",
+      "sec2_title": "2. Community Peace and Reporting System:",
+      "sec2_p": "Anonymity is beautiful within the framework of respect. If you find any content disturbing or believe it violates our rules in the global \"Whispers\" stream, you have the right to report it instantly using the \"Report\" button. To protect your safe space, the reported content is instantly and permanently hidden from your screen.",
+      "sec3_title": "3. Data Responsibility:",
+      "sec3_p": "Since the notes you take in your personal diary are stored locally only on your device, you are entirely responsible for device security and backing up your personal data. Kuytu cannot be held responsible for the loss of local data stored on the device in case of device change, app deletion, or possible hardware malfunctions.",
+      "sec4_title": "4. Purpose of Service and Health:",
+      "sec4_p": "Kuytu offers a digital, aesthetic, and poetic awareness experience that allows you to return to yourself amidst the crowds. The relaxation space and poetry engine outputs provided by the app are entirely for artistic/aesthetic purposes; under no circumstances do they replace professional psychological counseling, therapy, or medical diagnosis/treatment.",
+      "sec5_title": "5. Sister App Interaction:",
+      "sec5_p": "When you choose to send your created poems to the streets of \"His\", these shares must also comply with the community guidelines of that platform. The visibility of shares that do not comply with the rules may be restricted."
+    },
+    "his_privacy": {
+      "page_title": "His Privacy Policy",
+      "last_update": "Last Update: June 14, 2026",
+      "sec1_title": "1. Collected Data:",
+      "sec1_p": "His uses the Google Sign-In infrastructure to provide user experience. During this process, only your basic profile information (name, email address) is securely obtained and used to create an account. Additionally, content you voluntarily create within the app (your mood selections, written texts, and uploaded photos) is stored on our servers.",
+      "sec2_title": "2. Location Information:",
+      "sec2_p": "Our app requires your location permission to add geographical context to your \"Mood\" (feeling) shares. Your location data is only used instantly during sharing, is not continuously tracked in the background, and is not sold to third parties.",
+      "sec3_title": "3. Camera and Media Access (User Generated Content):",
+      "sec3_p": "Access to the device's camera and/or photo gallery is requested so users can visualize their feelings with photos. The photos you upload are stored on our servers so they can be seen by other users within the app. Users are entirely responsible for the images they upload, and inappropriate content (violence, nudity, hate speech, etc.) can be reported by other users via the \"Report\" button and permanently deleted from the system.",
+      "sec4_title": "4. Ads and Third-Party Services:",
+      "sec4_p": "To remain free, our app uses the Google AdMob advertising infrastructure. AdMob may use your device's Advertising ID to present personalized ads to you. Furthermore, the Supabase infrastructure is used for database and file (photo) storage management.",
+      "sec5_title": "5. Child Safety and Combating Abuse (CSAM Policy):",
+      "sec5_p": "At His, we are committed to maintaining child safety at the highest level. We enforce a zero-tolerance policy against Child Sexual Abuse Materials (CSAM) and any content threatening child safety on our platform:",
+      "sec5_li1": "<strong>Prohibited Content:</strong> No images, texts, or links aimed at the abuse of children may be hosted or shared on our platform. Such content is permanently deleted from the system the moment it is detected.",
+      "sec5_li2": "<strong>Reporting Mechanism:</strong> Users can report any content they believe violates child safety 24/7 via the \"Report\" button in the app or via <a href=\"mailto:hisnoktasi@gmail.com\">hisnoktasi@gmail.com</a>.",
+      "sec5_li3": "<strong>Account Termination:</strong> The accounts of users who violate our child safety standards will be permanently suspended without warning.",
+      "sec5_li4": "<strong>Legal Reporting:</strong> Illegal content and suspicious situations are immediately reported to relevant national and international authorities (such as NCMEC) and local law enforcement units.",
+      "sec6_title": "6. Data Security and Deletion:",
+      "sec6_p": "Your data and uploaded media files are stored on secure servers at industry standards. You can permanently delete your profile and all your data, including uploaded photos, from your account settings at any time.",
+      "sec7_title": "7. Website Analytics (Google Analytics):",
+      "sec7_p": "Google Analytics, a standard measurement tool, is used to analyze our website's traffic and user interactions. To learn more about how Google uses your data, you can visit the page: <a href=\"https://policies.google.com/technologies/partner-sites\" target=\"_blank\">How Google uses information from sites or apps that use our services</a>.",
+      "contact_title": "Contact:",
+      "contact_p": "For questions regarding our privacy policy, you can contact us at <a href=\"mailto:hisnoktasi@gmail.com\">hisnoktasi@gmail.com</a>."
+    },
+    "his_terms": {
+      "page_title": "His Terms of Use",
+      "last_update": "Last Update: June 14, 2026",
+      "sec1_title": "1. Acceptance:",
+      "sec1_p": "By downloading and using the His app, you are deemed to have accepted these terms.",
+      "sec2_title": "2. Content and Conduct Rules:",
+      "sec2_p": "Users may not use disturbing, insulting, or profane words in the texts and photos (visual content) they share within the app; they may not share visuals containing violence, nudity, illegal elements, or hate speech. Attempting to bypass the automated filtering system in our platform or sharing harmful content (visual/text) may result in permanent account closure.",
+      "sec3_title": "3. Disclaimer of Liability:",
+      "sec3_p": "His is not directly responsible for the content (texts and uploaded photos) generated by users. However, users can instantly report content they find disturbing via the \"Report\" button in the app. When rule-breaking content is detected (or reported), His reserves the right to intervene instantly, delete the content, and remove the relevant user from the platform.",
+      "sec4_title": "4. Service Modifications:",
+      "sec4_p": "The app developer may update the app, change certain features, or suspend the service without prior notice."
+    },
+    "his_delete": {
+      "page_title": "His Account and Data Deletion Policy",
+      "last_update": "Last Update: June 14, 2026",
+      "intro": "To delete your account in the His app and all associated personal data (including your uploaded photos), you can use one of the two methods below:",
+      "method1_title": "Method 1: In-App (Automatic)",
+      "method1_p": "After logging into our app, you can go to the <strong>Profile > Settings > Privacy Settings</strong> menu and click the <strong>\"Delete My Account\"</strong> button. All your data, including your account, shares, and photos, will be instantly and permanently deleted from the system.",
+      "method2_title": "Method 2: Request via Email (Web)",
+      "method2_p": "If you do not have access to the app or have deleted it from your device, you can contact us to delete your account and data. Please send an email titled <strong>\"Account Deletion Request\"</strong> from the email address you registered with to <a href=\"mailto:hisnoktasi@gmail.com\">hisnoktasi@gmail.com</a>. Our support team will receive your request and permanently delete your account, photos, and all personal data within 7 business days at the latest."
+    }
+  }
+}
