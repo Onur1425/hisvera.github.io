@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hisvera | Bağımsız Mobil Uygulama Geliştiricisi</title>
+    <link rel="icon" type="image/jpeg" href="assets/images/HisVera.jpg">
+    <meta name="description" content="hisvera - Bağımsız mobil uygulama geliştiricisi. Kuytu ve diğer yenilikçi mobil uygulamaların yaratıcısı.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0DRJXGNWT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-D0DRJXGNWT');
+    </script>
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-logo">
+            <img src="assets/images/HisVera.jpg" alt="HisVera Logo">
+            <h2>HisVera</h2>
+        </div>
+    </div>
+    
+    <div class="background-effects">
+        <div class="glow blob-1"></div>
+        <div class="glow blob-2"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="logo">HisVera</div>
+        <div class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#ana-sayfa" data-i18n="nav.home">Ana Sayfa</a></li>
+            <li><a href="#hakkimizda" data-i18n="nav.about">Hakkımızda</a></li>
+            <li><a href="#uygulamalar" data-i18n="nav.apps">Uygulamalarımız</a></li>
+            <li><a href="#iletisim" data-i18n="nav.contact">İletişim</a></li>
+            <li class="lang-switcher">
+                <a href="#" data-lang-switch="tr" class="active-lang" style="font-weight:600; font-size: 0.9rem;">TR</a>
+                <span style="color:var(--text-muted); font-size: 0.9rem;">|</span>
+                <a href="#" data-lang-switch="en" style="font-size: 0.9rem;">EN</a>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="ana-sayfa" class="hero">
+            <div class="hero-content">
+                <h2 class="subtitle" id="typewriter-text"></h2>
+                <h1 class="title">HisVera</h1>
+                <p class="description" data-i18n="index.hero.desc">
+                    HisVera, sade, yenilikçi ve kullanıcı odaklı mobil uygulamalar geliştiren bağımsız bir uygulama geliştiricisidir. Sosyal deneyimler, duygusal paylaşımlar ve oyunlar üzerine projeler üretmektedir.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#uygulamalar" class="btn primary" data-i18n="index.hero.btn_explore">Uygulamaları Keşfet</a>
+                    <a href="#iletisim" class="btn secondary" data-i18n="index.hero.btn_contact">İletişime Geç</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="floating-phone">
+                    <div class="phone-screen" style="position: relative; overflow: hidden; background: #0f172a; padding: 1.5rem; display: flex; flex-direction: column; justify-content: center; gap: 2rem;">
+                        <!-- İç arka plan efektleri -->
+                        <div class="glow" style="position: absolute; top: -10%; left: -20%; width: 250px; height: 250px; background: var(--primary); opacity: 0.3; border-radius: 50%; filter: blur(50px);"></div>
+                        <div class="glow" style="position: absolute; bottom: -10%; right: -20%; width: 250px; height: 250px; background: var(--secondary); opacity: 0.3; border-radius: 50%; filter: blur(50px);"></div>
+
+                        <!-- Üst Başlık -->
+                        <div style="z-index: 2; text-align: center; margin-top: -1rem;">
+                            <img src="assets/images/HisVera.jpg" alt="HisVera Logo" style="width: 70px; height: 70px; border-radius: 20px; border: 2px solid rgba(255,255,255,0.1); box-shadow: 0 10px 20px rgba(0,0,0,0.5); object-fit: cover; margin-bottom: 0.8rem; display: inline-block;">
+                            <h3 style="font-size: 2rem; font-weight: 800; color: white; letter-spacing: 1px;">HisVera</h3>
+                            <p style="font-size: 0.85rem; color: var(--secondary); text-transform: uppercase; letter-spacing: 2px; margin-top: 5px;" data-i18n="index.hero.digital_studio">Dijital Stüdyo</p>
+                        </div>
+
+                        <!-- Uygulama Kartları (Animasyonlu) -->
+                        <div style="z-index: 2; display: flex; flex-direction: column; gap: 1.2rem;">
+                            <!-- Kuytu Kartı -->
+                            <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 1.2rem; display: flex; align-items: center; gap: 1rem; box-shadow: 0 10px 20px rgba(0,0,0,0.4); animation: float 6s infinite alternate ease-in-out;">
+                                <img src="assets/images/kuytu%20logo.png" alt="Kuytu" style="width: 55px; height: 55px; border-radius: 14px; object-fit: cover; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+                                <div style="text-align: left;">
+                                    <div style="font-size: 1.1rem; font-weight: 600; color: white; line-height: 1.2;">Kuytu</div>
+                                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;" data-i18n="index.hero.kuytu_desc">Sessiz dijital günlük</div>
+                                </div>
+                            </div>
+
+                            <!-- His Kartı -->
+                            <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 1.2rem; display: flex; align-items: center; gap: 1rem; box-shadow: 0 10px 20px rgba(0,0,0,0.4); animation: float 7s infinite alternate-reverse ease-in-out;">
+                                <img src="assets/images/his-noktas%C4%B1-logo.png" alt="His" style="width: 55px; height: 55px; border-radius: 14px; object-fit: cover; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+                                <div style="text-align: left;">
+                                    <div style="font-size: 1.1rem; font-weight: 600; color: white; line-height: 1.2;">His</div>
+                                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;" data-i18n="index.hero.his_desc">Duygularla iz bırak</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Alt Çizgi (iOS style home bar) -->
+                        <div style="position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); width: 35%; height: 5px; background: rgba(255,255,255,0.2); border-radius: 10px; z-index: 2;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="hakkimizda" class="about">
+            <div class="section-header">
+                <h2 data-i18n="index.about.title">Hakkımızda</h2>
+                <div class="line"></div>
+            </div>
+            
+            <div style="display: flex; flex-direction: column; gap: 3rem; max-width: 1000px; margin: 0 auto;">
+                
+                <!-- Geliştirici Açıklaması Kartı -->
+                <div class="glass-card" style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 3rem;">
+                    <img src="assets/images/HisVera.jpg" alt="hisvera profil" style="width: 150px; height: 150px; border-radius: 50%; margin-bottom: 2rem; border: 4px solid var(--primary); object-fit: cover; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+                    <h3 style="color: var(--primary); font-size: 1.8rem; margin-bottom: 1rem;" data-i18n="index.about.dev_title">Geliştirici Açıklaması</h3>
+                    <p style="font-size: 1.15rem; line-height: 1.8; color: var(--text-color); margin-bottom: 1rem;" data-i18n="index.about.dev_p1">
+                        Hisvera, insanların düşüncelerini, duygularını ve keşiflerini dijital dünyada ifade edebilecekleri uygulamalar geliştiren bağımsız bir geliştirici stüdyosudur.
+                    </p>
+                    <p style="font-size: 1.15rem; line-height: 1.8; color: var(--text-color); margin-bottom: 1rem;" data-i18n="index.about.dev_p2">
+                        Amacımız; sade, anlamlı ve kullanıcı odaklı uygulamalar oluşturarak insanların günlük hayatına değer katmaktır. Sosyal deneyimlerden oyunlara kadar farklı alanlarda yenilikçi projeler üretmeye devam ediyoruz.
+                    </p>
+                    <p style="font-size: 1.15rem; line-height: 1.8; color: var(--text-muted); font-style: italic;" data-i18n="index.about.dev_p3">
+                        Yeni fikirler üretmeye ve kullanıcılar için anlamlı deneyimler geliştirmeye devam ediyoruz.
+                    </p>
+                </div>
+
+                <!-- Marka Hikayesi Kartı -->
+                <div class="glass-card" style="padding: 4rem 3rem; text-align: left; background: linear-gradient(135deg, rgba(30,41,59,0.8), rgba(15,23,42,0.8));">
+                    <h3 style="font-size: 2.2rem; color: var(--secondary); margin-bottom: 1.5rem; text-align: center;" data-i18n="index.about.story_title">Hisvera – Marka Hikayesi</h3>
+                    
+                    <p style="font-size: 1.25rem; line-height: 1.9; color: var(--text-color); margin-bottom: 1.5rem; text-align: center; font-weight: 600;" data-i18n="index.about.story_p1">
+                        Hisvera, insanların düşüncelerini, duygularını ve hayal güçlerini dijital dünyaya taşıma fikrinden doğdu.
+                    </p>
+                    
+                    <p style="font-size: 1.15rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 1.5rem;" data-i18n="index.about.story_p2">
+                        Her uygulama bir fikirle başlar. Bazen bir duygu, bazen bir düşünce, bazen de çözülmesi gereken bir bulmaca. Hisvera'nın amacı, bu fikirleri sade ve anlamlı mobil deneyimlere dönüştürmektir.
+                    </p>
+                    
+                    <p style="font-size: 1.15rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 3rem;" data-i18n="index.about.story_p3">
+                        Hisvera tarafından geliştirilen uygulamalar; insanların kendilerini ifade edebilecekleri, yeni şeyler keşfedebilecekleri ve keyifli zaman geçirebilecekleri dijital alanlar oluşturmayı hedefler.
+                    </p>
+
+                    <h4 style="font-size: 1.5rem; color: var(--primary); margin-bottom: 1.5rem; text-align: center;" data-i18n="index.about.values_title">Hisvera’nın yaklaşımı üç temel değer üzerine kuruludur:</h4>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+                        <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); text-align: center;">
+                            <i class="fa-solid fa-leaf" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                            <h5 style="font-size: 1.3rem; margin-bottom: 0.5rem;" data-i18n="index.about.val_simplicity">Sadelik</h5>
+                            <p style="color: var(--text-muted); font-size: 1rem;" data-i18n="index.about.val_simplicity_desc">Karmaşık olmayan, anlaşılır ve kullanıcı dostu deneyimler.</p>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); text-align: center;">
+                            <i class="fa-solid fa-heart" style="font-size: 2rem; color: #ef4444; margin-bottom: 1rem;"></i>
+                            <h5 style="font-size: 1.3rem; margin-bottom: 0.5rem;" data-i18n="index.about.val_meaning">Anlam</h5>
+                            <p style="color: var(--text-muted); font-size: 1rem;" data-i18n="index.about.val_meaning_desc">İnsanların düşüncelerine ve duygularına dokunan uygulamalar.</p>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); text-align: center;">
+                            <i class="fa-solid fa-compass" style="font-size: 2rem; color: var(--secondary); margin-bottom: 1rem;"></i>
+                            <h5 style="font-size: 1.3rem; margin-bottom: 0.5rem;" data-i18n="index.about.val_discovery">Keşif</h5>
+                            <p style="color: var(--text-muted); font-size: 1rem;" data-i18n="index.about.val_discovery_desc">Yeni fikirler, oyunlar ve dijital deneyimler üretmek.</p>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; border-top: 1px solid var(--glass-border); padding-top: 2rem;">
+                        <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 1rem;" data-i18n="index.about.conclusion_p1">Bugün Hisvera; sosyal deneyimler, duygu paylaşımı ve oyunlar üzerine projeler geliştirmektedir.</p>
+                        <p style="font-size: 1.6rem; font-weight: 600; background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" data-i18n="index.about.conclusion_p2">Yolculuk yeni başlıyor.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="uygulamalar" class="apps">
+            <div class="section-header">
+                <h2 data-i18n="index.apps.title">Uygulamalarımız</h2>
+                <div class="line"></div>
+            </div>
+            <div class="app-grid">
+                <!-- App Card 1: Kuytu -->
+                <div class="app-card glass-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-perspective="1000" style="padding-top: 0; overflow: hidden; display: flex; flex-direction: column; align-items: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); transition: all 0.4s ease;" onmouseover="this.style.boxShadow='0 0 40px rgba(139, 92, 246, 0.3), 0 20px 40px rgba(0,0,0,0.6)'; this.style.borderColor='rgba(139, 92, 246, 0.5)';" onmouseout="this.style.boxShadow=''; this.style.borderColor='rgba(255,255,255,0.1)'; " onclick="window.location.href='kuytu'">
+                    <div style="position: absolute; top: 15px; right: 15px; background: linear-gradient(45deg, #8b5cf6, #d946ef); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; font-weight: 800; z-index: 10; box-shadow: 0 0 20px rgba(139, 92, 246, 0.6); letter-spacing: 1px;" data-i18n="index.apps.badge_new">YENİ</div>
+                    <div style="width: calc(100% + 5rem); height: 250px; margin-left: -2.5rem; margin-top: -2.5rem; margin-bottom: 0; position: relative; background: #0f172a;">
+                        <img src="assets/images/kuytu_bg_new.png" alt="Kuytu Kapak" style="width: 100%; height: 100%; object-fit: fill; opacity: 1;">
+                        <!-- Gradient fade for smooth blend -->
+                        <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 30%; background: linear-gradient(to top, rgba(30, 41, 59, 1), transparent);"></div>
+                    </div>
+                    <div class="app-icon" style="background: #0f172a; box-shadow: none; z-index: 2; position: relative; margin-top: -25px; margin-bottom: 1.5rem; padding: 6px; border-radius: 24px;">
+                        <img src="assets/images/kuytu%20logo.png" alt="Kuytu Logo" style="width: 80px; height: 80px; border-radius: 18px; box-shadow: 0 15px 25px rgba(0,0,0,0.5); object-fit: cover; display: block;">
+                    </div>
+                    <div class="app-info">
+                        <h3>Kuytu <i class="fa-solid fa-arrow-right" style="font-size: 0.8rem; color: var(--primary); margin-left: 5px; vertical-align: middle;"></i></h3>
+                        <p data-i18n="index.apps.kuytu_desc">Sessiz bir dijital günlük. Yargılanmadan hislerini kaydet, kelimelerin estetik bir şiire ve karanlıkta parlayan bir yıldıza dönüşsün.</p>
+                        <div class="app-links" style="flex-wrap: wrap;">
+                            <a href="kuytu" class="btn primary" style="width: 100%; margin-bottom: 0.5rem; border-radius: 12px; padding: 0.6rem; text-align: center;" data-i18n="index.apps.btn_details">Detayları İncele</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- App Card 2: His -->
+                <div class="app-card glass-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-perspective="1000" style="padding-top: 0; overflow: hidden; display: flex; flex-direction: column; align-items: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); transition: all 0.4s ease;" onmouseover="this.style.boxShadow='0 0 40px rgba(255, 65, 108, 0.3), 0 20px 40px rgba(0,0,0,0.6)'; this.style.borderColor='rgba(255, 65, 108, 0.5)';" onmouseout="this.style.boxShadow=''; this.style.borderColor='rgba(255,255,255,0.1)'; " onclick="window.location.href='his-noktasi'">
+                    <div style="position: absolute; top: 15px; left: 15px; background: linear-gradient(45deg, #f43f5e, #fb923c); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; font-weight: 800; z-index: 10; box-shadow: 0 0 20px rgba(244, 63, 94, 0.6); letter-spacing: 1px;" data-i18n="index.apps.badge_his2">HİS 2.0 YENİLENDİ</div>
+                    <div style="width: calc(100% + 5rem); height: 250px; margin-left: -2.5rem; margin-top: -2.5rem; margin-bottom: 0; position: relative; background: #0f172a;">
+                        <img src="assets/images/his_bg_neon.png" alt="His Kapak" style="width: 100%; height: 100%; object-fit: fill; opacity: 1;">
+                        <!-- Gradient fade for smooth blend -->
+                        <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 30%; background: linear-gradient(to top, rgba(30, 41, 59, 1), transparent);"></div>
+                    </div>
+                    <div class="app-icon" style="background: #0f172a; box-shadow: none; z-index: 2; position: relative; margin-top: -25px; margin-bottom: 1.5rem; padding: 6px; border-radius: 24px;">
+                        <img src="assets/images/his-noktas%C4%B1-logo.png" alt="His Logo" style="width: 80px; height: 80px; border-radius: 18px; box-shadow: 0 15px 25px rgba(0,0,0,0.5); object-fit: cover; display: block;">
+                    </div>
+                    <div class="app-info">
+                        <h3>His <i class="fa-solid fa-arrow-right" style="font-size: 0.8rem; color: var(--primary); margin-left: 5px; vertical-align: middle;"></i></h3>
+                        <p data-i18n="index.apps.his_desc">Duygularınızı, düşüncelerinizi ve en özel anlarınızı anında paylaşabileceğiniz yepyeni bir mobil deneyim.</p>
+                        <div class="app-links" style="flex-wrap: wrap;">
+                            <a href="his-noktasi" class="btn primary" style="width: 100%; margin-bottom: 0.5rem; border-radius: 12px; padding: 0.6rem; text-align: center;" data-i18n="index.apps.btn_details">Detayları İncele</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- App Card 3: Proje Gri Teaser -->
+                <div class="app-card glass-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-perspective="1000" style="padding-top: 0; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); transition: all 0.4s ease;" onmouseover="this.style.boxShadow='0 0 40px rgba(255, 255, 255, 0.2), 0 20px 40px rgba(0,0,0,0.6)'; this.style.borderColor='rgba(255, 255, 255, 0.4)';" onmouseout="this.style.boxShadow=''; this.style.borderColor='rgba(255,255,255,0.1)'; " onclick="window.location.href='proje-gri.html'">
+                    <div style="width: calc(100% + 5rem); height: 250px; margin-left: -2.5rem; margin-top: -2.5rem; margin-bottom: 0; position: relative; background: #000; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                        <video src="assets/video/gri-teaser.mp4" autoplay loop muted playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.45; filter: grayscale(100%);"></video>
+                        <i class="fa-solid fa-eye" style="font-size: 4rem; color: #fff; text-shadow: 0 0 20px rgba(255,255,255,0.3); z-index: 2; animation: pulse-glow 3s infinite;"></i>
+                        <!-- Gradient fade for smooth blend -->
+                        <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 40%; background: linear-gradient(to top, rgba(30, 41, 59, 1), transparent); z-index: 2;"></div>
+                    </div>
+                    <div class="app-info" style="text-align: center; margin-top: 2rem;">
+                        <h3 data-i18n="index.apps.coming_soon_title">Çok Yakında...</h3>
+                        <p data-i18n="index.apps.coming_soon_desc">Sizler için yeni, heyecan verici ve sıradışı bir dijital deneyim daha geliştiriyoruz. Bizi takipte kalın.</p>
+                        <div class="app-links" style="flex-wrap: wrap;">
+                            <button class="btn secondary" style="width: 100%; margin-bottom: 0.5rem; border-radius: 12px; padding: 0.6rem; cursor: pointer;" data-i18n="index.apps.btn_soon">Sırrını Koruyor</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- App Card 4: Generic Yakında Placeholder -->
+                <div class="app-card glass-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-perspective="1000" style="padding-top: 0; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0.8; cursor: default; border: 1px solid rgba(255,255,255,0.1); transition: all 0.4s ease;" onmouseover="this.style.boxShadow='0 0 40px rgba(16, 185, 129, 0.2), 0 20px 40px rgba(0,0,0,0.6)'; this.style.borderColor='rgba(16, 185, 129, 0.4)';" onmouseout="this.style.boxShadow=''; this.style.borderColor='rgba(255,255,255,0.1)'; ">
+                    <div style="width: calc(100% + 5rem); height: 250px; margin-left: -2.5rem; margin-top: -2.5rem; margin-bottom: 0; position: relative; background: linear-gradient(135deg, rgba(30,41,59,1), rgba(15,23,42,1)); display: flex; align-items: center; justify-content: center;">
+                        <i class="fa-solid fa-atom fa-spin" style="font-size: 6rem; color: var(--primary); text-shadow: 0 0 20px var(--primary); opacity: 0.9;"></i>
+                    </div>
+                    <div class="app-info" style="text-align: center; margin-top: 2rem;">
+                        <h3 data-i18n="index.apps.generic_soon_title">Çok Yakında...</h3>
+                        <p data-i18n="index.apps.generic_soon_desc">Sizler için yeni, heyecan verici ve sıradışı bir dijital deneyim daha geliştiriyoruz. Bizi takipte kalın.</p>
+                        <div class="app-links" style="flex-wrap: wrap;">
+                            <button class="btn secondary" style="width: 100%; margin-bottom: 0.5rem; border-radius: 12px; padding: 0.6rem; cursor: not-allowed; opacity: 0.6;" disabled data-i18n="index.apps.btn_generic_soon">Geliştirme Aşamasında</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="iletisim" class="contact">
+            <div class="section-header">
+                <h2 data-i18n="index.contact.title">Sorularınız mı var?</h2>
+                <div class="line"></div>
+            </div>
+            <div class="contact-content">
+                <p data-i18n="index.contact.desc">Daha fazla bilgi almak için <strong>hisvera.apps@gmail.com</strong> adresine yazın.</p>
+                <a href="mailto:hisvera.apps@gmail.com" class="btn primary" data-i18n="index.contact.btn">Bize Ulaşın</a>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/hisvera.studio" target="_blank" title="Hisvera Instagram Hesabı" style="transition: all 0.3s; font-size: 2rem;" onmouseover="this.style.color='#fff'; this.style.background='#E1306C'; this.style.borderColor='transparent'; this.style.boxShadow='0 10px 20px rgba(225, 48, 108, 0.4)';" onmouseout="this.style.color=''; this.style.background=''; this.style.borderColor=''; this.style.boxShadow='';">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@hisvera" target="_blank" title="Hisvera YouTube Kanalı" style="transition: all 0.3s; font-size: 2rem;" onmouseover="this.style.color='#fff'; this.style.background='#ff0000'; this.style.borderColor='transparent'; this.style.boxShadow='0 10px 20px rgba(255, 0, 0, 0.4)';" onmouseout="this.style.color=''; this.style.background=''; this.style.borderColor=''; this.style.boxShadow='';">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="margin-top: 2rem; padding: 3rem 0; border-top: 1px solid var(--glass-border); text-align: center; background: rgba(15, 23, 42, 0.5);">
+        <div style="margin-bottom: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+            <a href="gizlilik-politikasi" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'" data-i18n="footer.privacy">Gizlilik Politikası</a>
+            <span style="color: rgba(255,255,255,0.1);">|</span>
+            <a href="kullanim-sartlari" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'" data-i18n="footer.terms">Kullanım Şartları</a>
+            <span style="color: rgba(255,255,255,0.1);">|</span>
+            <a href="hesap-silme" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'" data-i18n="footer.delete_account">Hesap Silme</a>
+        </div>
+        <p style="color: var(--text-muted);" data-i18n="footer.copyright">&copy; 2026 HisVera. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <script src="i18n.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

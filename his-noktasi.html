@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>His | hisvera</title>
+    <link rel="icon" type="image/jpeg" href="assets/images/HisVera.jpg">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .app-detail-hero {
+            text-align: center;
+            padding-top: 8rem;
+            min-height: auto;
+        }
+        .app-detail-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            margin: 0 auto 2rem;
+            display: block;
+            object-fit: cover;
+        }
+        .app-detail-cover {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            margin: 3rem auto;
+            display: block;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+            text-align: left;
+        }
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s, background 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        @keyframes float-reverse {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(15px); }
+            100% { transform: translateY(0px); }
+        }
+        @keyframes pulse-glow {
+            0% { text-shadow: 0 0 10px rgba(139, 92, 246, 0.5), 0 0 20px rgba(139, 92, 246, 0.3); }
+            50% { text-shadow: 0 0 25px rgba(139, 92, 246, 0.8), 0 0 40px rgba(139, 92, 246, 0.6); }
+            100% { text-shadow: 0 0 10px rgba(139, 92, 246, 0.5), 0 0 20px rgba(139, 92, 246, 0.3); }
+        }
+        .hero-title-glow {
+            animation: pulse-glow 3s infinite ease-in-out;
+            color: #fff;
+        }
+        .story-container {
+            display: flex;
+            flex-direction: column;
+            gap: 6rem;
+            margin-top: 6rem;
+            padding: 0 1rem;
+        }
+        .story-card {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 4rem;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 3.5rem;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            animation: float 6s ease-in-out infinite;
+        }
+        .story-card.reverse {
+            flex-direction: row-reverse;
+            animation: float-reverse 7s ease-in-out infinite;
+        }
+        .story-card::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at center, rgba(139, 92, 246, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .story-icon-container {
+            flex: 0 0 150px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
+        }
+        .story-icon-container.secondary {
+            background: rgba(234, 179, 8, 0.1);
+            border: 1px solid rgba(234, 179, 8, 0.2);
+            box-shadow: 0 0 30px rgba(234, 179, 8, 0.2);
+        }
+        .story-icon {
+            font-size: 4rem;
+            background: linear-gradient(135deg, #a78bfa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px rgba(167, 139, 250, 0.6));
+        }
+        .story-icon.secondary {
+            background: linear-gradient(135deg, #fde047, #eab308);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px rgba(250, 204, 21, 0.6));
+        }
+        .story-content {
+            flex: 1;
+            text-align: left;
+        }
+        @media (max-width: 768px) {
+            .story-card, .story-card.reverse {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+                padding: 2rem;
+            }
+            .story-content {
+                text-align: center;
+            }
+        }
+        .lantern-section {
+            margin-top: 8rem;
+            position: relative;
+            padding: 8rem 2rem;
+            text-align: center;
+            border-radius: 40px;
+            background: radial-gradient(circle at center, rgba(234, 179, 8, 0.08) 0%, transparent 70%);
+            border: 1px solid rgba(234, 179, 8, 0.1);
+            overflow: hidden;
+            animation: float 8s ease-in-out infinite;
+        }
+        .lantern-section::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px; height: 400px;
+            background: rgba(234, 179, 8, 0.05);
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: -1;
+            pointer-events: none;
+        }
+        .app-detail-cover {
+            max-width: 100%;
+            border-radius: 24px;
+            display: block;
+            margin: 2rem auto;
+            -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0DRJXGNWT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-D0DRJXGNWT');
+    </script>
+</head>
+<body>
+    <div class="background-effects">
+        <div class="glow blob-1"></div>
+        <div class="glow blob-2"></div>
+    </div>
+
+    <nav class="navbar scrolled">
+        <div class="logo">HisVera</div>
+        <div class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/#ana-sayfa" class="btn secondary" style="padding: 0.5rem 1.2rem;" data-i18n="nav.back_to_home"><i class="fa-solid fa-arrow-left"></i> Ana Sayfaya Dön</a></li>
+            <li class="lang-switcher" style="display: flex; align-items: center; margin-left: 1rem;">
+                <a href="#" data-lang-switch="tr" class="active-lang" style="font-weight:600; font-size: 0.9rem;">TR</a>
+                <span style="color:var(--text-muted); font-size: 0.9rem; margin: 0 0.5rem;">|</span>
+                <a href="#" data-lang-switch="en" style="font-size: 0.9rem;">EN</a>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="app-detail-hero">
+            <div class="glass-card" style="max-width: 1000px; margin: 0 auto; padding: 4rem 2rem; text-align: center;">
+                <img src="assets/images/his-noktas%C4%B1-logo.png" alt="His Logo" class="app-detail-icon">
+                <h1 class="title hero-title-glow" style="font-size: 4.5rem; margin-bottom: 1rem; letter-spacing: 2px;">His</h1>
+                
+                <p style="max-width: 700px; margin: 0 auto 1rem; font-size: 1.4rem; font-style: italic; color: rgba(255,255,255,0.7); text-shadow: 0 0 10px rgba(0,0,0,0.5);" data-i18n="his.quote">
+                    Hiç bir yere gidip "burada bir şey var" diye hissettin mi?<br>
+                    Ya da bazı yerlerde sebepsizce huzurlu… bazılarında ise tedirgin?
+                </p>
+                
+                <div class="cta-buttons" style="justify-content: center; margin: 3rem 0 1.5rem 0; flex-wrap: wrap; position: relative; z-index: 10;">
+                    <a href="#" class="btn primary" style="opacity: 0.5; cursor: not-allowed;" onclick="event.preventDefault();"><i class="fa-brands fa-app-store-ios"></i> <span data-i18n="kuytu.store.appstore">App Store (Yakında)</span></a>
+                    <a href="#" class="btn primary" style="opacity: 0.5; cursor: not-allowed; background: linear-gradient(135deg, #dc2626, #991b1b);" onclick="event.preventDefault();"><i class="fa-brands fa-huawei"></i> <span data-i18n="kuytu.store.appgallery">AppGallery (Yakında)</span></a>
+                    <a href="https://play.google.com/store/apps/details?id=com.hisvera.hisnoktasi.app" target="_blank" class="btn primary" style="background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 10px 20px -10px #10b981;"><i class="fa-brands fa-google-play"></i> <span data-i18n="kuytu.store.googleplay">Google Play</span></a>
+                </div>
+
+                <div class="social-links" style="display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 3rem; position: relative; z-index: 10;">
+                    <a href="https://www.instagram.com/hisvera.studio" target="_blank" title="Instagram" style="color: var(--text-color); font-size: 2rem; transition: all 0.3s;" onmouseover="this.style.color='#E1306C'; this.style.transform='scale(1.1)';" onmouseout="this.style.color='var(--text-color)'; this.style.transform='scale(1)';">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@hisvera" target="_blank" title="YouTube" style="color: var(--text-color); font-size: 2rem; transition: all 0.3s;" onmouseover="this.style.color='#FF0000'; this.style.transform='scale(1.1)';" onmouseout="this.style.color='var(--text-color)'; this.style.transform='scale(1)';">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                </div>
+
+                <img src="assets/images/his-noktasi-%C3%96zellik%20grafik.png" data-i18n-src="his.bg_image" alt="His Özellikler" class="app-detail-cover" style="animation: float 6s ease-in-out infinite; margin-top: 1rem;">
+
+                <div style="margin-top: 3rem; text-align: left; background: rgba(0,0,0,0.3); padding: 4rem; border-radius: 30px; border: 1px solid var(--glass-border); backdrop-filter: blur(20px);">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--primary); font-weight: 800;" data-i18n="his.what.title">His Nedir?</h2>
+                    <p style="font-size: 1.25rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 1rem;" data-i18n="his.what.p1">
+                        His, insanların yaşadıkları yerlerle ilgili gerçek duygularını paylaştığı bir dünyadır. Artık bir yere gitmeden önce sadece nasıl göründüğünü değil, nasıl hissettirdiğini de bilebilirsin.
+                    </p>
+                    <p style="font-size: 1.25rem; color: var(--text-muted); line-height: 1.8;" data-i18n="his.what.p2">
+                        Bir parkta huzur, bir sokakta merak, bir kafede yalnızlık… Her duygu burada bir iz bırakır.
+                    </p>
+                    <p style="font-size: 1.25rem; color: var(--text-muted); line-height: 1.8; margin-top: 1rem;" data-i18n="his.what.p3"></p>
+                </div>
+
+                <div style="margin-top: 8rem;">
+                    <h2 class="hero-title-glow" style="font-size: 3rem; margin-bottom: 3rem; text-align: center;" data-i18n="his.features.title">Neler Yapabilirsin?</h2>
+                    
+                    <div class="story-container">
+                        <div class="story-card">
+                            <div class="story-icon-container">
+                                <i class="fa-solid fa-moon story-icon"></i>
+                            </div>
+                            <div class="story-content">
+                                <h3 style="font-size: 2.2rem; margin-bottom: 1rem; color: #fff;" data-i18n="his.features.kuytu_title">Kuytu Menüsü</h3>
+                                <p style="color: var(--text-muted); font-size: 1.3rem; line-height: 1.7;" data-i18n="his.features.kuytu_desc">Kuytu uygulamasından süzülen şiirlerini anonim olarak burada paylaş ve hislerinin yankısını dinle.</p>
+                            </div>
+                        </div>
+
+                        <div class="story-card reverse">
+                            <div class="story-icon-container secondary">
+                                <i class="fa-solid fa-hands-holding-circle story-icon secondary"></i>
+                            </div>
+                            <div class="story-content">
+                                <h3 style="font-size: 2.2rem; margin-bottom: 1rem; color: #fff;" data-i18n="his.features.fener_yolu_title">Fener Yolu</h3>
+                                <p style="color: var(--text-muted); font-size: 1.3rem; line-height: 1.7;" data-i18n="his.features.fener_yolu_desc">Dert fenerini anonim olarak karanlığa bırak veya yolunu kaybeden başka ruhların fenerlerine destek ol.</p>
+                            </div>
+                        </div>
+
+                        <div class="story-card">
+                            <div class="story-icon-container">
+                                <i class="fa-solid fa-wand-magic-sparkles story-icon"></i>
+                            </div>
+                            <div class="story-content">
+                                <h3 style="font-size: 2.2rem; margin-bottom: 1rem; color: #fff;" data-i18n="his.features.ruhani_geyik_title">Ruhani Geyik</h3>
+                                <p style="color: var(--text-muted); font-size: 1.3rem; line-height: 1.7;" data-i18n="his.features.ruhani_geyik_desc">Mistik geyik ile dertleş, içini dök ve ondan sana yol gösterecek günlük kehanet kartını çek.</p>
+                            </div>
+                        </div>
+
+                        <div class="story-card reverse">
+                            <div class="story-icon-container secondary">
+                                <i class="fa-solid fa-tree story-icon secondary"></i>
+                            </div>
+                            <div class="story-content">
+                                <h3 style="font-size: 2.2rem; margin-bottom: 1rem; color: #fff;" data-i18n="his.features.bahcem_title">Bahçem & Dilek Ağacı</h3>
+                                <p style="color: var(--text-muted); font-size: 1.3rem; line-height: 1.7;" data-i18n="his.features.bahcem_desc">Plus üyelere özel bu alanda destek istatistiklerini gör ve Dilek Ağacına kalbinden geçenleri fısılda.</p>
+                            </div>
+                        </div>
+
+                        <div class="story-card">
+                            <div class="story-icon-container secondary">
+                                <i class="fa-solid fa-fire-flame-curved story-icon secondary"></i>
+                            </div>
+                            <div class="story-content">
+                                <h3 style="font-size: 2.2rem; margin-bottom: 1rem; color: #fff;" data-i18n="his.features.mistik_title">Mistik Fener</h3>
+                                <p style="color: var(--text-muted); font-size: 1.3rem; line-height: 1.7;" data-i18n="his.features.mistik_desc">Özel telepatik DM kutusu. Gelen fısıltılar 3 saniye içinde karanlığa karışarak tamamen silinir. Sadece sana özel olan fenerler 12 saat yanar ve sonra kül olur.</p>
+                            </div>
+                        </div>
+
+                        <div class="story-card reverse">
+                            <div class="story-icon-container">
+                                <i class="fa-solid fa-feather story-icon"></i>
+                            </div>
+                            <div class="story-content">
+                                <h3 style="font-size: 2.2rem; margin-bottom: 1rem; color: #fff;" data-i18n="his.features.ruh_hali_title">Ruh Hali Paylaş</h3>
+                                <p style="color: var(--text-muted); font-size: 1.3rem; line-height: 1.7;" data-i18n="his.features.ruh_hali_desc">Kendini nasıl ifade etmek istersen öyle özgürsün. İster bir yazı, ister gizli bir ses fısıltısı, istersen de bir fotoğraf veya video ile ruh halini evrene bırak.</p>
+                            </div>
+                        </div>
+
+                        <div class="story-card">
+                            <div class="story-icon-container secondary">
+                                <i class="fa-solid fa-tower-broadcast story-icon secondary"></i>
+                            </div>
+                            <div class="story-content">
+                                <h3 style="font-size: 2.2rem; margin-bottom: 1rem; color: #fff;" data-i18n="his.features.rezonans_title">Rezonans Menüsü</h3>
+                                <p style="color: var(--text-muted); font-size: 1.3rem; line-height: 1.7;" data-i18n="his.features.rezonans_desc">500m çevrendeki auranın içindeki popüler his odalarına gir. Bulunduğun bölgenin günlük kolektif aura analizini incele ve günün mistik fısıltısını öğren.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lantern-section">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 2rem; color: #fff;" data-i18n="his.why.title">Neden His?</h2>
+                    <p style="font-size: 1.4rem; color: rgba(255,255,255,0.8); margin-bottom: 1rem;" data-i18n="his.why.p1">Çünkü bazı yerler sadece görülmez, hissedilir.</p>
+                    <p style="font-size: 1.4rem; color: rgba(255,255,255,0.8); margin-bottom: 1rem;" data-i18n="his.why.p2">Çünkü herkes aynı yeri farklı yaşar.</p>
+                    <p style="font-size: 1.4rem; color: rgba(255,255,255,0.8); margin-bottom: 2.5rem;" data-i18n="his.why.p3">Çünkü bazen bir yerin en doğru yorumu yıldızlar değil, hislerdir.</p>
+                    <p style="font-size: 1.5rem; font-weight: 600; margin-bottom: 4rem; color: #fff;" data-i18n="his.why.p4">His, sadece bir uygulama değil… insanların duygularıyla iz bıraktığı bir deneyim.</p>
+                    
+                    <h3 style="font-size: 3.5rem; background: linear-gradient(to right, #fde047, #eab308, #ca8a04); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 20px rgba(234, 179, 8, 0.4);" data-i18n="his.why.quote">Bir yer, bir his, bir iz.</h3>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="margin-top: 2rem; padding: 3rem 0; border-top: 1px solid var(--glass-border); text-align: center; background: rgba(15, 23, 42, 0.5);">
+        <div style="margin-bottom: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+            <a href="gizlilik-politikasi" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'" data-i18n="footer.privacy">Gizlilik Politikası</a>
+            <span style="color: rgba(255,255,255,0.1);">|</span>
+            <a href="kullanim-sartlari" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'" data-i18n="footer.terms">Kullanım Şartları</a>
+            <span style="color: rgba(255,255,255,0.1);">|</span>
+            <a href="hesap-silme" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'" data-i18n="footer.delete_account">Hesap Silme</a>
+        </div>
+        <p style="color: var(--text-muted);" data-i18n="footer.copyright">&copy; 2026 HisVera. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script src="i18n.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
