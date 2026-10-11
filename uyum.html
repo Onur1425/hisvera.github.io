@@ -1,0 +1,1883 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Aura & Ruh İkizi Frekans Testi | hisvera</title>
+    <link rel="icon" type="image/jpeg" href="assets/images/HisVera.jpg">
+    <meta name="description" content="hisvera.com | İki ruh arasındaki zihinsel, duygusal ve ruhani frekans uyumunu 8 mistik soruyla derinlemesine analiz edin.">
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        :root {
+            --bg-dark: #0a0714;
+            --bg-card: rgba(26, 19, 48, 0.65);
+            --bg-card-hover: rgba(43, 31, 80, 0.8);
+            --primary: #9d4edd;
+            --primary-glow: rgba(157, 78, 221, 0.4);
+            --secondary: #ff758f;
+            --accent-gold: #ffd166;
+            --text-main: #f8f9fa;
+            --text-muted: #b7b5c8;
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --border-active: rgba(199, 125, 255, 0.45);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', -apple-system, sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            position: relative;
+        }
+
+        /* Ethereal Glow Background */
+        .ambient-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.28;
+            animation: pulseGlow 12s infinite alternate ease-in-out;
+        }
+
+        .blob-1 {
+            width: 380px;
+            height: 380px;
+            background: #7928ca;
+            top: -50px;
+            left: -80px;
+        }
+
+        .blob-2 {
+            width: 420px;
+            height: 420px;
+            background: #ff0080;
+            bottom: -60px;
+            right: -80px;
+            animation-delay: 4s;
+        }
+
+        .blob-3 {
+            width: 320px;
+            height: 320px;
+            background: #0070f3;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.18;
+            animation-delay: 8s;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1) translateY(0); opacity: 0.22; }
+            100% { transform: scale(1.18) translateY(25px); opacity: 0.38; }
+        }
+
+        /* Particles Canvas */
+        #starsCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Top Header */
+        header {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 680px;
+            padding: 1.5rem 1.25rem 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .brand-logo {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 4px 15px var(--primary-glow);
+        }
+
+        .brand-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #ffffff, #c77dff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .badge-live {
+            background: rgba(157, 78, 221, 0.15);
+            border: 1px solid var(--primary-glow);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: #e0aaff;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .badge-live-dot {
+            width: 6px;
+            height: 6px;
+            background: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #10b981;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Main Container */
+        main {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 640px;
+            padding: 1rem 1.25rem 4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Card Wrapper */
+        .glass-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 28px;
+            padding: 2.25rem 1.75rem;
+            width: 100%;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        /* Screen 1: Intro Screen */
+        .intro-screen {
+            text-align: center;
+        }
+
+        .inviter-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 8px 18px;
+            border-radius: 30px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .inviter-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #9d4edd, #ff758f);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .inviter-name {
+            font-weight: 600;
+            color: #ff9ebb;
+        }
+
+        .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            line-height: 1.25;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 30%, #e0aaff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .dimension-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .dim-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 14px 8px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .dim-card i {
+            font-size: 1.25rem;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .dim-card.c-brain i { color: #a78bfa; }
+        .dim-card.c-heart i { color: #f472b6; }
+        .dim-card.c-spirit i { color: #38bdf8; }
+
+        .dim-card span {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Mode Selector */
+        .mode-selector-title {
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #c77dff;
+            margin: 1.6rem 0 0.8rem 0;
+            text-align: left;
+        }
+
+        .mode-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 1.8rem;
+        }
+
+        @media (max-width: 520px) {
+            .mode-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .mode-card {
+            background: rgba(255, 255, 255, 0.035);
+            border: 1.5px solid var(--border-glass);
+            border-radius: 18px;
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-align: left;
+            position: relative;
+        }
+
+        .mode-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(199, 125, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .mode-card.active {
+            background: rgba(157, 78, 221, 0.16);
+            border-color: #c77dff;
+            box-shadow: 0 0 20px rgba(199, 125, 255, 0.25);
+        }
+
+        .mode-icon {
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+
+        .mode-info {
+            flex: 1;
+        }
+
+        .mode-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .mode-sub {
+            font-size: 0.73rem;
+            color: var(--text-muted);
+            margin-top: 3px;
+            line-height: 1.3;
+        }
+
+        .mode-radio {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: transparent;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .mode-card.active .mode-radio {
+            background: linear-gradient(135deg, #9d4edd, #ff758f);
+            border-color: #c77dff;
+            color: #fff;
+        }
+
+        /* Option Badges & Deep Bars */
+        .option-badge {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #ffd166;
+            background: rgba(255, 209, 102, 0.12);
+            border: 1px solid rgba(255, 209, 102, 0.25);
+            border-radius: 6px;
+            padding: 2px 8px;
+            margin-bottom: 5px;
+            letter-spacing: 0.4px;
+        }
+
+        .bar-shadow {
+            background: linear-gradient(90deg, #8b5cf6, #ec4899);
+        }
+
+        .bar-telepathy {
+            background: linear-gradient(90deg, #06b6d4, #a855f7);
+        }
+
+        /* Buttons */
+        .btn-mystic {
+            background: linear-gradient(135deg, #7928ca, #ff0080);
+            color: #fff;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 18px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(121, 40, 202, 0.4);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-mystic:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 38px rgba(255, 0, 128, 0.45);
+        }
+
+        .btn-mystic:active {
+            transform: scale(0.98);
+        }
+
+        /* Screen 2: Quiz Question Screen */
+        .quiz-screen {
+            display: none;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 12.5%;
+            background: linear-gradient(90deg, #7928ca, #ff0080);
+            border-radius: 10px;
+            transition: width 0.4s ease;
+        }
+
+        .question-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            font-size: 0.8rem;
+            color: #c77dff;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .question-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.35rem;
+            line-height: 1.4;
+            font-weight: 700;
+            margin-bottom: 1.75rem;
+            color: #fff;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-glass);
+            border-radius: 18px;
+            padding: 16px 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: all 0.25s ease;
+            position: relative;
+        }
+
+        .option-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-active);
+            transform: translateX(4px);
+        }
+
+        .option-key {
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #e0aaff;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+
+        .option-card:hover .option-key {
+            background: linear-gradient(135deg, #7928ca, #ff0080);
+            color: #fff;
+        }
+
+        .option-text {
+            font-size: 0.95rem;
+            color: #f1f0f7;
+            line-height: 1.45;
+            flex: 1;
+        }
+
+        /* Screen 3: Name / Reveal Step */
+        .name-screen {
+            display: none;
+            text-align: center;
+        }
+
+        .name-input-group {
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .name-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1.5px solid var(--border-glass);
+            border-radius: 18px;
+            padding: 18px 20px;
+            font-size: 1.15rem;
+            color: #fff;
+            text-align: center;
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .name-input:focus {
+            border-color: #c77dff;
+            box-shadow: 0 0 25px rgba(199, 125, 255, 0.25);
+        }
+
+        /* Screen 4: Detailed Analysis / Result Screen */
+        .result-screen {
+            display: none;
+        }
+
+        .result-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .score-circle-wrapper {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .score-svg {
+            transform: rotate(-90deg);
+            width: 180px;
+            height: 180px;
+        }
+
+        .score-svg-bg {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.06);
+            stroke-width: 10;
+        }
+
+        .score-svg-val {
+            fill: none;
+            stroke: url(#scoreGradient);
+            stroke-width: 10;
+            stroke-linecap: round;
+            stroke-dasharray: 471;
+            stroke-dashoffset: 471;
+            transition: stroke-dashoffset 1.8s ease-in-out;
+        }
+
+        .score-center-text {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .score-number {
+            font-family: 'Cinzel', serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 0 0 30px rgba(255, 117, 143, 0.6);
+        }
+
+        .score-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #e0aaff;
+            font-weight: 600;
+            margin-top: -4px;
+        }
+
+        .result-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .archetype-tags {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 1.75rem;
+        }
+
+        .tag-badge {
+            background: rgba(157, 78, 221, 0.2);
+            border: 1px solid rgba(199, 125, 255, 0.35);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            color: #f3e8ff;
+            font-weight: 600;
+        }
+
+        /* 3 Dimension Breakdown */
+        .breakdown-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .breakdown-row {
+            margin-bottom: 14px;
+        }
+
+        .breakdown-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .breakdown-label-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+        }
+
+        .breakdown-track {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .breakdown-bar {
+            height: 100%;
+            border-radius: 6px;
+            width: 0%;
+            transition: width 1.2s ease;
+        }
+
+        .bar-mental { background: linear-gradient(90deg, #8b5cf6, #c084fc); }
+        .bar-emotional { background: linear-gradient(90deg, #ec4899, #f472b6); }
+        .bar-spiritual { background: linear-gradient(90deg, #06b6d4, #38bdf8); }
+
+        /* Deep Narrative Report */
+        .analysis-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .analysis-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .analysis-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .analysis-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #ffd166;
+            margin-bottom: 0.5rem;
+        }
+
+        .analysis-body {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+        }
+
+        /* App Conversion & Store Section */
+        .conversion-box {
+            background: linear-gradient(135deg, rgba(121, 40, 202, 0.25), rgba(255, 0, 128, 0.2));
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            padding: 1.75rem 1.25rem;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            margin-bottom: 1.5rem;
+        }
+
+        .conv-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .conv-desc {
+            font-size: 0.85rem;
+            color: #f1f0f7;
+            margin-bottom: 1.25rem;
+            line-height: 1.5;
+        }
+
+        .store-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-store {
+            background: #fff;
+            color: #000;
+            padding: 12px 20px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+            transition: all 0.25s;
+        }
+
+        .btn-store:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.35);
+        }
+
+        .btn-store.playstore {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Action Buttons */
+        .result-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #fff;
+            padding: 14px;
+            border-radius: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            transition: all 0.25s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Loading / Analyzing spinner */
+        .analyzing-box {
+            display: none;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .mystic-spinner {
+            width: 70px;
+            height: 70px;
+            border: 3px solid rgba(199, 125, 255, 0.15);
+            border-top-color: #ff758f;
+            border-bottom-color: #9d4edd;
+            border-radius: 50%;
+            animation: spin 1.2s infinite linear;
+            margin: 0 auto 1.5rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Footer */
+        footer {
+            margin-top: auto;
+            padding: 2rem 1rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            position: relative;
+            z-index: 10;
+        }
+
+        footer a {
+            color: #c77dff;
+            text-decoration: none;
+        }
+
+        /* Responsive Tweaks */
+        @media (max-width: 480px) {
+            .glass-panel {
+                padding: 1.75rem 1.25rem;
+                border-radius: 22px;
+            }
+            .hero-title {
+                font-size: 1.65rem;
+            }
+            .question-title {
+                font-size: 1.15rem;
+            }
+            .dimension-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            .store-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Ambient Lighting Blobs -->
+    <div class="ambient-glow">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+    <canvas id="starsCanvas"></canvas>
+
+    <!-- Header -->
+    <header>
+        <a href="index.html" class="brand-link">
+            <img src="assets/images/HisVera.jpg" alt="HisVera" class="brand-logo">
+            <span class="brand-name">HisVera</span>
+        </a>
+        <div class="badge-live">
+            <span class="badge-live-dot"></span>
+            <span>Aura Rezonansı Aktif</span>
+        </div>
+    </header>
+
+    <main>
+        <div class="glass-panel">
+            <!-- 1. INTRO SCREEN -->
+            <div id="introScreen" class="intro-screen">
+                <div id="inviterPill" class="inviter-pill" style="display: none;">
+                    <div class="inviter-avatar" id="inviterInitial">O</div>
+                    <div><span id="inviterDisplayName" class="inviter-name">Bir Ruhdaş</span> seninle frekansını test etmek istiyor ✨</div>
+                </div>
+
+                <h1 class="hero-title" id="heroTitle">Ruh İkizi & Aura Frekans Testi</h1>
+                <p class="hero-desc" id="introDesc">
+                    Evrendeki her bağın gizli bir dalga boyu vardır. Mistik sorular ile aranızdaki 
+                    <strong>Zihinsel, Duygusal ve Ruhani</strong> uyum yüzdesini keşfet.
+                </p>
+
+                <div class="dimension-grid">
+                    <div class="dim-card c-brain">
+                        <i class="fa-solid fa-brain"></i>
+                        <span>Zihinsel Uyum</span>
+                    </div>
+                    <div class="dim-card c-heart">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                        <span>Duygusal Rezonans</span>
+                    </div>
+                    <div class="dim-card c-spirit">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span>Ruhani Frekans</span>
+                    </div>
+                </div>
+
+                <!-- Test Journey Mode Selector -->
+                <div class="mode-selector-title">Yolculuk Derinliğini Seç</div>
+                <div class="mode-cards">
+                    <div class="mode-card active" id="modeQuick" onclick="window.selectTestMode('quick')">
+                        <div class="mode-icon">⚡</div>
+                        <div class="mode-info">
+                            <div class="mode-name">Hızlı Rezonans</div>
+                            <div class="mode-sub">8 Mistik Soru • ~2 dk</div>
+                        </div>
+                        <div class="mode-radio"><i class="fa-solid fa-check"></i></div>
+                    </div>
+                    <div class="mode-card" id="modeDeep" onclick="window.selectTestMode('deep')">
+                        <div class="mode-icon">🌌</div>
+                        <div class="mode-info">
+                            <div class="mode-name">Derin Ruh Yolculuğu</div>
+                            <div class="mode-sub">16 Soru • Gölge Arketip & Telepati</div>
+                        </div>
+                        <div class="mode-radio"><i class="fa-solid fa-check"></i></div>
+                    </div>
+                </div>
+
+                <button id="btnStartQuiz" class="btn-mystic">
+                    <span id="btnStartQuizText">Hızlı Rezonans Testine Başla (8 Soru)</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- 2. QUIZ SCREEN -->
+            <div id="quizScreen" class="quiz-screen">
+                <div class="progress-bar-container">
+                    <div id="progressBarFill" class="progress-bar-fill"></div>
+                </div>
+
+                <div class="question-meta">
+                    <span id="questionStepLabel">Soru 1 / 8</span>
+                    <span id="dimensionBadge">Zihinsel Frekans</span>
+                </div>
+
+                <h2 id="questionTitle" class="question-title"></h2>
+
+                <div id="optionsList" class="options-list"></div>
+            </div>
+
+            <!-- 3. NAME INPUT SCREEN (Before calculation) -->
+            <div id="nameScreen" class="name-screen">
+                <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔮</div>
+                <h2 class="question-title">Auranın Analizi Hazırlanıyor</h2>
+                <p class="hero-desc" style="margin-bottom: 1.5rem;">
+                    Rezonans raporunda ve mühürlü kartta görünecek ismini veya rumuzunu fısılda:
+                </p>
+                <div class="name-input-group">
+                    <input type="text" id="participantNameInput" class="name-input" placeholder="Rumuzun / İsmin (örn: Deniz)" maxlength="24" autocomplete="off">
+                </div>
+                <button id="btnCalculateResult" class="btn-mystic">
+                    <span id="btnCalculateResultText">Frekans Uyumumuzu Gör ✨</span>
+                </button>
+            </div>
+
+            <!-- 4. ANALYZING / LOADING SPINNER -->
+            <div id="analyzingBox" class="analyzing-box">
+                <div class="mystic-spinner"></div>
+                <h3 style="font-family: 'Cinzel', serif; font-size: 1.3rem; margin-bottom: 0.5rem; color: #fff;">
+                    Auralar Hizalanıyor...
+                </h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">
+                    Zihinsel ve duygusal frekans dalgaları hesaplanıyor.
+                </p>
+            </div>
+
+            <!-- 5. DETAILED RESULT SCREEN -->
+            <div id="resultScreen" class="result-screen">
+                <div class="result-header">
+                    <div class="score-circle-wrapper">
+                        <svg class="score-svg" viewBox="0 0 180 180">
+                            <defs>
+                                <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#9d4edd" />
+                                    <stop offset="50%" stop-color="#ff758f" />
+                                    <stop offset="100%" stop-color="#ffd166" />
+                                </linearGradient>
+                            </defs>
+                            <circle class="score-svg-bg" cx="90" cy="90" r="75"></circle>
+                            <circle id="scoreSvgVal" class="score-svg-val" cx="90" cy="90" r="75"></circle>
+                        </svg>
+                        <div class="score-center-text">
+                            <span id="overallScoreText" class="score-number">94%</span>
+                            <span class="score-label" id="scoreLabel">Frekans Uyumu</span>
+                        </div>
+                    </div>
+
+                    <h2 id="resultMatchTitle" class="result-title">Kozmik Rezonans</h2>
+                    <p id="pairNamesText" style="font-size: 0.95rem; color: #e0aaff; margin-bottom: 1rem; font-weight: 600;">
+                        Onur & Deniz
+                    </p>
+
+                    <div id="archetypeTags" class="archetype-tags">
+                        <span class="tag-badge" id="tagAuraColor">🎨 Ametist Moru & Gece Mavisi</span>
+                        <span class="tag-badge" id="tagArchetype">🕯️ Fener Taşıyıcısı & Ay Şairi</span>
+                    </div>
+                </div>
+
+                <!-- 3 Dimension Breakdown -->
+                <div class="breakdown-box">
+                    <div class="breakdown-row">
+                        <div class="breakdown-label-row">
+                            <span>🧠 Zihinsel Uyum (Dalga Boyu)</span>
+                            <strong id="mentalScoreText" style="color: #c084fc;">%91</strong>
+                        </div>
+                        <div class="breakdown-track">
+                            <div id="mentalBar" class="breakdown-bar bar-mental"></div>
+                        </div>
+                    </div>
+
+                    <div class="breakdown-row">
+                        <div class="breakdown-label-row">
+                            <span>💖 Duygusal Rezonans (Şefkat & Empati)</span>
+                            <strong id="emotionalScoreText" style="color: #f472b6;">%96</strong>
+                        </div>
+                        <div class="breakdown-track">
+                            <div id="emotionalBar" class="breakdown-bar bar-emotional"></div>
+                        </div>
+                    </div>
+
+                    <div class="breakdown-row">
+                        <div class="breakdown-label-row">
+                            <span>🌌 Ruhani Frekans (Telepatik Çekim)</span>
+                            <strong id="spiritualScoreText" style="color: #38bdf8;">%94</strong>
+                        </div>
+                        <div class="breakdown-track">
+                            <div id="spiritualBar" class="breakdown-bar bar-spiritual"></div>
+                        </div>
+                    </div>
+
+                    <!-- Deep Mode Specific Bars -->
+                    <div class="breakdown-row" id="rowShadow" style="display: none;">
+                        <div class="breakdown-label-row">
+                            <span>🔮 Gölge Benlik Rezonansı (Kırılganlık & Sırdaşlık)</span>
+                            <strong id="shadowScoreText" style="color: #ec4899;">%92</strong>
+                        </div>
+                        <div class="breakdown-track">
+                            <div id="shadowBar" class="breakdown-bar bar-shadow"></div>
+                        </div>
+                    </div>
+
+                    <div class="breakdown-row" id="rowTelepathy" style="display: none;">
+                        <div class="breakdown-label-row">
+                            <span>✨ Telepatik Sezgi (Kelimesiz Anlaşma)</span>
+                            <strong id="telepathyScoreText" style="color: #06b6d4;">%95</strong>
+                        </div>
+                        <div class="breakdown-track">
+                            <div id="telepathyBar" class="breakdown-bar bar-telepathy"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deep Narrative Interpretation -->
+                <div class="analysis-card">
+                    <div class="analysis-section">
+                        <div class="analysis-head">
+                            <i class="fa-solid fa-sparkles"></i>
+                            <span>Frekansınızın Gizemi</span>
+                        </div>
+                        <p id="analysisMysteryText" class="analysis-body"></p>
+                    </div>
+
+                    <div class="analysis-section">
+                        <div class="analysis-head">
+                            <i class="fa-solid fa-moon"></i>
+                            <span>Gölge & Denge Dinamiği</span>
+                        </div>
+                        <p id="analysisBalanceText" class="analysis-body"></p>
+                    </div>
+
+                    <div class="analysis-section">
+                        <div class="analysis-head">
+                            <i class="fa-solid fa-feather"></i>
+                            <span>Mistik Kehanet & Tavsiye</span>
+                        </div>
+                        <p id="analysisProphecyText" class="analysis-body"></p>
+                    </div>
+                </div>
+
+                <!-- Conversion / App Promotion Card -->
+                <div class="conversion-box">
+                    <h3 class="conv-title">Bu Bağı HİS Dünyasına Taşı 🌙</h3>
+                    <p class="conv-desc">
+                        HİS uygulamasını indirerek geceleri fısıltı paylaşabilir, ruh ikizine telepatik sinyal gönderebilir 
+                        ve Karanlık Gece Geçidi'nde fener yakabilirsin.
+                    </p>
+                    <div class="store-buttons">
+                        <a href="https://play.google.com/store/apps/details?id=com.hisvera.hisnoktasi.app" target="_blank" class="btn-store playstore">
+                            <i class="fa-brands fa-google-play"></i>
+                            <span>Google Play'den İndir</span>
+                        </a>
+                        <a href="https://hisvera.com" target="_blank" class="btn-store">
+                            <i class="fa-brands fa-apple"></i>
+                            <span>HİS Uygulaması (iOS & Web)</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="result-actions">
+                    <button id="btnSendWaInviter" class="btn-mystic" style="background: linear-gradient(135deg, #25D366, #128C7E); box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); margin-bottom: 0.6rem;">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <span id="btnSendWaInviterText">Sonucu WhatsApp ile Gönder 💬</span>
+                    </button>
+                    <button id="btnShareStory" class="btn-mystic">
+                        <i class="fa-brands fa-instagram"></i>
+                        <span>Instagram Story için Kopyala ✨</span>
+                    </button>
+                    <button id="btnCreateOwnTest" class="btn-secondary">
+                        <i class="fa-solid fa-link"></i>
+                        <span id="btnCreateOwnTestText">Sen de Kendi Testini Oluştur</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 <a href="index.html">hisvera</a> • HİS Mobil Uygulaması Tüm Hakları Saklıdır.</p>
+    </footer>
+
+    <!-- LOGIC SCRIPT -->
+    <script>
+        // Supabase Init
+        const SUPABASE_URL = 'https://kfjvmyzfomfnaxptbmqt.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtmanZteXpmb21mbmF4cHRibXF0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI2MzA3MjYsImV4cCI6MjA4ODIwNjcyNn0.YTrKlu_grQMcS1hOQu2QD8TZQ4HSgYa2Bx-ye24jQwI';
+        const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
+        // Parse Query Params
+        const urlParams = new URLSearchParams(window.location.search);
+        const inviterId = urlParams.get('u') || urlParams.get('ref') || null;
+        const inviterName = decodeURIComponent(urlParams.get('name') || 'Bir Ruhdaş').trim();
+        const inviterMood = urlParams.get('mood') || 'huzurlu';
+
+        // Test Mode State
+        let selectedMode = 'quick'; // 'quick' (8 questions) or 'deep' (16 questions)
+
+        window.selectTestMode = function(mode) {
+            selectedMode = mode;
+            const modeQuick = document.getElementById('modeQuick');
+            const modeDeep = document.getElementById('modeDeep');
+            const btnText = document.getElementById('btnStartQuizText');
+            const introDesc = document.getElementById('introDesc');
+
+            if (mode === 'deep') {
+                if (modeDeep) modeDeep.classList.add('active');
+                if (modeQuick) modeQuick.classList.remove('active');
+                if (btnText) btnText.textContent = 'Derin Ruh Yolculuğuna Başla (16 Soru)';
+                if (introDesc) {
+                    introDesc.innerHTML = 'Evrendeki her bağın gizli bir dalga boyu vardır. 16 derin mistik soru ile <strong>Zihinsel, Duygusal, Ruhani, Gölge Benlik ve Telepati</strong> spektrumunu keşfet.';
+                }
+            } else {
+                if (modeQuick) modeQuick.classList.add('active');
+                if (modeDeep) modeDeep.classList.remove('active');
+                if (btnText) btnText.textContent = 'Hızlı Rezonans Testine Başla (8 Soru)';
+                if (introDesc) {
+                    introDesc.innerHTML = 'Evrendeki her bağın gizli bir dalga boyu vardır. 8 derin mistik soru ile aranızdaki <strong>Zihinsel, Duygusal ve Ruhani</strong> uyum yüzdesini keşfet.';
+                }
+            }
+        };
+
+        // Comprehensive 24 Question Pool across 12 Mystical Dimensions
+        const QUESTION_POOL = [
+            // Dimension 1: Zihinsel Frekans & Düşünce Patikaları
+            {
+                dimensionKey: 'mental',
+                dimension: 'Zihinsel Frekans',
+                title: 'Fırtınalı ve karmaşık bir günde, zihnin dinginliğe kavuşmak için en çok nereye sığınır?',
+                options: [
+                    { key: 'A', badge: 'İçsel Sessizlik', text: 'Karanlık bir odada sadece nefesime ve derin sessizliğe çekilirim.', mental: 96, emotional: 84, spiritual: 92, shadow: 88, telepathy: 85, arch: 'İçsel Gözlemci' },
+                    { key: 'B', badge: 'Mistik Şiir', text: 'Düşüncelerimi kağıda, kelimelere veya bir melodiye dökerim.', mental: 88, emotional: 96, spiritual: 90, shadow: 86, telepathy: 92, arch: 'Mistik Şair' },
+                    { key: 'C', badge: 'Gece Yoldaşı', text: 'Gece yürüyüşüne çıkar, şehrin fenerlerine ve gökyüzüne bakarım.', mental: 84, emotional: 90, spiritual: 96, shadow: 92, telepathy: 90, arch: 'Fener Taşıyıcısı' },
+                    { key: 'D', badge: 'Felsefi Mimar', text: 'Her şeyi rasyonel parçalara ayırır, mantıkla çözmeye odaklanırım.', mental: 98, emotional: 78, spiritual: 82, shadow: 80, telepathy: 78, arch: 'Felsefi Mimar' }
+                ]
+            },
+            {
+                dimensionKey: 'mental',
+                dimension: 'Zihinsel Frekans',
+                title: 'Zihninin labirentlerinde kaybolduğunda, seni oradan çekip çıkaracak en büyük güç nedir?',
+                options: [
+                    { key: 'A', badge: 'Sıcak Sığınak', text: 'Güvendiğim bir sesin "Buradayım, yanındayım" fısıltısı.', mental: 90, emotional: 98, spiritual: 94, shadow: 90, telepathy: 92, arch: 'Sessiz Şifacı' },
+                    { key: 'B', badge: 'Kendi Işığı', text: 'Tek başıma çözebileceğime olan o kadim inat ve sessiz irade.', mental: 96, emotional: 82, spiritual: 88, shadow: 84, telepathy: 80, arch: 'Yalnız Gezgin' },
+                    { key: 'C', badge: 'Doğa Rezonansı', text: 'Yağmurun cama vuran ritmi ve zamanın aktığını hatırlamak.', mental: 86, emotional: 92, spiritual: 96, shadow: 90, telepathy: 94, arch: 'Yağmur Bekçisi' },
+                    { key: 'D', badge: 'Empatik Zihin', text: 'Beni yargılamadan dinleyen derin, felsefi bir bakış.', mental: 95, emotional: 93, spiritual: 90, shadow: 88, telepathy: 91, arch: 'Felsefi Yoldaş' }
+                ]
+            },
+
+            // Dimension 2: Duygusal Rezonans & Kalp Şifası
+            {
+                dimensionKey: 'emotional',
+                dimension: 'Duygusal Rezonans',
+                title: 'Değer verdiğin birinin kalbinin kırıldığını hissettiğinde ilk içsel tepkin ne olur?',
+                options: [
+                    { key: 'A', badge: 'Sessiz Şifacı', text: 'Hiç konuşmadan yanında durur, varlığımla sessizce sararım.', mental: 86, emotional: 99, spiritual: 95, shadow: 91, telepathy: 96, arch: 'Sessiz Şifacı' },
+                    { key: 'B', badge: 'Empat Ruhdaş', text: 'Ruhunun derinliğini anlamak için doğru kelimeleri ve hisleri ararım.', mental: 93, emotional: 95, spiritual: 89, shadow: 85, telepathy: 91, arch: 'Empat Ruhdaş' },
+                    { key: 'C', badge: 'Koruyucu Kalkan', text: 'Hemen koruma kalkanı oluşturur, ona güvenli dokunulmaz bir alan açarım.', mental: 89, emotional: 94, spiritual: 87, shadow: 89, telepathy: 86, arch: 'Koruyucu Işık' },
+                    { key: 'D', badge: 'Saygılı Bilge', text: 'Yalnız kalma ihtiyacına saygı duyar, uzaktan sakin bir fener yakarım.', mental: 95, emotional: 87, spiritual: 93, shadow: 90, telepathy: 88, arch: 'Saygılı Bilge' }
+                ]
+            },
+            {
+                dimensionKey: 'emotional',
+                dimension: 'Duygusal Rezonans',
+                title: 'Kendi kalbin kırıldığında o kırıkları nasıl onarırsın?',
+                options: [
+                    { key: 'A', badge: 'Gizli Sabır', text: 'Zamanın akışına bırakır, kimseye hissettirmeden içimde demlerim.', mental: 91, emotional: 92, spiritual: 94, shadow: 96, telepathy: 87, arch: 'Gölge Saklayıcısı' },
+                    { key: 'B', badge: 'Telepatik Şifa', text: 'Sadece ruh ikizimin gözlerine bakarak kelimesizce şifalanırım.', mental: 88, emotional: 99, spiritual: 96, shadow: 92, telepathy: 98, arch: 'Kozmik Empat' },
+                    { key: 'C', badge: 'Kintsugi Ruhu', text: 'Kırıkları sanatla, şiirle veya gecenin hüznüyle altın tozuyla birleştiririm.', mental: 94, emotional: 96, spiritual: 92, shadow: 90, telepathy: 90, arch: 'Mistik Şair' },
+                    { key: 'D', badge: 'Elementel Barış', text: 'Sessiz bir denizin veya dağın karşısına geçip rüzgarla konuşurum.', mental: 89, emotional: 90, spiritual: 98, shadow: 93, telepathy: 92, arch: 'Ay Rezonansı' }
+                ]
+            },
+
+            // Dimension 3: Sosyal Çekim & Telepati
+            {
+                dimensionKey: 'telepathy',
+                dimension: 'Sosyal Çekim & Telepati',
+                title: 'Seni bir insana çeken en güçlü, görünmez "çekim frekansı" nedir?',
+                options: [
+                    { key: 'A', badge: 'Mistik Telepat', text: 'Göz göze geldiğimizde kelimelere ihtiyaç kalmayan o gizemli sessizlik.', mental: 87, emotional: 97, spiritual: 99, shadow: 90, telepathy: 99, arch: 'Mistik Telepat' },
+                    { key: 'B', badge: 'Zihinsel Ahenk', text: 'Sabaha kadar süren, hayatın sırlarını sorguladığımız derin sohbetler.', mental: 99, emotional: 90, spiritual: 90, shadow: 84, telepathy: 89, arch: 'Zihinsel Ruhdaş' },
+                    { key: 'C', badge: 'Saf Rezonans', text: 'Yanında çocuk gibi hafif ve tamamen maskesiz kalabilme huzuru.', mental: 89, emotional: 98, spiritual: 94, shadow: 88, telepathy: 93, arch: 'Saf Rezonans' },
+                    { key: 'D', badge: 'Gölge Cesareti', text: 'Ruhundaki karanlıkları ve yaraları gizlemeden gösteren cesur dürüstlük.', mental: 94, emotional: 96, spiritual: 92, shadow: 97, telepathy: 94, arch: 'Gölge Arayıcısı' }
+                ]
+            },
+            {
+                dimensionKey: 'telepathy',
+                dimension: 'Sosyal Çekim & Telepati',
+                title: 'Hiç birinin varlığını, o yanında yokken bile kalbinin tam ortasında hissettin mi?',
+                options: [
+                    { key: 'A', badge: 'Kozmik Telepati', text: 'Evet; mesafelerin bir yanılsama olduğunu fısıldayan güçlü bir bağ hissederim.', mental: 88, emotional: 96, spiritual: 99, shadow: 89, telepathy: 99, arch: 'Mistik Telepat' },
+                    { key: 'B', badge: 'Sezgisel Dalga', text: 'Aniden gelen bir rüzgar veya tanıdık bir koku gibi beni birdenbire sarar.', mental: 85, emotional: 94, spiritual: 95, shadow: 86, telepathy: 96, arch: 'Sezgisel Gezgin' },
+                    { key: 'C', badge: 'Gece Rezonansı', text: 'Geceleri uyumadan hemen önce gelen o tarif edilemez sıcak dalga.', mental: 91, emotional: 97, spiritual: 94, shadow: 93, telepathy: 95, arch: 'Gece Bekçisi' },
+                    { key: 'D', badge: 'Dingin Sezgi', text: 'Sadece zihnim tamamen durulduğunda ve dünya sustuğunda yakalarım.', mental: 96, emotional: 89, spiritual: 92, shadow: 87, telepathy: 90, arch: 'İçsel Gözlemci' }
+                ]
+            },
+
+            // Dimension 4: Ruhun Doğal Elementi
+            {
+                dimensionKey: 'spiritual',
+                dimension: 'Ruhun Doğal Elementi',
+                title: 'Hangi doğal atmosfer ruhunun titreşimini en yüksek seviyeye çıkarır?',
+                options: [
+                    { key: 'A', badge: 'Toprak & Yağmur', text: 'Gece yarısı yağmurun cama vurduğu toprak kokulu anlar.', mental: 90, emotional: 95, spiritual: 96, shadow: 92, telepathy: 93, arch: 'Gece Yağmuru' },
+                    { key: 'B', badge: 'Hava & Boşluk', text: 'Dağ başında esen serin bir rüzgar ve sonsuz gökyüzü.', mental: 96, emotional: 88, spiritual: 92, shadow: 85, telepathy: 89, arch: 'Gök Gezgini' },
+                    { key: 'C', badge: 'Ateş & Fener', text: 'Karanlıkta titreyen bir mum alevi ve şömine sıcaklığı.', mental: 88, emotional: 97, spiritual: 93, shadow: 89, telepathy: 91, arch: 'Fener Alevi' },
+                    { key: 'D', badge: 'Ay & Okyanus', text: 'Dolunayın aydınlattığı sakin, dalgasız bir okyanus kıyısı.', mental: 92, emotional: 96, spiritual: 98, shadow: 94, telepathy: 97, arch: 'Ay Rezonansı' }
+                ]
+            },
+            {
+                dimensionKey: 'spiritual',
+                dimension: 'Ruhun Doğal Elementi',
+                title: 'Eğer bir element seni koruyan bir kalkan olsaydı, hangisini seçerdin?',
+                options: [
+                    { key: 'A', badge: 'Derin Okyanus', text: 'Sessiz okyanus derinlikleri; dış dünyanın tüm gürültüsünü yutan sükunet.', mental: 92, emotional: 95, spiritual: 97, shadow: 93, telepathy: 95, arch: 'Okyanus Sığınağı' },
+                    { key: 'B', badge: 'Gök Sisi', text: 'Gökyüzünde süzülen sis; kimsenin dokunamadığı gizemli bir örtü.', mental: 95, emotional: 90, spiritual: 94, shadow: 95, telepathy: 92, arch: 'Sisli Yolcu' },
+                    { key: 'C', badge: 'Kadim Kök', text: 'Asırlık bir çınarın kökleri; sarsılmaz bir sadakat ve güven.', mental: 94, emotional: 96, spiritual: 91, shadow: 86, telepathy: 88, arch: 'Sadık Muhafız' },
+                    { key: 'D', badge: 'Kutup Işığı', text: 'Geceyi aydınlatan kutup ışıkları; sadece ruha dokunan manyetik enerji.', mental: 91, emotional: 94, spiritual: 98, shadow: 90, telepathy: 98, arch: 'Kozmik Işık' }
+                ]
+            },
+
+            // Dimension 5: Gölge Taraf & Kırılganlık
+            {
+                dimensionKey: 'shadow',
+                dimension: 'Gölge Taraf & Kırılganlık',
+                title: 'Kalbinin en derin yerinde seni en çok hırpalayan içsel çatışma hangisidir?',
+                options: [
+                    { key: 'A', badge: 'Derin Yalnızlık', text: 'Çok derin hissetmek ama kimseye tam olarak anlaşılamamak.', mental: 92, emotional: 98, spiritual: 95, shadow: 98, telepathy: 93, arch: 'Derin Yalnızlık' },
+                    { key: 'B', badge: 'Fedakar Fener', text: 'Sürekli başkalarına fener olup kendi iç ışığımı tüketmek.', mental: 89, emotional: 97, spiritual: 93, shadow: 95, telepathy: 91, arch: 'Fedakar Fener' },
+                    { key: 'C', badge: 'Kırılgan Zırh', text: 'Güvenip kalbimi sonuna kadar açtığımda savunmasız kalmaktan çekinmek.', mental: 94, emotional: 92, spiritual: 88, shadow: 96, telepathy: 89, arch: 'Kırılgan Zırh' },
+                    { key: 'D', badge: 'Zamansal Melankoli', text: 'Zamanın hızla akıp gitmesi ve ruhumu kaçırma kaygısı.', mental: 95, emotional: 90, spiritual: 91, shadow: 91, telepathy: 87, arch: 'Zamansal Melankoli' }
+                ]
+            },
+            {
+                dimensionKey: 'shadow',
+                dimension: 'Gölge Taraf & Kırılganlık',
+                title: 'Dış dünyaya göstermekten en çok çekindiğin gölge parçan nedir?',
+                options: [
+                    { key: 'A', badge: 'Gizli Yorgunluk', text: 'Bazen çok güçlü görünürken aslında bir fısıltıyla yıkılabilecek kadar yorgun olmam.', mental: 91, emotional: 98, spiritual: 93, shadow: 99, telepathy: 92, arch: 'Yorgun Savaşçı' },
+                    { key: 'B', badge: 'Bağlanma Kaygısı', text: 'Birine fazlasıyla bağlanıp kendi eksenimi ve özgürlüğümü kaybetme korkum.', mental: 96, emotional: 91, spiritual: 89, shadow: 95, telepathy: 88, arch: 'Özgür Ruh' },
+                    { key: 'C', badge: 'Mükemmeliyet Zırhı', text: 'Kusursuz olmaya çalışırken içimdeki o kırılgan çocuğu ihmal etmem.', mental: 94, emotional: 93, spiritual: 90, shadow: 94, telepathy: 86, arch: 'Sessiz Çocuk' },
+                    { key: 'D', badge: 'Felsefi Ağırlık', text: 'Fazla felsefi düşünüp hayatın hafif ve basit neşesini kaçırmam.', mental: 97, emotional: 88, spiritual: 92, shadow: 92, telepathy: 89, arch: 'Felsefi Mimar' }
+                ]
+            },
+
+            // Dimension 6: Aşk & Bağın Kutsal Dili
+            {
+                dimensionKey: 'emotional',
+                dimension: 'Aşk & Bağın Kutsal Dili',
+                title: 'Gerçek bir ruh ikizinde aradığın en vazgeçilmez his hangisidir?',
+                options: [
+                    { key: 'A', badge: 'Sessiz Ahenk', text: 'Birbirimizin suskunluğunu anlayabilmek ve o suskunlukta dinlenebilmek.', mental: 91, emotional: 99, spiritual: 97, shadow: 92, telepathy: 98, arch: 'Sessiz Ahenk' },
+                    { key: 'B', badge: 'Kozmik Yoldaş', text: 'Birlikte büyümek, birbirimizin en yüksek potansiyeline ışık tutmak.', mental: 98, emotional: 93, spiritual: 92, shadow: 86, telepathy: 91, arch: 'Kozmik Yoldaş' },
+                    { key: 'C', badge: 'Sonsuz Kale', text: 'Dünyanın tüm kaosuna karşı birlikte inşa edilmiş dokunulmaz bir sığınak.', mental: 93, emotional: 97, spiritual: 94, shadow: 90, telepathy: 92, arch: 'Sonsuz Kale' },
+                    { key: 'D', badge: 'Kutsal Şifa', text: 'Birbirimizin en gizli yaralarına korkusuzca ve şefkatle dokunabilmek.', mental: 90, emotional: 99, spiritual: 96, shadow: 97, telepathy: 96, arch: 'Kutsal Şifa' }
+                ]
+            },
+            {
+                dimensionKey: 'emotional',
+                dimension: 'Aşk & Bağın Kutsal Dili',
+                title: 'İki insan arasındaki güvenin nihai kanıtı sence nedir?',
+                options: [
+                    { key: 'A', badge: 'Mutlak Dürüstlük', text: 'Yanındayken zihnimdeki hiçbir kelimeyi filtreleme ihtiyacı duymamak.', mental: 97, emotional: 96, spiritual: 93, shadow: 92, telepathy: 93, arch: 'Saf Dürüstlük' },
+                    { key: 'B', badge: 'Zamanı Aşan Bağ', text: 'Aradan aylar geçse bile kaldığınız yerden aynı sıcaklıkla devam edebilmek.', mental: 94, emotional: 97, spiritual: 96, shadow: 88, telepathy: 95, arch: 'Zamansız Gezgin' },
+                    { key: 'C', badge: 'Kör Güven', text: 'Karanlık bir anda arkanı dönüp düşsen bile seni tutacağına emin olmak.', mental: 91, emotional: 99, spiritual: 94, shadow: 91, telepathy: 92, arch: 'Sadık Muhafız' },
+                    { key: 'D', badge: 'Kalp Radarı', text: 'Birbirinin sessiz çığlıklarını sadece bir bakıştan duyabilmek.', mental: 92, emotional: 98, spiritual: 97, shadow: 95, telepathy: 99, arch: 'Mistik Telepat' }
+                ]
+            },
+
+            // Dimension 7: Zamansal Mistik Saat
+            {
+                dimensionKey: 'spiritual',
+                dimension: 'Zamansal Mistik Saat',
+                title: 'Ruhunun evrenle en çok rezonansa girdiği o sihirli zaman dilimi?',
+                options: [
+                    { key: 'A', badge: 'Gece Kuşu', text: '00:00 - 04:00 (Karanlık Gece Geçidi ve yıldızların fısıltısı).', mental: 93, emotional: 96, spiritual: 99, shadow: 96, telepathy: 97, arch: 'Gece Kuşu' },
+                    { key: 'B', badge: 'Alacakaranlık', text: 'Alacakaranlık (Günün bittiği, mor ve kızıl hüznün çöktüğü saat).', mental: 91, emotional: 97, spiritual: 94, shadow: 93, telepathy: 94, arch: 'Alacakaranlık Aurası' },
+                    { key: 'C', badge: 'Şafak Sisi', text: 'Sabahın ilk sisli sessizliği (Kimse uyanmadan önceki taze an).', mental: 96, emotional: 90, spiritual: 93, shadow: 87, telepathy: 90, arch: 'Şafak Ruhu' },
+                    { key: 'D', badge: 'Zamansız An', text: 'Zamansız anlar (Saat kaç olursa olsun kalbimin titrediği o an).', mental: 92, emotional: 98, spiritual: 97, shadow: 91, telepathy: 96, arch: 'Zamansız Gezgin' }
+                ]
+            },
+            {
+                dimensionKey: 'spiritual',
+                dimension: 'Zamansal Mistik Saat',
+                title: 'Gece yarısı herkes uyurken dünya durmuş gibi hissettiğinde ne yaparsın?',
+                options: [
+                    { key: 'A', badge: 'Kozmik Merak', text: 'Gökyüzüne bakar, bu devasa evrende aynı yalnızlığı paylaşan ruhları düşünürüm.', mental: 95, emotional: 94, spiritual: 98, shadow: 92, telepathy: 96, arch: 'Yıldız Seyyivı' },
+                    { key: 'B', badge: 'Melankolik Melodi', text: 'Bir şarkının en can alıcı yerine sarılır, hatıralarla demlenirim.', mental: 89, emotional: 98, spiritual: 94, shadow: 95, telepathy: 93, arch: 'Mistik Şair' },
+                    { key: 'C', badge: 'Gece Günlüğü', text: 'Defterime kimsenin asla okumayacağı gizli fısıltılar bırakırım.', mental: 94, emotional: 95, spiritual: 93, shadow: 96, telepathy: 91, arch: 'Gizli Kalem' },
+                    { key: 'D', badge: 'Saf Meditasyon', text: 'Sessizliğin kendisini dinler, içsel dengemi ve frekansımı yeniden kurarım.', mental: 97, emotional: 89, spiritual: 96, shadow: 88, telepathy: 92, arch: 'İçsel Gözlemci' }
+                ]
+            },
+
+            // Dimension 8: Gizli Fısıltı & İtiraf
+            {
+                dimensionKey: 'telepathy',
+                dimension: 'Gizli Fısıltı & İtiraf',
+                title: 'Bu testi sana gönderen kişiye şu an tek bir fısıltı bırakabilseydin ne olurdu?',
+                options: [
+                    { key: 'A', badge: 'Sessiz Minnet', text: '"Bazen kelimelerle anlatamasam da varlığın ruhumu dinlendiriyor."', mental: 89, emotional: 99, spiritual: 96, shadow: 90, telepathy: 96, arch: 'Sessiz Minnet' },
+                    { key: 'B', badge: 'Manyetik İtiraf', text: '"Aramızda henüz adını tam koyamadığımız derin bir manyetik bağ var."', mental: 94, emotional: 97, spiritual: 98, shadow: 93, telepathy: 99, arch: 'Manyetik Rezonans' },
+                    { key: 'C', badge: 'Sadık Işık', text: '"Gecenin karanlığında ne zaman yorulsan, sana fener olmaya hazırım."', mental: 91, emotional: 98, spiritual: 95, shadow: 91, telepathy: 93, arch: 'Sadık Işık' },
+                    { key: 'D', badge: 'Saf İçtenlik', text: '"Seninle konuşurken maskelerimi indirmekten hiç çekinmiyorum."', mental: 96, emotional: 96, spiritual: 93, shadow: 94, telepathy: 94, arch: 'Saf Dürüstlük' }
+                ]
+            },
+            {
+                dimensionKey: 'telepathy',
+                dimension: 'Gizli Fısıltı & İtiraf',
+                title: 'Bu kişiyle aranızdaki frekansı tek bir metaforla anlatsan hangisi olurdu?',
+                options: [
+                    { key: 'A', badge: 'Çifte Fener', text: 'Sisli bir denizde birbirini bulan iki deniz fenerinin kesişen ışığı.', mental: 92, emotional: 98, spiritual: 97, shadow: 92, telepathy: 97, arch: 'Fener Taşıyıcısı' },
+                    { key: 'B', badge: 'Takımyıldızı', text: 'Aynı karanlık gökyüzünde parlayan ama birbirini tamamlayan iki yıldız.', mental: 95, emotional: 96, spiritual: 98, shadow: 89, telepathy: 98, arch: 'Kozmik Rezonans' },
+                    { key: 'C', badge: 'Kadim Sayfalar', text: 'Eski bir sahafta yan yana duran iki bilge ve gizemli ciltli kitap.', mental: 98, emotional: 92, spiritual: 93, shadow: 87, telepathy: 90, arch: 'Felsefi Mimar' },
+                    { key: 'D', badge: 'Toprak Kokusu', text: 'Yaz yağmurundan sonra havaya yayılan o taze, huzurlu toprak kokusu.', mental: 90, emotional: 97, spiritual: 96, shadow: 91, telepathy: 94, arch: 'Toprak Huzuru' }
+                ]
+            },
+
+            // Dimension 9: Varoluşsal Sessizlik
+            {
+                dimensionKey: 'mental',
+                dimension: 'Varoluşsal Sessizlik',
+                title: 'İki insan aynı odada hiç konuşmadan saatlerce otursa bu sende ne uyandırır?',
+                options: [
+                    { key: 'A', badge: 'Ruhani Birlik', text: 'Kelimelerin tükendiği yerde ruhların konuştuğu en saf yakınlık.', mental: 90, emotional: 98, spiritual: 99, shadow: 92, telepathy: 99, arch: 'Sessiz Ahenk' },
+                    { key: 'B', badge: 'Kutsal Sükunet', text: 'Güvenin zirvesi; suskunluğu doldurmak için yapmacık laflara ihtiyaç duymamak.', mental: 97, emotional: 96, spiritual: 94, shadow: 88, telepathy: 93, arch: 'Saf Rezonans' },
+                    { key: 'C', badge: 'Şifa Odası', text: 'Eğer frekans tutuyorsa dünyanın en huzurlu ve onarıcı terapisi.', mental: 92, emotional: 97, spiritual: 96, shadow: 90, telepathy: 95, arch: 'Sessiz Şifacı' },
+                    { key: 'D', badge: 'Huzur Limanı', text: 'Birbirinin nefesinde kendi iç fırtınalarını dindirebilme ustalığı.', mental: 94, emotional: 95, spiritual: 95, shadow: 91, telepathy: 94, arch: 'Huzur Bekçisi' }
+                ]
+            },
+
+            // Dimension 10: Edebi & Sanatsal Melankoli
+            {
+                dimensionKey: 'mental',
+                dimension: 'Edebi & Sanatsal Melankoli',
+                title: 'Eğer hayatın bir roman olsaydı, senin sayfan hangi tonla yazılırdı?',
+                options: [
+                    { key: 'A', badge: 'Gece Şiiri', text: 'Geceye yazılmış, her satırında gizli bir hüzün ve asalet barındıran şiir.', mental: 93, emotional: 98, spiritual: 96, shadow: 96, telepathy: 94, arch: 'Mistik Şair' },
+                    { key: 'B', badge: 'Seyyahın İzi', text: 'Fırtınalardan geçip bilgeliğe ulaşmış bir seyyahın içsel günlüğü.', mental: 98, emotional: 91, spiritual: 93, shadow: 89, telepathy: 90, arch: 'Yalnız Gezgin' },
+                    { key: 'C', badge: 'Sade Derinlik', text: 'Sade, gösterişsiz ama derinine indikçe büyüleyen minimalist felsefe.', mental: 96, emotional: 93, spiritual: 92, shadow: 86, telepathy: 89, arch: 'Felsefi Mimar' },
+                    { key: 'D', badge: 'Anka Yükselişi', text: 'Yaralarını gururla taşıyan bir ruhun küllerinden doğuş manifestosu.', mental: 94, emotional: 97, spiritual: 95, shadow: 97, telepathy: 93, arch: 'Kutsal Şifa' }
+                ]
+            },
+
+            // Dimension 11: Kader & Mistik Tesadüf
+            {
+                dimensionKey: 'spiritual',
+                dimension: 'Kader & Mistik Tesadüf',
+                title: 'İki ruhun bu hayatta tam da bu zamanda karşılaşması sence ne anlama gelir?',
+                options: [
+                    { key: 'A', badge: 'Kader Rezonansı', text: 'Tesadüf diye bir şey yoktur; frekanslar çekim yasasıyla birbirini bulur.', mental: 92, emotional: 97, spiritual: 99, shadow: 91, telepathy: 99, arch: 'Kozmik Rezonans' },
+                    { key: 'B', badge: 'Kozmik Görev', text: 'Birbirimize öğreteceğimiz ve birlikte şifalayacağımız ortak bir yol vardır.', mental: 97, emotional: 95, spiritual: 94, shadow: 93, telepathy: 94, arch: 'Kozmik Yoldaş' },
+                    { key: 'C', badge: 'Kutsal Hediye', text: 'Evrenin karmaşasında bize hediye edilmiş nadir ve kıymetli bir sığınak.', mental: 91, emotional: 99, spiritual: 95, shadow: 89, telepathy: 93, arch: 'Sonsuz Kale' },
+                    { key: 'D', badge: 'Kadim Tanışıklık', text: 'Zamanın ve mekanın ötesinde zaten var olan bir bağın bu dünyadaki yankısı.', mental: 94, emotional: 96, spiritual: 98, shadow: 94, telepathy: 98, arch: 'Mistik Telepat' }
+                ]
+            },
+
+            // Dimension 12: Karanlıkta Fener Yakmak
+            {
+                dimensionKey: 'shadow',
+                dimension: 'Karanlıkta Fener Yakmak',
+                title: 'Bu dünyada en çok korumak istediğin kutsal değer hangisidir?',
+                options: [
+                    { key: 'A', badge: 'Saf Samimiyet', text: 'İnsanların birbirinin gözlerinin içine maskesiz bakabildiği samimiyet.', mental: 95, emotional: 99, spiritual: 96, shadow: 94, telepathy: 97, arch: 'Saf Dürüstlük' },
+                    { key: 'B', badge: 'Kaya Sadakati', text: 'Herkes yüz çevirse bile birinin yanında dimdik durabilen o sadakat.', mental: 93, emotional: 98, spiritual: 94, shadow: 91, telepathy: 92, arch: 'Sadık Muhafız' },
+                    { key: 'C', badge: 'Cesur Kalp', text: 'Kırılsa da sevmeye, hissetmeye ve umut etmeye devam edebilme cesareti.', mental: 91, emotional: 99, spiritual: 97, shadow: 97, telepathy: 95, arch: 'Kutsal Şifa' },
+                    { key: 'D', badge: 'Aydınlanmış Ruh', text: 'Kendi karanlığımla barışıp başkalarına fener olabilme olgunluğu.', mental: 97, emotional: 94, spiritual: 96, shadow: 98, telepathy: 93, arch: 'Fener Taşıyıcısı' }
+                ]
+            },
+
+            // Dimension 9 - İkinci Soru: Varoluşsal Sessizlik
+            {
+                dimensionKey: 'mental',
+                dimension: 'Varoluşsal Sessizlik',
+                title: 'Bazen hayatın tüm telaşı durduğunda, içinde yankılanan o derin sessizlik sana ne söyler?',
+                options: [
+                    { key: 'A', badge: 'İçsel Pusula', text: '"Yavaşla; gideceğin yer zaten senin içinde, dışarıda arama."', mental: 96, emotional: 94, spiritual: 97, shadow: 89, telepathy: 92, arch: 'İçsel Gözlemci' },
+                    { key: 'B', badge: 'Yaratıcı Kıvılcım', text: '"Bu boşluk bir son değil; yeni bir şiirin veya düşüncenin doğum sancısı."', mental: 98, emotional: 95, spiritual: 93, shadow: 94, telepathy: 95, arch: 'Mistik Şair' },
+                    { key: 'C', badge: 'Evrensel Kucaklama', text: '"Yalnız değilsin; varoluşun kendisi seni bu sessizlikte sımsıkı sarıyor."', mental: 90, emotional: 99, spiritual: 98, shadow: 91, telepathy: 97, arch: 'Sessiz Şifacı' },
+                    { key: 'D', badge: 'Fırtına Öncesi', text: '"Ruhun fırtınalara karşı güç topluyor; bekle ve ışığına güven."', mental: 93, emotional: 96, spiritual: 95, shadow: 93, telepathy: 93, arch: 'Sadık Muhafız' }
+                ]
+            },
+
+            // Dimension 10 - İkinci Soru: Edebi & Sanatsal Melankoli
+            {
+                dimensionKey: 'emotional',
+                dimension: 'Edebi & Sanatsal Melankoli',
+                title: 'Bir yağmur damlası cama vururken hissettiğin o ince sızı sence nereden gelir?',
+                options: [
+                    { key: 'A', badge: 'Geçmişin Yankısı', text: '"Unutulduğunu sandığım eski bir hatıranın kalbime dokunan fısıltısından."', mental: 91, emotional: 99, spiritual: 95, shadow: 96, telepathy: 94, arch: 'Mistik Şair' },
+                    { key: 'B', badge: 'Evrenin Gözyaşı', text: '"Dünyanın söylenmemiş tüm kederlerini kendi içimde hissetmemden."', mental: 94, emotional: 98, spiritual: 97, shadow: 95, telepathy: 98, arch: 'Kutsal Şifa' },
+                    { key: 'C', badge: 'Yenilenme İksiri', text: '"Yıkanan yeryüzüyle birlikte ruhumun da arındığını bilmenin huzurundan."', mental: 97, emotional: 92, spiritual: 94, shadow: 88, telepathy: 90, arch: 'Şafak Ruhu' },
+                    { key: 'D', badge: 'Gizli Özlem', text: '"Henüz karşılaşmadığım ama varlığını bildiğim o ruha duyulan derin özlemden."', mental: 92, emotional: 97, spiritual: 98, shadow: 93, telepathy: 99, arch: 'Kozmik Rezonans' }
+                ]
+            },
+
+            // Dimension 11 - İkinci Soru: Kader & Mistik Tesadüf
+            {
+                dimensionKey: 'spiritual',
+                dimension: 'Kader & Mistik Tesadüf',
+                title: 'Birinin gözlerine ilk kez baktığında "Ben bu insanı sanki bin yıldır tanıyorum" hissini yaşadın mı?',
+                options: [
+                    { key: 'A', badge: 'Kadim Hatırlama', text: '"Evet; gözler kelimelerin anlatamadığı bin yıllık ortak bir hafızayı fısıldar."', mental: 94, emotional: 98, spiritual: 99, shadow: 92, telepathy: 99, arch: 'Mistik Telepat' },
+                    { key: 'B', badge: 'Manyetik Kilit', text: '"Nefesim kesilir ve tüm mantığım o an devre dışı kalır; kader budur."', mental: 90, emotional: 99, spiritual: 97, shadow: 94, telepathy: 97, arch: 'Manyetik Rezonans' },
+                    { key: 'C', badge: 'Sezgisel Güven', text: '"Hemen bir bağ kurmam ama ruhum sessizce \'doğru yerdesin\' sinyali verir."', mental: 98, emotional: 93, spiritual: 94, shadow: 87, telepathy: 93, arch: 'Saf Rezonans' },
+                    { key: 'D', badge: 'Zamansız Frekans', text: '"Zaman donar; sanki evrendeki tüm gezegenler tek bir hatta dizilmiş gibi."', mental: 95, emotional: 96, spiritual: 98, shadow: 91, telepathy: 98, arch: 'Kozmik Yoldaş' }
+                ]
+            },
+
+            // Dimension 12 - İkinci Soru: Karanlıkta Fener Yakmak
+            {
+                dimensionKey: 'shadow',
+                dimension: 'Karanlıkta Fener Yakmak',
+                title: 'En güvendiğin kişi zifiri bir karanlığa gömülse, ona nasıl ışık olursun?',
+                options: [
+                    { key: 'A', badge: 'Birlikte Susmak', text: '"Tavsiye vermem; karanlığında yanına oturur, elini tutar ve susarım."', mental: 92, emotional: 99, spiritual: 97, shadow: 96, telepathy: 98, arch: 'Sessiz Şifacı' },
+                    { key: 'B', badge: 'Sarsılmaz Kalkan', text: '"Tüm dünyayı karşısına alsa bile sırtımı sırtına yaslar, kalkan olurum."', mental: 95, emotional: 97, spiritual: 93, shadow: 92, telepathy: 93, arch: 'Sadık Muhafız' },
+                    { key: 'C', badge: 'Gizli Fener', text: '"Ona kim olduğunu ve ne kadar güçlü parladığını hatırlatan bir fener yakarım."', mental: 97, emotional: 96, spiritual: 98, shadow: 90, telepathy: 96, arch: 'Fener Taşıyıcısı' },
+                    { key: 'D', badge: 'Aynanın Gerçeği', text: '"Korkularıyla yüzleşmesi için şefkatli ama dürüst bir ayna tutarım."', mental: 99, emotional: 92, spiritual: 94, shadow: 95, telepathy: 91, arch: 'Felsefi Mimar' }
+                ]
+            }
+        ];
+
+        // Active Questions & State
+        let activeQuestions = [];
+        let currentQuestionIdx = 0;
+        let userAnswers = [];
+        let calculatedResult = null;
+
+        // Dynamic Question Sampler: generates a fresh, non-repetitive set of questions
+        function generateActiveQuestions() {
+            // Group questions by dimension
+            const dimGroups = {};
+            QUESTION_POOL.forEach(q => {
+                if (!dimGroups[q.dimension]) dimGroups[q.dimension] = [];
+                dimGroups[q.dimension].push(q);
+            });
+            const dims = Object.keys(dimGroups);
+
+            if (selectedMode === 'quick') {
+                // Quick Mode: Pick 8 distinct dimensions randomly, and 1 question from each
+                dims.sort(() => Math.random() - 0.5);
+                const selectedDims = dims.slice(0, 8);
+                const result = selectedDims.map(d => {
+                    const pool = dimGroups[d];
+                    return pool[Math.floor(Math.random() * pool.length)];
+                });
+                return result;
+            } else {
+                // Deep Mode: Pick 16 questions covering all 12 dimensions first, plus 4 complementary questions
+                dims.sort(() => Math.random() - 0.5);
+                const result = [];
+                // 1 from each of the 12 dimensions (ensures complete balance across all areas)
+                dims.forEach(d => {
+                    const pool = dimGroups[d];
+                    const picked = pool[Math.floor(Math.random() * pool.length)];
+                    result.push(picked);
+                });
+                // Pick 4 remaining questions from other dimension pools that weren't used
+                const remaining = QUESTION_POOL.filter(q => !result.includes(q));
+                remaining.sort(() => Math.random() - 0.5);
+                result.push(...remaining.slice(0, 4));
+                // Finally shuffle the 16 questions for a natural, varied flow
+                result.sort(() => Math.random() - 0.5);
+                return result;
+            }
+        }
+
+        // Elements
+        const introScreen = document.getElementById('introScreen');
+        const quizScreen = document.getElementById('quizScreen');
+        const nameScreen = document.getElementById('nameScreen');
+        const analyzingBox = document.getElementById('analyzingBox');
+        const resultScreen = document.getElementById('resultScreen');
+
+        const inviterPill = document.getElementById('inviterPill');
+        const inviterInitial = document.getElementById('inviterInitial');
+        const inviterDisplayName = document.getElementById('inviterDisplayName');
+
+        const progressBarFill = document.getElementById('progressBarFill');
+        const questionStepLabel = document.getElementById('questionStepLabel');
+        const dimensionBadge = document.getElementById('dimensionBadge');
+        const questionTitle = document.getElementById('questionTitle');
+        const optionsList = document.getElementById('optionsList');
+
+        // Setup Inviter Pill if parameters exist
+        if (inviterName && inviterName !== 'Bir Ruhdaş') {
+            inviterPill.style.display = 'inline-flex';
+            inviterInitial.textContent = inviterName.charAt(0).toUpperCase();
+            inviterDisplayName.textContent = inviterName;
+        }
+
+        // Start Quiz
+        document.getElementById('btnStartQuiz').addEventListener('click', () => {
+            activeQuestions = generateActiveQuestions();
+            currentQuestionIdx = 0;
+            userAnswers = [];
+            introScreen.style.display = 'none';
+            quizScreen.style.display = 'block';
+            renderQuestion(0);
+        });
+
+        // Render Current Question
+        function renderQuestion(idx) {
+            currentQuestionIdx = idx;
+            const q = activeQuestions[idx];
+
+            progressBarFill.style.width = `${((idx + 1) / activeQuestions.length) * 100}%`;
+            questionStepLabel.textContent = `Soru ${idx + 1} / ${activeQuestions.length}`;
+            dimensionBadge.textContent = q.dimension;
+            questionTitle.textContent = q.title;
+
+            optionsList.innerHTML = '';
+            q.options.forEach((opt) => {
+                const card = document.createElement('div');
+                card.className = 'option-card';
+                card.innerHTML = `
+                    <div class="option-key">${opt.key}</div>
+                    <div style="flex: 1;">
+                        ${opt.badge ? `<div class="option-badge">${opt.badge}</div>` : ''}
+                        <div class="option-text">${opt.text}</div>
+                    </div>
+                `;
+                card.addEventListener('click', () => handleOptionSelect(opt));
+                optionsList.appendChild(card);
+            });
+        }
+
+        // Handle Option Click
+        function handleOptionSelect(option) {
+            userAnswers.push(option);
+
+            if (currentQuestionIdx + 1 < activeQuestions.length) {
+                renderQuestion(currentQuestionIdx + 1);
+            } else {
+                // Done with all questions -> Name screen
+                quizScreen.style.display = 'none';
+                nameScreen.style.display = 'block';
+                document.getElementById('participantNameInput').focus();
+            }
+        }
+
+        // Calculate Result on Name Submit
+        document.getElementById('btnCalculateResult').addEventListener('click', () => {
+            const rawName = document.getElementById('participantNameInput').value.trim();
+            const participantName = rawName || 'Bir Ruhdaş';
+
+            nameScreen.style.display = 'none';
+            analyzingBox.style.display = 'block';
+
+            setTimeout(() => {
+                calculateAndDisplayResult(participantName);
+            }, 1600);
+        });
+
+        // Deep Multi-Dimensional Scoring Calculation Engine
+        function calculateAndDisplayResult(participantName) {
+            let totalMental = 0;
+            let totalEmotional = 0;
+            let totalSpiritual = 0;
+            let totalShadow = 0;
+            let totalTelepathy = 0;
+
+            userAnswers.forEach(a => {
+                totalMental += a.mental || 85;
+                totalEmotional += a.emotional || 85;
+                totalSpiritual += a.spiritual || 85;
+                totalShadow += a.shadow || 85;
+                totalTelepathy += a.telepathy || 85;
+            });
+
+            const count = userAnswers.length || 1;
+            const avgMental = Math.min(99, Math.round(totalMental / count));
+            const avgEmotional = Math.min(99, Math.round(totalEmotional / count));
+            const avgSpiritual = Math.min(99, Math.round(totalSpiritual / count));
+            const avgShadow = Math.min(99, Math.round(totalShadow / count));
+            const avgTelepathy = Math.min(99, Math.round(totalTelepathy / count));
+
+            // Weighted overall compatibility score (88% to 99%)
+            let overallScore;
+            if (selectedMode === 'deep') {
+                overallScore = Math.min(99, Math.max(88, Math.round(
+                    (avgMental * 0.25) + 
+                    (avgEmotional * 0.25) + 
+                    (avgSpiritual * 0.20) + 
+                    (avgShadow * 0.15) + 
+                    (avgTelepathy * 0.15)
+                )));
+            } else {
+                overallScore = Math.min(98, Math.max(88, Math.round(
+                    (avgMental * 0.35) + 
+                    (avgEmotional * 0.35) + 
+                    (avgSpiritual * 0.30)
+                )));
+            }
+
+            // Aura Palette & Archetype Matrix
+            const auraPalettes = [
+                { title: 'Kozmik Rezonans ✨', colors: 'Ametist Moru & Gece Mavisi', arch: 'Fener Taşıyıcısı & Ay Şairi' },
+                { title: 'Harmonik Ruh İkizi 💖', colors: 'Zümrüt Yeşili & Altın Işık', arch: 'Sessiz Şifacı & Felsefi Mimar' },
+                { title: 'Telepatik Frekans 🌌', colors: 'Kutup Işığı & Gece Kehribarı', arch: 'Gece Kuşu & Manyetik Rezonans' },
+                { title: 'Derin Ahenk 🕯️', colors: 'Gül Kurusu & Saf Gümüş', arch: 'Sonsuz Kale & Kutsal Şifa' },
+                { title: 'Kozmik Kıvılcım ⚡', colors: 'Lavanta Sisi & Ay Işığı', arch: 'Gök Gezgini & Empat Ruhdaş' }
+            ];
+
+            const paletteIdx = (overallScore + avgEmotional + (selectedMode === 'deep' ? 1 : 0)) % auraPalettes.length;
+            const chosenPalette = auraPalettes[paletteIdx];
+
+            // Deep Psychological Interpretations
+            const mysteryText = `${inviterName} ile ${participantName} arasındaki frekans, sıradan bir tanışmanın çok ötesinde. Zihinsel dalga boyunuz (${avgMental}%) düşüncelerinizin aynı gizli patikalarda yürüdüğünü gösteriyor. Birbirinizin cümlelerini tamamlamaya gerek duymadan, aynı sessizlikte derin bir huzur bulabilen nadir iki ruha sahipsiniz.`;
+
+            const balanceText = selectedMode === 'deep'
+                ? `Duygusal rezonansınız (%${avgEmotional}) ve Gölge Benlik uyumunuz (%${avgShadow}) ilişkinizin en güçlü kalkanı. Biriniz hayatın karmaşasında yorulduğunda, diğerinin içindeki fener kendiliğinden uyanıyor. Saklanan kırılganlıkları yargılamadan kucaklayabilme ve Telepatik Sezgi (%${avgTelepathy}) ile kelimesiz anlaşabilme gücünüz büyüleyici.`
+                : `Duygusal rezonansınız (%${avgEmotional}) ilişkinizin en güçlü zırhı. Biriniz hayatın karmaşasında yorulduğunda, diğerinin içindeki fener kendiliğinden uyanıyor. Birbirinizin kırılganlıklarını yargılamadan kucaklayabilme ve gölge taraflarınızı şifalandırma potansiyeliniz son derece yüksek.`;
+
+            const prophecyText = `Ruhani çekiminiz (%${avgSpiritual}) gösteriyor ki aranızdaki bağ zamanla aşınacak türden değil. Birlikte karanlığa bir fener yaktığınızda dünyanın tüm ağırlığı hafifliyor. Birbirinize maskesiz olmaktan asla çekinmeyin; bu frekans evrende çok az insana nasip olur.`;
+
+            calculatedResult = {
+                overallScore,
+                avgMental,
+                avgEmotional,
+                avgSpiritual,
+                avgShadow,
+                avgTelepathy,
+                inviterName,
+                participantName,
+                chosenPalette,
+                mysteryText,
+                balanceText,
+                prophecyText,
+                mode: selectedMode
+            };
+
+            // Insert into Supabase if inviterId exists
+            if (supabaseClient && inviterId) {
+                try {
+                    supabaseClient.from('aura_test_results').insert([
+                        {
+                            user_id: inviterId,
+                            solver_name: participantName,
+                            overall_score: overallScore,
+                            mental_score: avgMental,
+                            emotional_score: avgEmotional,
+                            spiritual_score: avgSpiritual
+                        }
+                    ]).then(({ error }) => {
+                        if (error) console.warn('Supabase aura_test_results insert warning:', error);
+                        else console.log('✅ Supabase aura_test_results saved for inviter:', inviterId);
+                    });
+                } catch (e) {
+                    console.log('Error saving aura test result:', e);
+                }
+            }
+
+            // Wire WhatsApp Button
+            const btnSendWa = document.getElementById('btnSendWaInviter');
+            if (btnSendWa) {
+                document.getElementById('btnSendWaInviterText').textContent = `Sonucu WhatsApp ile ${inviterName}'e Gönder 💬`;
+                btnSendWa.onclick = () => {
+                    let waMsg = '';
+                    if (selectedMode === 'deep') {
+                        waMsg = `✨ ${inviterName}, seninle hisvera.com üzerinde 16 Soruluk Derin Ruh Analizini tamamladım!\n🔮 Aramızdaki Frekans: %${overallScore} (${chosenPalette.title})\n🧠 Zihinsel: %${avgMental} | 🤍 Duygusal: %${avgEmotional} | 🌌 Ruhani: %${avgSpiritual}\n🔮 Gölge Benlik: %${avgShadow} | ✨ Telepati: %${avgTelepathy}\n\nSen de sonucu incele: ${window.location.href}`;
+                    } else {
+                        waMsg = `✨ ${inviterName}, seninle hisvera.com üzerinde Aura Frekans Testini çözdüm!\n🔮 Aramızdaki Uyum: %${overallScore} (${chosenPalette.title})\n🧠 Zihinsel: %${avgMental} | 🤍 Duygusal: %${avgEmotional} | 🌌 Ruhani: %${avgSpiritual}\n\nSen de sonucu incele: ${window.location.href}`;
+                    }
+                    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(waMsg)}`, '_blank');
+                };
+            }
+
+            // Populate DOM
+            document.getElementById('overallScoreText').textContent = `${overallScore}%`;
+            document.getElementById('resultMatchTitle').textContent = chosenPalette.title;
+            document.getElementById('pairNamesText').textContent = `${inviterName} & ${participantName}`;
+            document.getElementById('tagAuraColor').textContent = `🎨 ${chosenPalette.colors}`;
+            document.getElementById('tagArchetype').textContent = `🕯️ ${chosenPalette.arch}`;
+
+            document.getElementById('mentalScoreText').textContent = `%${avgMental}`;
+            document.getElementById('emotionalScoreText').textContent = `%${avgEmotional}`;
+            document.getElementById('spiritualScoreText').textContent = `%${avgSpiritual}`;
+
+            // Handle Deep Mode Specific Rows
+            const rowShadow = document.getElementById('rowShadow');
+            const rowTelepathy = document.getElementById('rowTelepathy');
+            if (selectedMode === 'deep') {
+                if (rowShadow) rowShadow.style.display = 'block';
+                if (rowTelepathy) rowTelepathy.style.display = 'block';
+                document.getElementById('shadowScoreText').textContent = `%${avgShadow}`;
+                document.getElementById('telepathyScoreText').textContent = `%${avgTelepathy}`;
+            } else {
+                if (rowShadow) rowShadow.style.display = 'none';
+                if (rowTelepathy) rowTelepathy.style.display = 'none';
+            }
+
+            document.getElementById('analysisMysteryText').textContent = mysteryText;
+            document.getElementById('analysisBalanceText').textContent = balanceText;
+            document.getElementById('analysisProphecyText').textContent = prophecyText;
+
+            // Animate Circle Gauge
+            analyzingBox.style.display = 'none';
+            resultScreen.style.display = 'block';
+
+            // Confetti Explosion
+            if (window.confetti) {
+                window.confetti({
+                    particleCount: 90,
+                    spread: 75,
+                    origin: { y: 0.6 },
+                    colors: ['#9d4edd', '#ff758f', '#ffd166', '#38bdf8', '#c77dff']
+                });
+            }
+
+            // SVG Stroke & Breakdown Bar Animations
+            setTimeout(() => {
+                const circle = document.getElementById('scoreSvgVal');
+                const circumference = 2 * Math.PI * 75; // ~471
+                const offset = circumference - (overallScore / 100) * circumference;
+                circle.style.strokeDashoffset = offset;
+
+                document.getElementById('mentalBar').style.width = `${avgMental}%`;
+                document.getElementById('emotionalBar').style.width = `${avgEmotional}%`;
+                document.getElementById('spiritualBar').style.width = `${avgSpiritual}%`;
+
+                if (selectedMode === 'deep') {
+                    const shadowBar = document.getElementById('shadowBar');
+                    const telepathyBar = document.getElementById('telepathyBar');
+                    if (shadowBar) shadowBar.style.width = `${avgShadow}%`;
+                    if (telepathyBar) telepathyBar.style.width = `${avgTelepathy}%`;
+                }
+            }, 100);
+        }
+
+        // Instagram / Story Share
+        document.getElementById('btnShareStory').addEventListener('click', () => {
+            if (!calculatedResult) return;
+            let shareText = '';
+            if (calculatedResult.mode === 'deep') {
+                shareText = `🔮 ${calculatedResult.inviterName} ile ${calculatedResult.participantName} Derin Ruh Uyumu: %${calculatedResult.overallScore}! ✨\n🧠 Zihinsel: %${calculatedResult.avgMental} | 🤍 Duygusal: %${calculatedResult.avgEmotional} | 🌌 Ruhani: %${calculatedResult.avgSpiritual}\n🔮 Gölge: %${calculatedResult.avgShadow} | ✨ Telepati: %${calculatedResult.avgTelepathy}\n\nSen de kendi aura testini çöz: https://hisvera.com/uyum.html`;
+            } else {
+                shareText = `🔮 ${calculatedResult.inviterName} ile ${calculatedResult.participantName} Aura Frekans Uyumu: %${calculatedResult.overallScore}! ✨\n🧠 Zihinsel: %${calculatedResult.avgMental} | 🤍 Duygusal: %${calculatedResult.avgEmotional} | 🌌 Ruhani: %${calculatedResult.avgSpiritual}\n\nSen de kendi aura testini çöz: https://hisvera.com/uyum.html`;
+            }
+
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Aura Frekans Testi | hisvera',
+                    text: shareText,
+                    url: window.location.href
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('✨ Sonuç panoya kopyalandı! Instagram hikayene veya WhatsApp durumuna yapıştırabilirsin.');
+                });
+            }
+        });
+
+        // Create Own Test
+        document.getElementById('btnCreateOwnTest').addEventListener('click', () => {
+            const myName = prompt('Kendi testini arkadaşlarına göndermek için ismini yaz:');
+            if (myName && myName.trim()) {
+                const newUrl = `${window.location.origin}${window.location.pathname}?name=${encodeURIComponent(myName.trim())}`;
+                navigator.clipboard.writeText(newUrl).then(() => {
+                    alert(`✨ Özel test bağlantın kopyalandı!\n\n${newUrl}\n\nArkadaşlarına veya Instagram biyografine ekleyebilirsin.`);
+                });
+            }
+        });
+
+        // Floating Stars Canvas
+        (function initStars() {
+            const canvas = document.getElementById('starsCanvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            let stars = [];
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            for (let i = 0; i < 65; i++) {
+                stars.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    size: Math.random() * 1.5 + 0.5,
+                    alpha: Math.random() * 0.8 + 0.2,
+                    speed: Math.random() * 0.3 + 0.1
+                });
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                stars.forEach(s => {
+                    ctx.fillStyle = `rgba(255, 255, 255, ${s.alpha})`;
+                    ctx.beginPath();
+                    ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    s.y -= s.speed;
+                    if (s.y < 0) {
+                        s.y = height;
+                        s.x = Math.random() * width;
+                    }
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        })();
+    </script>
+</body>
+
+</html>
