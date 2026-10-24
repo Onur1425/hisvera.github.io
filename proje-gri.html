@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proje: Gri | HisVera Studio</title>
+    <link rel="icon" type="image/jpeg" href="assets/images/HisVera.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+        }
+        body {
+            background-color: #05070a;
+            color: #fff;
+            font-family: 'Courier Prime', monospace;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            user-select: none;
+            position: relative;
+        }
+
+        /* Hypnotic Background */
+        .psy-bg {
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: repeating-radial-gradient(
+                circle at 50% 50%,
+                transparent 0,
+                rgba(255, 255, 255, 0.08) 2px,
+                transparent 5px,
+                transparent 60px
+            );
+            animation: hypnoticBreath 22s ease-in-out infinite alternate;
+            z-index: 1;
+            pointer-events: none;
+            transition: background 2s ease;
+        }
+        body.loop-2 .psy-bg {
+            background: repeating-radial-gradient(
+                circle at 50% 50%,
+                transparent 0,
+                rgba(168, 85, 247, 0.12) 2px,
+                transparent 5px,
+                transparent 50px
+            );
+        }
+        body.loop-3 .psy-bg {
+            background: repeating-radial-gradient(
+                circle at 50% 50%,
+                transparent 0,
+                rgba(244, 63, 94, 0.15) 2px,
+                transparent 5px,
+                transparent 40px
+            );
+        }
+
+        @keyframes hypnoticBreath {
+            0% { transform: scale(1) rotate(0deg); filter: blur(2px); }
+            100% { transform: scale(1.4) rotate(15deg); filter: blur(4px); }
+        }
+        
+        /* Interactive Giant Background Clock */
+        .clock-container {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 110vmax; height: 110vmax;
+            transform: translate(-50%, -50%);
+            border: 2px dashed rgba(255,255,255,0.12);
+            border-radius: 50%;
+            z-index: 1;
+            pointer-events: none;
+            transition: border-color 1s ease;
+        }
+        body.loop-2 .clock-container {
+            border-color: rgba(168, 85, 247, 0.25);
+        }
+        
+        .clock-hand {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 4px; height: 55vmax;
+            background: linear-gradient(to top, transparent 40%, rgba(255, 255, 255, 0.6) 100%);
+            box-shadow: 0 -10px 20px rgba(255,255,255,0.3);
+            transform-origin: bottom center;
+            margin-top: -55vmax;
+            margin-left: -2px;
+            animation: tickNormal 60s linear infinite;
+        }
+
+        .clock-hand.reverse-fast {
+            animation: tickReverse 0.8s linear infinite !important;
+        }
+        .clock-hand.warp-speed {
+            animation: tickNormal 2s linear infinite !important;
+        }
+
+        @keyframes tickNormal {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes tickReverse {
+            from { transform: rotate(360deg); }
+            to { transform: rotate(0deg); }
+        }
+
+        /* 🕰️ Interactive Time Anomaly Badge (Top Left) */
+        .time-anomaly-badge {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            z-index: 100;
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            padding: 8px 16px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        .time-anomaly-badge:hover {
+            border-color: #38bdf8;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+            transform: translateY(-2px);
+        }
+        .time-clock-icon {
+            color: #38bdf8;
+            font-size: 1rem;
+            animation: pulseIcon 2s infinite ease-in-out;
+        }
+        @keyframes pulseIcon {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.15); }
+        }
+        .time-digital {
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #f8fafc;
+        }
+        .time-mode {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            padding-left: 10px;
+        }
+        .time-tooltip {
+            font-size: 0.68rem;
+            color: #64748b;
+            display: none;
+        }
+        @media (min-width: 600px) {
+            .time-tooltip { display: inline-block; }
+        }
+
+        /* 📂 Secret Classified Archive Button (Top Right) */
+        .btn-archive {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            z-index: 100;
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(244, 63, 94, 0.4);
+            color: #f43f5e;
+            backdrop-filter: blur(8px);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(244, 63, 94, 0.15);
+        }
+        .btn-archive:hover {
+            background: #f43f5e;
+            color: #000;
+            box-shadow: 0 0 25px rgba(244, 63, 94, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* 📂 Classified Archive Modal */
+        .archive-modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .archive-modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        .archive-card {
+            max-width: 680px;
+            width: 100%;
+            background: #0b0f17;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.9), 0 0 30px rgba(244, 63, 94, 0.2);
+            border-radius: 16px;
+            padding: 35px 30px;
+            position: relative;
+            color: #cbd5e1;
+            font-family: 'Courier Prime', monospace;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .archive-stamp {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            border: 2px solid #f43f5e;
+            color: #f43f5e;
+            padding: 4px 12px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transform: rotate(-5deg);
+            opacity: 0.85;
+        }
+        .archive-title {
+            font-size: 1.3rem;
+            color: #f8fafc;
+            margin-bottom: 6px;
+            letter-spacing: 2px;
+        }
+        .archive-meta {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            margin-bottom: 25px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
+            padding-bottom: 12px;
+        }
+        .archive-section {
+            margin-bottom: 18px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        .archive-section strong {
+            color: #38bdf8;
+            letter-spacing: 1px;
+        }
+        .redacted {
+            background: #cbd5e1;
+            color: #0b0f17;
+            padding: 0 6px;
+            user-select: none;
+            border-radius: 2px;
+            font-weight: bold;
+        }
+        .archive-footer-btn {
+            margin-top: 25px;
+            width: 100%;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 12px 20px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 1rem;
+            cursor: pointer;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            border-radius: 8px;
+        }
+        .archive-footer-btn:hover {
+            background: #fff;
+            color: #000;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        /* 👥 Shadow Ghost Entity (Follows Cursor / Touch) */
+        .shadow-ghost {
+            position: fixed;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(244, 63, 94, 0.35) 0%, rgba(15, 23, 42, 0.85) 60%, transparent 100%);
+            box-shadow: 0 0 25px rgba(244, 63, 94, 0.3), inset 0 0 10px rgba(0, 0, 0, 0.9);
+            pointer-events: none;
+            z-index: 50;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.5s ease;
+            opacity: 0;
+            filter: blur(1px);
+        }
+        .shadow-ghost.active {
+            opacity: 0.75;
+        }
+        .ghost-eyes {
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 7px;
+        }
+        .ghost-eyes span {
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            box-shadow: 0 0 8px #f43f5e;
+            border-radius: 50%;
+            display: block;
+        }
+        .ghost-whisper {
+            position: absolute;
+            bottom: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-size: 0.7rem;
+            color: #f43f5e;
+            letter-spacing: 1px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            text-shadow: 0 0 8px rgba(244, 63, 94, 0.7);
+        }
+        .shadow-ghost.speaking .ghost-whisper {
+            opacity: 1;
+        }
+
+        /* Main Container & Steps */
+        .container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 650px;
+            width: 90%;
+            padding: 2rem;
+        }
+        .loop-badge {
+            display: inline-block;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+            padding: 4px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(6px);
+            transition: all 0.4s;
+        }
+        body.loop-2 .loop-badge {
+            color: #c084fc;
+            border-color: rgba(192, 132, 252, 0.4);
+            box-shadow: 0 0 15px rgba(192, 132, 252, 0.2);
+        }
+        body.loop-3 .loop-badge {
+            color: #f43f5e;
+            border-color: rgba(244, 63, 94, 0.5);
+            box-shadow: 0 0 20px rgba(244, 63, 94, 0.3);
+        }
+
+        .step {
+            display: none;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+        .step.active {
+            display: block;
+            opacity: 1;
+        }
+        h1 {
+            font-size: 1.9rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 12px rgba(255,255,255,0.4);
+            letter-spacing: 2px;
+            line-height: 1.5;
+        }
+        .btn-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        button.action-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #fff;
+            padding: 0.8rem 2.2rem;
+            font-family: 'Courier Prime', monospace;
+            font-size: 1.15rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 4px;
+        }
+        button.action-btn:hover {
+            background: #fff;
+            color: #000;
+            box-shadow: 0 0 25px rgba(255,255,255,0.8);
+            transform: translateY(-2px);
+        }
+
+        /* Memory Input */
+        .input-memory {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #fff;
+            color: #fff;
+            font-family: 'Courier Prime', monospace;
+            font-size: 1.4rem;
+            text-align: center;
+            width: 100%;
+            padding: 0.6rem;
+            outline: none;
+            margin-top: 1.2rem;
+            letter-spacing: 1px;
+            transition: border-color 0.3s;
+        }
+        .input-memory:focus {
+            border-bottom-color: #38bdf8;
+        }
+
+        .red-text {
+            color: #f43f5e;
+            text-shadow: 0 0 15px rgba(244, 63, 94, 0.6);
+            font-weight: 700;
+        }
+        .purple-text {
+            color: #c084fc;
+            text-shadow: 0 0 15px rgba(192, 132, 252, 0.6);
+            font-weight: 700;
+        }
+
+        /* ⏳ Dynamic Glitch Date */
+        .glitch-date-wrap {
+            margin: 1.5rem 0 3rem;
+        }
+        .glitch-date {
+            font-size: 2.2rem;
+            letter-spacing: 8px;
+            font-weight: 700;
+            color: #f43f5e;
+            text-shadow: 0 0 18px rgba(244, 63, 94, 0.7);
+            position: relative;
+            display: inline-block;
+        }
+        .glitch-date-sub {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            letter-spacing: 2px;
+            margin-top: 8px;
+        }
+
+        /* Reality Collapse Banner */
+        .anomaly-toast {
+            position: fixed;
+            bottom: 35px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            color: #f8fafc;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            backdrop-filter: blur(10px);
+            z-index: 200;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8);
+            display: none;
+            animation: slideUp 0.4s ease;
+            text-align: center;
+            max-width: 90%;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Screen Glitch Overlay */
+        .glitch-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)"/></svg>');
+            opacity: 0;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: screen;
+        }
+        @keyframes glitch-anim {
+            0% { opacity: 0; transform: translate(0, 0); }
+            10% { opacity: 0.6; transform: translate(-6px, 6px); }
+            20% { opacity: 0.3; transform: translate(6px, -6px); }
+            30% { opacity: 0.8; transform: translate(-6px, -6px); }
+            40% { opacity: 0; transform: translate(0, 0); }
+            100% { opacity: 0; }
+        }
+        .glitching {
+            animation: glitch-anim 0.4s infinite;
+        }
+
+        /* Reality Collapse Fullscreen Transition */
+        .collapse-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #020408;
+            z-index: 500;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+        .collapse-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .collapse-title {
+            font-size: 2.2rem;
+            letter-spacing: 6px;
+            color: #f43f5e;
+            text-shadow: 0 0 25px rgba(244, 63, 94, 0.8);
+            margin-bottom: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .collapse-subtitle {
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            color: #94a3b8;
+            text-transform: uppercase;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0DRJXGNWT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-D0DRJXGNWT');
+    </script>
+</head>
+<body>
+    <!-- Reality Collapse Fullscreen Transition -->
+    <div class="collapse-overlay" id="collapseOverlay">
+        <div class="collapse-title" id="collapseTitle">UYANAMADIN.</div>
+        <div class="collapse-subtitle" id="collapseSubtitle">ZAMAN KENDİNİ TEKRAR EDİYOR...</div>
+    </div>
+
+    <div class="psy-bg" id="psyBg"></div>
+    <div class="clock-container" id="clockContainer">
+        <div class="clock-hand" id="clockHand"></div>
+    </div>
+    <div class="glitch-overlay" id="glitch"></div>
+
+    <!-- 👥 Ghost Cursor (Follows user with ~1.3s delay) -->
+    <div class="shadow-ghost" id="shadowGhost">
+        <div class="ghost-eyes"><span></span><span></span></div>
+        <div class="ghost-whisper" id="ghostWhisper">az önce oradaydın...</div>
+    </div>
+
+    <!-- 🕰️ Anomaly Time Clock Badge (Top Left) -->
+    <div class="time-anomaly-badge" id="timeBadge" onclick="cycleTimeAnomaly()" title="Zamanı bükmek için tıkla">
+        <i class="fa-solid fa-clock time-clock-icon"></i>
+        <span class="time-digital" id="digitalTime">09:47</span>
+        <span class="time-tooltip"><i class="fa-solid fa-hand-pointer"></i> TIKLA</span>
+    </div>
+
+    <!-- 📂 Secret Classified Archive Button (Top Right) -->
+    <button class="btn-archive" onclick="openArchive()">
+        <i class="fa-solid fa-folder-closed"></i>
+        <span>DOSYA: G-2030 // ÇOK GİZLİ</span>
+    </button>
+
+    <!-- 📂 Classified Archive Modal -->
+    <div class="archive-modal" id="archiveModal">
+        <div class="archive-card">
+            <div class="archive-stamp">GİZLİ // CLASSIFIED</div>
+            <h2 class="archive-title">HISVERA ARAŞTIRMA LAB // PROJE: GRİ</h2>
+            <div class="archive-meta">VAKA NO: 2028-2030-B | DENEK: BİLİNÇ #049 | STATÜ: DÖNGÜDE SIKIŞMIŞ</div>
+
+            <div class="archive-section">
+                <strong>DURUM ÖZETİ:</strong><br>
+                Denek, zamanın doğrusal akmadığı ve geçmiş ile şimdinin iç içe geçtiği bir bilinç katmanında mahsur kaldı.
+                Aynı sokakları, aynı kırık saatleri ve koridorları tekrar tekrar yürüyor.
+            </div>
+
+            <div class="archive-section">
+                <strong>GÖZLEM NOTLARI:</strong><br>
+                • Denek zaman akışının bazı saatlerde aniden değiştiğini, adımlarının tekrar ettiğini iddia ediyor.<br>
+                • Çevresindeki en ufak bir değişimi sezdiğinde şiddetli bir algı kırılması yaşıyor: <em>"Bir şey eksik..."</em><br>
+                • Karanlık köşelerde beliren <span class="redacted">BİR SİLÜETİN</span> eski ayak izlerini takip ettiğini söylüyor.<br>
+                • Bilinç direnci: <span class="redacted">STABİL DEĞİL</span>. Zaman algısı: Bozulmuş.
+            </div>
+
+            <div class="archive-section">
+                <strong>TEŞHİS & TALİMAT:</strong><br>
+                Denek uyanmayı reddediyor. Onu zorla uyandırmaya çalışmayın; zira dış müdahale <span class="redacted">GERÇEKLİĞİ ÇÖKERTİR</span>. Kendi döngüsünü kırmasını bekleyin.
+            </div>
+
+            <div class="archive-section" style="border-top: 1px dashed rgba(255,255,255,0.15); padding-top: 12px;">
+                <strong>ÖNGÖRÜLEN SALINIM:</strong> 2028 — 2030 (Zaman kırılmasına bağlı olarak değişken)
+            </div>
+
+            <button class="archive-footer-btn" onclick="closeArchive()">[ DOSYAYI ARŞİVE KALDIR ]</button>
+        </div>
+    </div>
+
+    <!-- Anomaly Toast Notification -->
+    <div class="anomaly-toast" id="anomalyToast"></div>
+    
+    <!-- MAIN INTERACTIVE FLOW CONTAINER -->
+    <div class="container">
+        <div class="loop-badge" id="loopBadge">DÖNGÜ: 01</div>
+        
+        <!-- STEP 1 -->
+        <div class="step active" id="step1" style="opacity: 0;">
+            <h1 id="q1Text">Daha önce burada mıydın?</h1>
+            <div class="btn-group">
+                <button class="action-btn" onclick="handleChoice('yes')" id="btnYes">Evet</button>
+                <button class="action-btn" onclick="handleChoice('no')" id="btnNo">Hayır</button>
+            </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="step" id="step2">
+            <h1 id="q2Text">Hatırladığın her şey gerçek olmayabilir.</h1>
+            <p style="margin-bottom: 1rem; color: #888;" id="q2SubText">Bana en net hatırladığın bir anıyı yaz:</p>
+            <input type="text" class="input-memory" id="memoryInput" autocomplete="off" spellcheck="false" placeholder="...">
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="step" id="step3">
+            <h1 class="red-text" id="q3Text">Yanlış hatırlıyorsun.</h1>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="step" id="step4">
+            <h1 style="font-size: 1.5rem; line-height: 2.2rem;" id="q4Text">
+                Zaman aynı akmaz.<br>Gerçeklik tekrar etmeye başladığında hazır ol.
+            </h1>
+        </div>
+
+        <!-- STEP 5 (THE LOOP & SPOILER GATE) -->
+        <div class="step" id="step5">
+            <h1 style="font-size: 2.8rem; margin-bottom: 0.3rem; letter-spacing: 4px;">PROJE: GRİ</h1>
+            <div class="glitch-date-wrap">
+                <h2 class="glitch-date" id="gameDate">2028 — 2030</h2>
+                <div class="glitch-date-sub" id="gameDateSub">Zaman kırıldığında (2028 - 2030)</div>
+            </div>
+            
+            <div class="btn-group" id="step5BtnGroup">
+                <button class="action-btn" id="wakeBtn" onclick="handleWakeUp()">Uyan</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="i18n.js"></script>
+    <script>
+        // State Management
+        let currentLoop = 1;
+        let currentChoice = 'yes';
+        let currentDistortError = "BUNU SEN YAŞAMADIN";
+        const glitchElement = document.getElementById('glitch');
+        const memoryInput = document.getElementById('memoryInput');
+        const clockHand = document.getElementById('clockHand');
+        const loopBadge = document.getElementById('loopBadge');
+        const gameDate = document.getElementById('gameDate');
+        const zalgoChars = ['#','*','%','@','!','?','&','$','_','-','+','=', '<', '>'];
+        let typeCount = 0;
+
+        function triggerGlitch(duration) {
+            glitchElement.classList.add('glitching');
+            setTimeout(() => {
+                glitchElement.classList.remove('glitching');
+            }, duration);
+        }
+
+        function handleChoice(choice) {
+            currentChoice = choice;
+
+            if (currentLoop === 1) {
+                if (choice === 'yes') {
+                    document.getElementById('q2Text').innerText = "Öyleyse biliyorsun.";
+                    document.getElementById('q2SubText').innerText = "Bana en net hatırladığın bir anıyı yaz:";
+                    currentDistortError = "BUNU SEN YAŞAMADIN";
+                    document.getElementById('q3Text').innerHTML = "Yanlış hatırlıyorsun.";
+                    document.getElementById('q4Text').innerHTML = "Zaman aynı akmaz.<br>Gerçeklik tekrar etmeye başladığında hazır ol.";
+                } else {
+                    document.getElementById('q2Text').innerText = "İlk kez geldiğini sanıyorsun.";
+                    document.getElementById('q2SubText').innerText = "Sana ait olduğunu düşündüğün bir kelime yaz:";
+                    currentDistortError = "BURAYA İLK GELİŞİN DEĞİL";
+                    document.getElementById('q3Text').innerHTML = "Daha önce de tam bunu söylemiştin.";
+                    document.getElementById('q4Text').innerHTML = "Kendini kandırıyorsun.<br>Gerçeklik tekrar etmeye başladığında hazır ol.";
+                }
+            } else if (currentLoop === 2) {
+                if (choice === 'remember') {
+                    // "HATIRLIYORUM" yolu
+                    document.getElementById('q2Text').innerText = "Neyi hatırlıyorsun? Burası hiç var olmadı ki.";
+                    document.getElementById('q2SubText').innerText = "Zihnini zorla. Seni buraya bağlayan son şeyi yaz:";
+                    currentDistortError = "BU ANIN HİÇ YAŞANMADI";
+                    document.getElementById('q3Text').innerHTML = "Hatırladıkça daha çok batıyorsun.";
+                    document.getElementById('q4Text').innerHTML = "Zaman sana yalan söylüyor.<br><span class='purple-text'>Bazı yollar seni unutmak için var.</span>";
+                    showToast("« Hafıza bir yanılsamadır. »");
+                } else {
+                    // "BENİ BIRAK" yolu
+                    triggerGlitch(700);
+                    ghostWhisper.innerText = "bırakmam...";
+                    ghost.classList.add('speaking');
+                    clockHand.classList.add('reverse-fast');
+                    setTimeout(() => clockHand.classList.remove('reverse-fast'), 1200);
+
+                    document.getElementById('q2Text').innerText = "Seni kimse tutmuyor.";
+                    document.getElementById('q2SubText').innerText = "Gitmeyi seçiyorsan, geride neyi bırakacağını yaz:";
+                    currentDistortError = "BURADAN ÇIKIŞ YOK";
+                    document.getElementById('q3Text').innerHTML = "Bırakmak bir seçim değil.<br><span class='purple-text'>Unutmak da bir döngüdür.</span>";
+                    document.getElementById('q4Text').innerHTML = "Kaçtığın her yol yine buraya çıkıyor.<br><span class='red-text'>Karanlık seni tanıyor.</span>";
+                    showToast("« Kaçış yok. »");
+                }
+            } else if (currentLoop === 3) {
+                if (choice === 'accept') {
+                    document.getElementById('q2Text').innerText = "Sessizliğe bir fısıltı bırak:";
+                    document.getElementById('q2SubText').innerText = "Kimse yargılamayacak.";
+                    currentDistortError = "SESİN DUYULDU";
+                    document.getElementById('q3Text').innerHTML = "Unutmak da bir döngüdür.<br><span class='red-text'>Ama bazı anlar gitmez.</span>";
+                    document.getElementById('q4Text').innerHTML = "Sen varsın.<br>Ve dünya seni hatırlıyor.";
+                } else {
+                    document.getElementById('q2Text').innerText = "Karanlığa doğru bir adım daha:";
+                    document.getElementById('q2SubText').innerText = "Gözlerini kapat ve yaz:";
+                    currentDistortError = "YOL SENİ BİLİYOR";
+                    document.getElementById('q3Text').innerHTML = "Korkma.<br><span class='purple-text'>Görülmemek, değersiz olmak demek değildir.</span>";
+                    document.getElementById('q4Text').innerHTML = "Zaman akıp gitse de,<br>sen burada iz bıraktın.";
+                }
+            }
+
+            nextStep(2);
+        }
+
+        function nextStep(step) {
+            triggerGlitch(500);
+            
+            document.querySelectorAll('.step').forEach(el => {
+                el.style.opacity = '0';
+                setTimeout(() => {
+                    el.classList.remove('active');
+                }, 1000);
+            });
+
+            setTimeout(() => {
+                const nextEl = document.getElementById('step' + step);
+                nextEl.classList.add('active');
+                setTimeout(() => {
+                    nextEl.style.opacity = '1';
+                    if (step === 2) {
+                        memoryInput.value = '';
+                        memoryInput.disabled = false;
+                        memoryInput.style.color = '#fff';
+                        typeCount = 0;
+                        memoryInput.focus();
+                    }
+                }, 100);
+            }, 1000);
+        }
+
+        // Memory input distortion logic
+        memoryInput.addEventListener('input', function(e) {
+            typeCount++;
+            
+            clockHand.classList.add('reverse-fast');
+            clearTimeout(window.clockTimeout);
+            window.clockTimeout = setTimeout(() => {
+                clockHand.classList.remove('reverse-fast');
+            }, 300);
+
+            if (typeCount > 3) {
+                let currentVal = this.value;
+                let newVal = '';
+                for(let i=0; i<currentVal.length; i++) {
+                    if (Math.random() > 0.6) {
+                        newVal += zalgoChars[Math.floor(Math.random() * zalgoChars.length)];
+                    } else {
+                        newVal += currentVal[i];
+                    }
+                }
+                this.value = newVal;
+                if (Math.random() > 0.5) triggerGlitch(200);
+            }
+
+            if (typeCount > 11) {
+                this.disabled = true;
+                this.value = currentDistortError;
+                this.style.color = "#f43f5e";
+                triggerGlitch(800);
+                setTimeout(() => {
+                    nextStep(3);
+                    setTimeout(() => {
+                        nextStep(4);
+                        setTimeout(() => {
+                            nextStep(5);
+                        }, 4500);
+                    }, 3500);
+                }, 1400);
+            }
+        });
+
+        // 🔄 LOOP SYSTEM (Feature 1)
+        function handleWakeUp() {
+            if (currentLoop === 1) {
+                // Immediately hide Step 5 completely so it never flashes or updates on screen
+                const allSteps = document.querySelectorAll('.step');
+                allSteps.forEach(el => {
+                    el.style.opacity = '0';
+                    el.classList.remove('active');
+                });
+
+                // Show reality collapse transition
+                const overlay = document.getElementById('collapseOverlay');
+                document.getElementById('collapseTitle').innerText = "UYANAMADIN.";
+                document.getElementById('collapseSubtitle').innerText = "ZAMAN KENDİNİ TEKRAR EDİYOR...";
+                overlay.classList.add('active');
+
+                triggerGlitch(1400);
+                clockHand.classList.add('reverse-fast');
+                document.body.classList.add('loop-2');
+                currentLoop = 2;
+
+                // Update content behind the scenes for Loop 2
+                loopBadge.innerText = "DÖNGÜ: 02";
+                document.getElementById('q1Text').innerText = "Hâlâ burada olduğunu fark etmedin mi?";
+                const btnYes = document.getElementById('btnYes');
+                const btnNo = document.getElementById('btnNo');
+                btnYes.innerText = "Hatırlıyorum";
+                btnYes.onclick = () => handleChoice('remember');
+                btnNo.innerText = "Beni Bırak";
+                btnNo.onclick = () => handleChoice('leave');
+
+                // Prepare Step 5 for Loop 2 (for when they reach it later)
+                document.getElementById('wakeBtn').innerText = "Döngüyü Kır ve Uyan";
+                const group = document.getElementById('step5BtnGroup');
+                if (!document.getElementById('btnDeeper')) {
+                    const btnDeeper = document.createElement('button');
+                    btnDeeper.id = 'btnDeeper';
+                    btnDeeper.className = 'action-btn';
+                    btnDeeper.style.borderColor = '#c084fc';
+                    btnDeeper.style.color = '#c084fc';
+                    btnDeeper.innerText = "Daha Derine İn (Sonsuzluk)";
+                    btnDeeper.onclick = enterLoop3;
+                    group.appendChild(btnDeeper);
+                }
+
+                // After 1.4s of transition, fade out overlay and cleanly show Step 1
+                setTimeout(() => {
+                    clockHand.classList.remove('reverse-fast');
+                    overlay.classList.remove('active');
+                    
+                    const step1 = document.getElementById('step1');
+                    step1.classList.add('active');
+                    setTimeout(() => {
+                        step1.style.opacity = '1';
+                    }, 50);
+                }, 1400);
+
+            } else {
+                // Successful exit
+                triggerGlitch(800);
+                showToast("✨ Zaman çizgisi geri yüklendi. Uyanıyorsun...");
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1200);
+            }
+        }
+
+        function enterLoop3() {
+            // Immediately hide Step 5
+            const allSteps = document.querySelectorAll('.step');
+            allSteps.forEach(el => {
+                el.style.opacity = '0';
+                el.classList.remove('active');
+            });
+
+            const overlay = document.getElementById('collapseOverlay');
+            document.getElementById('collapseTitle').innerText = "KATMAN 3";
+            document.getElementById('collapseSubtitle').innerText = "« GÖRÜLMEMEK, DEĞERSİZ OLMAK DEMEK DEĞİLDİR »";
+            overlay.classList.add('active');
+
+            triggerGlitch(1800);
+            clockHand.classList.add('warp-speed');
+            document.body.classList.remove('loop-2');
+            document.body.classList.add('loop-3');
+            currentLoop = 3;
+
+            // Setup Loop 3 content
+            loopBadge.innerText = "DÖNGÜ: 03";
+            document.getElementById('q1Text').innerHTML = "Buradasın. Ve bu, başlı başına bir anlam taşır.";
+            const btnYes = document.getElementById('btnYes');
+            const btnNo = document.getElementById('btnNo');
+            btnYes.innerText = "Kabul Et";
+            btnYes.onclick = () => handleChoice('accept');
+            btnNo.innerText = "Adım At";
+            btnNo.onclick = () => handleChoice('step');
+
+            document.getElementById('wakeBtn').innerText = "Uyan ve Başla";
+            const btnDeeper = document.getElementById('btnDeeper');
+            if (btnDeeper) btnDeeper.remove();
+
+            setTimeout(() => {
+                clockHand.classList.remove('warp-speed');
+                overlay.classList.remove('active');
+                
+                const step1 = document.getElementById('step1');
+                step1.classList.add('active');
+                setTimeout(() => {
+                    step1.style.opacity = '1';
+                }, 50);
+            }, 1400);
+        }
+
+        // 👥 GHOST CURSOR SHADOW (Feature 2)
+        const ghost = document.getElementById('shadowGhost');
+        const ghostWhisper = document.getElementById('ghostWhisper');
+        const historyQueue = [];
+        const LAG_MS = 1200; // ~1.2s delay behind user
+        let mouseMoving = false;
+        let lastMoveTime = 0;
+
+        const whispers = [
+            "az önce oradaydın...",
+            "seni izliyorum...",
+            "gölgen geride kaldı...",
+            "bu adımını hatırlıyorum...",
+            "bir şey eksik..."
+        ];
+
+        function handlePointerMove(e) {
+            const x = e.clientX || (e.touches && e.touches[0].clientX);
+            const y = e.clientY || (e.touches && e.touches[0].clientY);
+            if (!x || !y) return;
+
+            const now = Date.now();
+            historyQueue.push({ x, y, time: now });
+            mouseMoving = true;
+            lastMoveTime = now;
+            ghost.classList.add('active');
+        }
+
+        window.addEventListener('mousemove', handlePointerMove);
+        window.addEventListener('touchmove', handlePointerMove, { passive: true });
+
+        // Update Ghost Position Loop
+        function updateGhost() {
+            const now = Date.now();
+            const targetTime = now - LAG_MS;
+
+            while (historyQueue.length > 1 && historyQueue[1].time <= targetTime) {
+                historyQueue.shift();
+            }
+
+            if (historyQueue.length > 0) {
+                const target = historyQueue[0];
+                ghost.style.left = target.x + 'px';
+                ghost.style.top = target.y + 'px';
+            }
+
+            // Random whisper trigger
+            if (now - lastMoveTime < 4000 && Math.random() < 0.008) {
+                ghostWhisper.innerText = whispers[Math.floor(Math.random() * whispers.length)];
+                ghost.classList.add('speaking');
+                setTimeout(() => ghost.classList.remove('speaking'), 2000);
+            }
+
+            requestAnimationFrame(updateGhost);
+        }
+        updateGhost();
+
+        // 🕰️ TIME ANOMALIES (Feature 3)
+        const anomalies = [
+            { time: "09:47", toast: "« Zaman aynı akmaz. »", speedClass: "warp-speed" },
+            { time: "03:33", toast: "« Bazı yollar seni hatırlar. »", speedClass: "reverse-fast" },
+            { time: "12:12", toast: "« Her şey tanıdık. Hiçbir şey aynı değil. »", speedClass: "" },
+            { time: "23:59", toast: "« Gerçeklik tekrar etmeye başladığında... »", speedClass: "reverse-fast" },
+            { time: "00:00", toast: "« Bazı anlar gitmez. »", speedClass: "" }
+        ];
+        let currentAnomalyIdx = 0;
+
+        function cycleTimeAnomaly() {
+            triggerGlitch(300);
+            currentAnomalyIdx = (currentAnomalyIdx + 1) % anomalies.length;
+            const item = anomalies[currentAnomalyIdx];
+
+            document.getElementById('digitalTime').innerText = item.time;
+            clockHand.className = 'clock-hand ' + item.speedClass;
+            showToast(item.toast);
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('anomalyToast');
+            toast.innerHTML = msg;
+            toast.style.display = 'block';
+            clearTimeout(window.toastTimeout);
+            window.toastTimeout = setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3600);
+        }
+
+        // 📂 CLASSIFIED ARCHIVE MODAL (Feature 4)
+        function openArchive() {
+            triggerGlitch(200);
+            document.getElementById('archiveModal').classList.add('active');
+        }
+        function closeArchive() {
+            document.getElementById('archiveModal').classList.remove('active');
+        }
+
+        // ⏳ DYNAMIC GLITCH DATE (2028 - 2030)
+        const dateVariations = ["2028 — 2030", "2029", "2030", "2028", "ZAMAN KIRILDI", "2028 — 2030"];
+        setInterval(() => {
+            if (Math.random() < 0.25) {
+                const randomPick = dateVariations[Math.floor(Math.random() * dateVariations.length)];
+                gameDate.innerText = randomPick;
+                setTimeout(() => {
+                    gameDate.innerText = "2028 — 2030";
+                }, 400);
+            }
+        }, 2200);
+
+        // Initial fade in
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.getElementById('step1').style.opacity = '1';
+            }, 800);
+        });
+    </script>
+</body>
+</html>
