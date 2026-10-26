@@ -1,0 +1,9 @@
+# robots.txt for https://hisvera.com
+User-agent: *
+Allow: /
+
+# Disallow internal assets or private directories if any
+Disallow: /assets/video/*.mp4
+
+# Sitemap
+Sitemap: https://hisvera.com/sitemap.xml

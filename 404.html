@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>404 // Kayıp Frekans | HisVera</title>
+    <link rel="icon" type="image/jpeg" href="assets/images/HisVera.jpg">
+    <meta name="description" content="Aradığınız koordinat sislerin ardında kaldı. HisVera ana sayfasına dönerek yolunuzu bulun.">
+    <meta name="theme-color" content="#07090e">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0DRJXGNWT"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-D0DRJXGNWT');
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #07090e;
+            --surface: rgba(15, 23, 42, 0.7);
+            --surface-hover: rgba(30, 41, 59, 0.85);
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(139, 92, 246, 0.4);
+            --primary: #8b5cf6;
+            --primary-glow: rgba(139, 92, 246, 0.4);
+            --secondary: #06b6d4;
+            --emerald: #10b981;
+            --amber: #f59e0b;
+            --amber-glow: rgba(245, 158, 11, 0.5);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            overflow-x: hidden;
+            position: relative;
+            padding: 24px;
+            transition: background 0.8s ease;
+        }
+
+        body.lantern-lit {
+            background-color: #0b0f19;
+        }
+
+        /* Interactive Canvas */
+        #spaceCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Ambient Glow Nebulae */
+        .ambient-blobs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.35;
+            transition: all 1s ease;
+            animation: drift 18s ease-in-out infinite alternate;
+        }
+
+        .blob-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            top: -150px;
+            left: -150px;
+        }
+
+        .blob-2 {
+            width: 550px;
+            height: 550px;
+            background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
+            bottom: -180px;
+            right: -180px;
+            animation-delay: -5s;
+        }
+
+        .blob-3 {
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, #ec4899 0%, transparent 70%);
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.2;
+            animation-delay: -10s;
+        }
+
+        body.lantern-lit .blob-3 {
+            background: radial-gradient(circle, var(--amber) 0%, transparent 70%);
+            opacity: 0.55;
+            filter: blur(100px);
+            width: 700px;
+            height: 700px;
+        }
+
+        @keyframes drift {
+            0% { transform: translateY(0px) rotate(0deg) scale(1); }
+            50% { transform: translateY(40px) translateX(20px) rotate(180deg) scale(1.1); }
+            100% { transform: translateY(-30px) translateX(-20px) rotate(360deg) scale(0.95); }
+        }
+
+        /* Top Minimal Header */
+        .top-header {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 10;
+            padding: 10px 0 20px 0;
+        }
+
+        .brand-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 800;
+            font-size: 1.3rem;
+            letter-spacing: -0.5px;
+            transition: transform 0.3s ease;
+        }
+
+        .brand-link:hover {
+            transform: translateY(-1px);
+        }
+
+        .brand-logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 1px solid var(--border);
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+        }
+
+        .nav-home-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .nav-home-link:hover {
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Main Centerpiece Container */
+        .stage-wrapper {
+            max-width: 840px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            margin: auto 0;
+            padding: 20px 0;
+        }
+
+        /* Floating Badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #c4b5fd;
+            background: rgba(139, 92, 246, 0.12);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 7px 18px;
+            border-radius: 999px;
+            margin-bottom: 24px;
+            letter-spacing: 0.06em;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+            backdrop-filter: blur(10px);
+            animation: badgeFloat 4s ease-in-out infinite alternate;
+        }
+
+        .beacon-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ef4444;
+            box-shadow: 0 0 10px #ef4444;
+            animation: beaconPulse 1.4s ease-in-out infinite;
+        }
+
+        body.lantern-lit .beacon-dot {
+            background: var(--amber);
+            box-shadow: 0 0 12px var(--amber);
+        }
+
+        @keyframes beaconPulse {
+            0% { transform: scale(0.9); opacity: 0.5; }
+            50% { transform: scale(1.3); opacity: 1; }
+            100% { transform: scale(0.9); opacity: 0.5; }
+        }
+
+        @keyframes badgeFloat {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-5px); }
+        }
+
+        /* Central Visual: Radar & Mystical Lantern */
+        .radar-beacon-container {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 10px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .radar-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px dashed rgba(139, 92, 246, 0.25);
+            pointer-events: none;
+            transition: all 0.6s ease;
+        }
+
+        .ring-1 {
+            width: 140px;
+            height: 140px;
+            animation: rotateCw 25s linear infinite;
+        }
+
+        .ring-2 {
+            width: 200px;
+            height: 200px;
+            border-style: solid;
+            border-color: rgba(6, 182, 212, 0.2);
+            animation: rotateCcw 35s linear infinite;
+        }
+
+        .ring-pulse {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            animation: sonarPulse 3s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+            pointer-events: none;
+        }
+
+        body.lantern-lit .ring-pulse {
+            background: radial-gradient(circle, var(--amber-glow) 0%, transparent 70%);
+        }
+
+        @keyframes sonarPulse {
+            0% { transform: scale(0.6); opacity: 0.8; }
+            100% { transform: scale(2.4); opacity: 0; }
+        }
+
+        @keyframes rotateCw {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes rotateCcw {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-360deg); }
+        }
+
+        /* Center Lantern Icon Orb */
+        .lantern-orb {
+            position: relative;
+            width: 90px;
+            height: 90px;
+            border-radius: 26px;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9));
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.6rem;
+            color: #a78bfa;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 30px rgba(139, 92, 246, 0.3);
+            backdrop-filter: blur(16px);
+            z-index: 2;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: orbFloat 4s ease-in-out infinite alternate;
+        }
+
+        .lantern-orb:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 50px rgba(139, 92, 246, 0.6);
+            border-color: rgba(139, 92, 246, 0.5);
+        }
+
+        body.lantern-lit .lantern-orb {
+            color: #fbbf24;
+            border-color: rgba(245, 158, 11, 0.6);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 60px rgba(245, 158, 11, 0.7);
+            background: linear-gradient(135deg, rgba(45, 28, 12, 0.95), rgba(20, 16, 25, 0.95));
+        }
+
+        @keyframes orbFloat {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-8px); }
+        }
+
+        /* Orbiting Micro Badges */
+        .orbit-pill {
+            position: absolute;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            backdrop-filter: blur(8px);
+            white-space: nowrap;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .orbit-1 {
+            top: 15px;
+            right: -20px;
+            color: #38bdf8;
+            border-color: rgba(56, 189, 248, 0.3);
+            animation: orbitFloat1 5s ease-in-out infinite alternate;
+        }
+
+        .orbit-2 {
+            bottom: 25px;
+            left: -25px;
+            color: #34d399;
+            border-color: rgba(52, 211, 153, 0.3);
+            animation: orbitFloat2 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes orbitFloat1 {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-10px) rotate(3deg); }
+        }
+
+        @keyframes orbitFloat2 {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(8px) rotate(-3deg); }
+        }
+
+        /* 404 Typography */
+        .glitch-number-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .glitch-number {
+            font-size: clamp(5rem, 12vw, 8.5rem);
+            font-weight: 800;
+            line-height: 0.95;
+            letter-spacing: -3px;
+            background: linear-gradient(135deg, #ffffff 10%, #c4b5fd 45%, #38bdf8 75%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            position: relative;
+            user-select: none;
+            animation: textShimmer 8s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes textShimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Main Headings & Copywriting */
+        h1.error-title {
+            font-size: clamp(1.6rem, 4vw, 2.3rem);
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.5px;
+            margin-bottom: 14px;
+            line-height: 1.25;
+        }
+
+        .gradient-span {
+            background: linear-gradient(135deg, #a78bfa, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        body.lantern-lit .gradient-span {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.error-desc {
+            font-size: clamp(0.95rem, 2vw, 1.12rem);
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-width: 620px;
+            margin: 0 auto 28px auto;
+        }
+
+        /* Audio / Signal Frequency Bars */
+        .signal-meter {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border);
+            padding: 8px 18px;
+            border-radius: 999px;
+            margin-bottom: 32px;
+            backdrop-filter: blur(10px);
+        }
+
+        .meter-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        .meter-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 16px;
+        }
+
+        .meter-bar {
+            width: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+            opacity: 0.8;
+            animation: barDance 1.2s ease-in-out infinite alternate;
+        }
+
+        body.lantern-lit .meter-bar {
+            background: var(--amber);
+        }
+
+        .meter-bar:nth-child(1) { height: 6px; animation-delay: 0.1s; }
+        .meter-bar:nth-child(2) { height: 14px; animation-delay: 0.3s; }
+        .meter-bar:nth-child(3) { height: 9px; animation-delay: 0.5s; }
+        .meter-bar:nth-child(4) { height: 16px; animation-delay: 0.2s; }
+        .meter-bar:nth-child(5) { height: 11px; animation-delay: 0.4s; }
+        .meter-bar:nth-child(6) { height: 5px; animation-delay: 0.6s; }
+
+        @keyframes barDance {
+            0% { transform: scaleY(0.4); }
+            100% { transform: scaleY(1.3); }
+        }
+
+        /* Primary Action Buttons */
+        .actions-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .btn-primary-glow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 30px;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(135deg, #7c3aed, #2563eb);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            text-decoration: none;
+            box-shadow: 0 10px 25px -5px var(--primary-glow);
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary-glow::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(30deg) translateY(-100%);
+            transition: transform 0.75s ease;
+        }
+
+        .btn-primary-glow:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px -5px rgba(124, 58, 237, 0.6);
+            filter: brightness(1.1);
+        }
+
+        .btn-primary-glow:hover::after {
+            transform: rotate(30deg) translateY(100%);
+        }
+
+        .btn-lantern-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 24px;
+            border-radius: 14px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .btn-lantern-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(245, 158, 11, 0.5);
+            color: #fbbf24;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.3);
+        }
+
+        body.lantern-lit .btn-lantern-toggle {
+            background: rgba(245, 158, 11, 0.15);
+            border-color: rgba(245, 158, 11, 0.5);
+            color: #fbbf24;
+        }
+
+        /* Quick Portal Navigation Cards */
+        .portal-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            max-width: 740px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .portal-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 18px 20px;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portal-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portal-card:hover {
+            transform: translateY(-3px);
+            background: var(--surface-hover);
+            border-color: var(--border-hover);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .portal-card:hover::before {
+            opacity: 1;
+        }
+
+        .portal-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .portal-card:hover .portal-icon {
+            transform: scale(1.1);
+        }
+
+        .icon-kuytu {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .icon-his {
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .icon-contact {
+            background: rgba(139, 92, 246, 0.15);
+            color: #a78bfa;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .portal-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .portal-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .portal-sub {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .portal-arrow {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .portal-card:hover .portal-arrow {
+            color: #fff;
+            transform: translateX(3px);
+        }
+
+        /* Lantern Notification Toast */
+        .lantern-toast {
+            position: fixed;
+            bottom: 30px;
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid rgba(245, 158, 11, 0.5);
+            color: #fef3c7;
+            padding: 12px 24px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(245, 158, 11, 0.35);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 100;
+            transform: translateY(100px);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .lantern-toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer.page-footer {
+            width: 100%;
+            max-width: 1100px;
+            text-align: center;
+            z-index: 10;
+            padding: 24px 0 10px 0;
+            color: #64748b;
+            font-size: 0.82rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-brand {
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .footer-quote {
+            font-style: italic;
+            color: #64748b;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .portal-grid {
+                grid-template-columns: 1fr;
+            }
+            .stage-wrapper {
+                padding: 10px 0;
+            }
+            .orbit-pill {
+                display: none;
+            }
+            footer.page-footer {
+                justify-content: center;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Interactive Background Canvas -->
+    <canvas id="spaceCanvas"></canvas>
+
+    <!-- Ambient Glowing Blobs -->
+    <div class="ambient-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Top Navigation Header -->
+    <header class="top-header">
+        <a href="index.html" class="brand-link" title="HisVera">
+            <img src="assets/images/HisVera.jpg" alt="HisVera Logo" class="brand-logo-img">
+            <span>HisVera</span>
+        </a>
+        <a href="index.html" class="nav-home-link" id="navHomeLink">
+            <i class="fa-solid fa-house"></i>
+            <span>Ana Sayfa</span>
+        </a>
+    </header>
+
+    <!-- Main Stage Content -->
+    <main class="stage-wrapper">
+        <!-- Status Beacon Badge -->
+        <div class="status-badge">
+            <span class="beacon-dot"></span>
+            <span>HİSVERA // SİNYAL KOPUKLUĞU [404]</span>
+        </div>
+
+        <!-- Radar & Lantern Centerpiece -->
+        <div class="radar-beacon-container">
+            <div class="radar-ring ring-1"></div>
+            <div class="radar-ring ring-2"></div>
+            <div class="ring-pulse"></div>
+
+            <div class="lantern-orb" id="lanternOrb" title="Feneri yakmak için tıkla!">
+                <i class="fa-solid fa-fire-flame-curved" id="lanternIcon"></i>
+            </div>
+
+            <!-- Orbiting Decorative Badges -->
+            <div class="orbit-pill orbit-1">
+                <i class="fa-solid fa-satellite-dish"></i> 0.0 dB Fısıltı
+            </div>
+            <div class="orbit-pill orbit-2">
+                <i class="fa-solid fa-compass"></i> Sönük Fener
+            </div>
+        </div>
+
+        <!-- Glitch 404 Heading -->
+        <div class="glitch-number-wrapper">
+            <div class="glitch-number">404</div>
+        </div>
+
+        <h1 class="error-title">
+            Karanlıkta <span class="gradient-span">Kayıp Bir Frekans</span>
+        </h1>
+
+        <p class="error-desc">
+            Aradığın patika henüz haritalanmamış veya sislerin ardına çekilmiş. Kuytu'nun derinliklerinde bazen yollar kaybolur, fenerler söner; ama unutma, en güzel keşifler kaybolduğunda başlar.
+        </p>
+
+        <!-- Signal Audio / Frequency Visualizer -->
+        <div class="signal-meter">
+            <span class="meter-label">FREKANS // 0.0 Hz SESSİZLİK</span>
+            <div class="meter-bars">
+                <div class="meter-bar"></div>
+                <div class="meter-bar"></div>
+                <div class="meter-bar"></div>
+                <div class="meter-bar"></div>
+                <div class="meter-bar"></div>
+                <div class="meter-bar"></div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="actions-group">
+            <a href="index.html" class="btn-primary-glow" id="btnGoHome">
+                <i class="fa-solid fa-compass"></i>
+                <span>Pusulayı Takip Et (Ana Sayfa)</span>
+            </a>
+            <button type="button" class="btn-lantern-toggle" id="btnLanternToggle">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <span id="btnLanternText">Bir Fener Yak</span>
+            </button>
+        </div>
+
+        <!-- Quick Portal Navigation -->
+        <div class="portal-grid">
+            <a href="kuytu.html" class="portal-card" title="Kuytu">
+                <div class="portal-icon icon-kuytu">
+                    <i class="fa-solid fa-tree"></i>
+                </div>
+                <div class="portal-info">
+                    <div class="portal-name">Kuytu</div>
+                    <div class="portal-sub">Fısıltıların Sessiz Sığınağı</div>
+                </div>
+                <i class="fa-solid fa-chevron-right portal-arrow"></i>
+            </a>
+
+            <a href="his-noktasi.html" class="portal-card" title="HİS">
+                <div class="portal-icon icon-his">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div class="portal-info">
+                    <div class="portal-name">HİS</div>
+                    <div class="portal-sub">Duygu & Haritada Fenerler</div>
+                </div>
+                <i class="fa-solid fa-chevron-right portal-arrow"></i>
+            </a>
+
+            <a href="index.html#iletisim" class="portal-card" title="İletişim">
+                <div class="portal-icon icon-contact">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </div>
+                <div class="portal-info">
+                    <div class="portal-name">Fısıltı Gönder</div>
+                    <div class="portal-sub">Bir sorun mu var? Bize ulaş</div>
+                </div>
+                <i class="fa-solid fa-chevron-right portal-arrow"></i>
+            </a>
+        </div>
+    </main>
+
+    <!-- Lantern Notification Toast -->
+    <div class="lantern-toast" id="lanternToast">
+        <i class="fa-solid fa-fire-flame-curved" style="color: #fbbf24;"></i>
+        <span>Bir fener yaktın... Karanlık aydınlanıyor.</span>
+    </div>
+
+    <!-- Bottom Footer -->
+    <footer class="page-footer">
+        <div class="footer-brand">&copy; 2026 HisVera. Tüm hakları saklıdır.</div>
+        <div class="footer-quote">"Keşfet, hisset, deneyimle." &bull; "Dünya susar, Kuytu seni dinler." &bull; "Bir yer, bir his, bir iz."</div>
+    </footer>
+
+    <!-- Interactive Canvas & Easter Egg Script -->
+    <script>
+        // 1. Starfield / Dust Canvas Animation
+        const canvas = document.getElementById('spaceCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            initParticles();
+        });
+
+        let mouse = { x: width / 2, y: height / 2, active: false };
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+            mouse.active = true;
+        });
+        window.addEventListener('mouseleave', () => {
+            mouse.active = false;
+        });
+
+        const particles = [];
+        const PARTICLE_COUNT = 85;
+
+        class Particle {
+            constructor() {
+                this.reset(true);
+            }
+
+            reset(initial = false) {
+                this.x = Math.random() * width;
+                this.y = initial ? Math.random() * height : height + 10;
+                this.radius = Math.random() * 1.8 + 0.4;
+                this.speedY = -(Math.random() * 0.4 + 0.15);
+                this.speedX = (Math.random() - 0.5) * 0.3;
+                this.alpha = Math.random() * 0.6 + 0.2;
+                this.fadeSpeed = Math.random() * 0.008 + 0.003;
+                this.pulse = Math.random() * Math.PI;
+                this.color = Math.random() > 0.4 ? '139, 92, 246' : (Math.random() > 0.5 ? '56, 189, 248' : '245, 158, 11');
+            }
+
+            update(isLit) {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.pulse += 0.03;
+
+                // Mouse subtle repulsion
+                if (mouse.active) {
+                    const dx = mouse.x - this.x;
+                    const dy = mouse.y - this.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 120) {
+                        const force = (120 - dist) / 120;
+                        this.x -= (dx / dist) * force * 1.5;
+                        this.y -= (dy / dist) * force * 1.5;
+                    }
+                }
+
+                if (this.y < -10 || this.x < -10 || this.x > width + 10) {
+                    this.reset();
+                }
+            }
+
+            draw(isLit) {
+                const currentAlpha = Math.max(0.1, (Math.sin(this.pulse) * 0.3 + 0.5) * (isLit ? 1.2 : 0.8));
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, isLit ? this.radius * 1.3 : this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${isLit ? '245, 158, 11' : this.color}, ${Math.min(1, currentAlpha)})`;
+                ctx.shadowBlur = isLit ? 12 : 6;
+                ctx.shadowColor = isLit ? '#fbbf24' : '#8b5cf6';
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        function initParticles() {
+            particles.length = 0;
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
+                particles.push(new Particle());
+            }
+        }
+        initParticles();
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            const isLit = document.body.classList.contains('lantern-lit');
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update(isLit);
+                particles[i].draw(isLit);
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // 2. Interactive "Fener Yak" Easter Egg
+        const lanternOrb = document.getElementById('lanternOrb');
+        const lanternIcon = document.getElementById('lanternIcon');
+        const btnLanternToggle = document.getElementById('btnLanternToggle');
+        const btnLanternText = document.getElementById('btnLanternText');
+        const lanternToast = document.getElementById('lanternToast');
+
+        function toggleLantern() {
+            const isLit = document.body.classList.toggle('lantern-lit');
+            if (isLit) {
+                lanternIcon.className = 'fa-solid fa-fire';
+                btnLanternText.textContent = 'Feneri Söndür';
+                showToast('✦ Bir fener yaktın... Karanlık aydınlandı.');
+            } else {
+                lanternIcon.className = 'fa-solid fa-fire-flame-curved';
+                btnLanternText.textContent = 'Bir Fener Yak';
+                showToast('✦ Fener söndü... Sisler yeniden çöktü.');
+            }
+        }
+
+        let toastTimer = null;
+        function showToast(msg) {
+            if (lanternToast) {
+                lanternToast.querySelector('span').textContent = msg;
+                lanternToast.classList.add('show');
+                if (toastTimer) clearTimeout(toastTimer);
+                toastTimer = setTimeout(() => {
+                    lanternToast.classList.remove('show');
+                }, 3500);
+            }
+        }
+
+        if (lanternOrb) {
+            lanternOrb.addEventListener('click', toggleLantern);
+        }
+        if (btnLanternToggle) {
+            btnLanternToggle.addEventListener('click', toggleLantern);
+        }
+    </script>
+</body>
+
+</html>
