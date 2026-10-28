@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Zeynep Terzioğlu | Product Manager - HisVera</title>
+    <link rel="icon" type="image/jpeg" href="assets/images/HisVera.jpg">
+    <meta name="description"
+        content="Zeynep Terzioğlu - Product Manager @ HisVera. DevFest Ankara 2026. Kuytu ve His uygulamalarının ürün vizyonu ve kullanıcı deneyimi.">
+    <meta name="theme-color" content="#090d16">
+
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hisvera.com/zeynep">
+    <meta property="og:title" content="Zeynep Terzioğlu | Product Manager - HisVera">
+    <meta property="og:description"
+        content="DevFest Ankara 2026. İnsan odaklı mobil deneyimler, ürün yönetimi ve topluluk vizyonu.">
+    <meta property="og:image" content="https://hisvera.com/assets/images/zeynep.png">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0DRJXGNWT"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-D0DRJXGNWT');
+    </script>
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #090d16;
+            --surface: rgba(18, 24, 38, 0.7);
+            --surface-hover: rgba(30, 41, 59, 0.85);
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(236, 72, 153, 0.4);
+            --primary: #ec4899;
+            --primary-glow: rgba(236, 72, 153, 0.25);
+            --secondary: #a855f7;
+            --accent: #06b6d4;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --radius-xl: 24px;
+            --radius-lg: 18px;
+            --radius-md: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 24px 16px 60px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient Glow Blobs */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.35;
+            animation: pulse-glow 10s ease-in-out infinite alternate;
+        }
+
+        .blob-1 {
+            width: 380px;
+            height: 380px;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+        }
+
+        .blob-2 {
+            width: 320px;
+            height: 320px;
+            bottom: 5%;
+            right: -60px;
+            background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
+            animation-delay: -5s;
+        }
+
+        .blob-3 {
+            width: 280px;
+            height: 280px;
+            top: 40%;
+            left: -80px;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+            animation-delay: -2s;
+        }
+
+        @keyframes pulse-glow {
+            0% {
+                transform: scale(0.95) translate(0, 0);
+                opacity: 0.28;
+            }
+
+            100% {
+                transform: scale(1.1) translate(20px, 15px);
+                opacity: 0.42;
+            }
+        }
+
+        /* Main Container */
+        .container {
+            width: 100%;
+            max-width: 480px;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Top Brand Bar */
+        .brand-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 6px;
+        }
+
+        .brand-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-badge img {
+            width: 26px;
+            height: 26px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 1px solid var(--border);
+        }
+
+        .event-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 12px;
+            background: rgba(236, 72, 153, 0.12);
+            border: 1px solid rgba(236, 72, 153, 0.3);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #f472b6;
+            backdrop-filter: blur(10px);
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            background-color: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px #10b981;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scale(0.85);
+            }
+        }
+
+        /* Profile Glass Card */
+        .profile-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 28px 24px 22px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), transparent);
+        }
+
+        .avatar-wrap {
+            position: relative;
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 16px;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 28px;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+            background: #1e293b;
+        }
+
+        .avatar-badge {
+            position: absolute;
+            bottom: -4px;
+            right: -4px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            width: 30px;
+            height: 30px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            color: #fff;
+            border: 2px solid var(--bg);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .profile-name {
+            font-size: 1.65rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+            background: linear-gradient(to right, #ffffff, #fce7f3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .profile-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #f472b6;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .profile-bio {
+            font-size: 0.86rem;
+            color: var(--text-sub);
+            line-height: 1.55;
+            margin-bottom: 18px;
+            padding: 0 6px;
+        }
+
+        .meta-tags {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .meta-pill {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 4px 10px;
+            font-size: 0.72rem;
+            color: #cbd5e1;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Action Buttons Grid */
+        .actions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .btn-action {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 16px;
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 700;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .btn-action:active {
+            transform: scale(0.97);
+        }
+
+        /* Primary Hero Button: Kişisel LinkedIn */
+        .btn-primary-linkedin {
+            grid-column: span 2;
+            background: linear-gradient(135deg, #0a66c2 0%, #004182 100%);
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.22);
+            box-shadow: 0 8px 25px rgba(10, 102, 194, 0.4);
+        }
+
+        .btn-primary-linkedin:hover {
+            box-shadow: 0 12px 32px rgba(10, 102, 194, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* Kişisel Instagram */
+        .btn-instagram-personal {
+            background: rgba(225, 48, 108, 0.14);
+            border-color: rgba(225, 48, 108, 0.35);
+            color: #f472b6;
+        }
+
+        .btn-instagram-personal:hover {
+            background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+            border-color: transparent;
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(225, 48, 108, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* HisVera Studio LinkedIn */
+        .btn-studio-linkedin {
+            background: rgba(0, 119, 181, 0.15);
+            border-color: rgba(0, 119, 181, 0.35);
+            color: #60a5fa;
+        }
+
+        .btn-studio-linkedin:hover {
+            background: rgba(0, 119, 181, 0.25);
+            border-color: #0077b5;
+            color: #fff;
+        }
+
+        /* Stüdyo Instagram */
+        .btn-instagram-studio {
+            background: rgba(168, 85, 247, 0.12);
+            border-color: rgba(168, 85, 247, 0.3);
+            color: #d8b4fe;
+        }
+
+        .btn-instagram-studio:hover {
+            background: rgba(168, 85, 247, 0.22);
+            border-color: #a855f7;
+            color: #fff;
+        }
+
+        /* Email */
+        .btn-email {
+            background: rgba(6, 182, 212, 0.12);
+            border-color: rgba(6, 182, 212, 0.3);
+            color: #38bdf8;
+        }
+
+        .btn-email:hover {
+            background: rgba(6, 182, 212, 0.25);
+            border-color: #06b6d4;
+            color: #fff;
+        }
+
+        /* Website */
+        .btn-website {
+            grid-column: span 2;
+            background: rgba(255, 255, 255, 0.05);
+            color: #e2e8f0;
+        }
+
+        .btn-website:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        /* Co-Founder / Team Card */
+        .btn-team-onur {
+            grid-column: span 2;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(6, 182, 212, 0.1));
+            border-color: rgba(168, 85, 247, 0.35);
+            color: #d8b4fe;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 18px;
+        }
+
+        .btn-team-onur:hover {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(6, 182, 212, 0.2));
+            border-color: #a855f7;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* DevFest Welcome Note */
+        .devfest-note {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(168, 85, 247, 0.08));
+            border: 1px dashed rgba(236, 72, 153, 0.35);
+            border-radius: var(--radius-lg);
+            padding: 16px 18px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.82rem;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+        .devfest-note i {
+            font-size: 1.15rem;
+            color: #f472b6;
+            margin-top: 2px;
+        }
+
+        /* Section Heading */
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 6px;
+            padding: 0 4px;
+        }
+
+        .section-title h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title span {
+            font-size: 0.72rem;
+            color: var(--text-sub);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Project Cards */
+        .project-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .card-project {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(15px);
+        }
+
+        .card-project:hover {
+            transform: translateY(-2px);
+            border-color: var(--border-hover);
+            background: var(--surface-hover);
+            box-shadow: 0 12px 24px -10px rgba(236, 72, 153, 0.2);
+        }
+
+        .card-project:active {
+            transform: scale(0.98);
+        }
+
+        .project-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 16px;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+            flex-shrink: 0;
+            background: #1a1a2e;
+        }
+
+        .project-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .project-head {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .project-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .project-tag {
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 12px;
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .project-desc {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            line-height: 1.45;
+        }
+
+        .project-arrow {
+            color: var(--text-sub);
+            font-size: 0.9rem;
+            transition: transform 0.2s;
+            margin-left: 4px;
+        }
+
+        .card-project:hover .project-arrow {
+            color: var(--primary);
+            transform: translateX(3px);
+        }
+
+        /* Product Stack */
+        .tech-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            backdrop-filter: blur(15px);
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-item {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 0.74rem;
+            color: #cbd5e1;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tech-item i {
+            font-size: 0.8rem;
+            color: var(--primary);
+        }
+
+        /* Footer */
+        .footer-bar {
+            text-align: center;
+            padding: 16px 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .copyright {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        .copyright a {
+            color: inherit;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Ambient Background Blobs -->
+    <div class="ambient-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="container">
+        <!-- Top Bar -->
+        <div class="brand-bar">
+            <a href="https://hisvera.com" class="brand-badge" title="HisVera Ana Sayfası">
+                <img src="assets/images/HisVera.jpg" alt="HisVera Logo">
+                <span>HisVera</span>
+            </a>
+            <div class="event-badge">
+                <span class="status-dot"></span>
+                <span>DevFest Ankara '26</span>
+            </div>
+        </div>
+
+        <!-- Profile Glass Card -->
+        <div class="profile-card">
+            <div class="avatar-wrap">
+                <img src="assets/images/zeynep.png" alt="Zeynep Terzioğlu Profil" class="avatar-img">
+                <div class="avatar-badge" title="Product Manager">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+            </div>
+
+            <h1 class="profile-name">Zeynep Terzioğlu</h1>
+            <p class="profile-title">
+                <span>Product Manager</span>
+            </p>
+            <p class="profile-bio">
+                İnsan psikolojisi, duygular ve dijital samimiyet odaklı mobil projelerde kullanıcı deneyimini, ürün
+                stratejisini ve topluluk süreçlerini yönetiyorum. Kuytu ve His'in Ürün Yöneticisi (Product Manager).
+            </p>
+
+            <div class="meta-tags">
+                <span class="meta-pill"><i class="fa-solid fa-location-dot"></i> Ankara, TR</span>
+                <span class="meta-pill"><i class="fa-solid fa-graduation-cap"></i> Medipol Üniversitesi</span>
+                <span class="meta-pill"><i class="fa-solid fa-shapes"></i> Product Management</span>
+                <span class="meta-pill"><i class="fa-brands fa-apple"></i> iOS</span>
+                <span class="meta-pill"><i class="fa-brands fa-android"></i> Android</span>
+            </div>
+        </div>
+
+        <!-- DevFest Welcome Note -->
+        <div class="devfest-note">
+            <i class="fa-solid fa-comment-dots"></i>
+            <div>
+                <strong>DevFest Ankara'da tanıştık mı?</strong>
+                <p>Mobil ürün yönetimi, kullanıcı deneyimi (UX), insan psikolojisi veya stüdyomuz projeleri hakkında bir
+                    kahve sohbeti için LinkedIn veya Instagram üzerinden bana dilediğin zaman yazabilirsin!</p>
+            </div>
+        </div>
+
+        <!-- Primary Action Buttons -->
+        <div class="actions-grid">
+            <!-- 1. En Büyük Ana Buton: Kişisel LinkedIn -->
+            <a href="https://www.linkedin.com/in/zeynep-terzio%C4%9Flu-90001b447/" target="_blank"
+                class="btn-action btn-primary-linkedin">
+                <i class="fa-brands fa-linkedin" style="font-size: 1.25rem;"></i>
+                <span>LinkedIn'de Bağlantı Kur</span>
+            </a>
+
+            <!-- 2. Kişisel Instagram -->
+            <a href="https://www.instagram.com/whimsicaldelulugirly" target="_blank"
+                class="btn-action btn-instagram-personal">
+                <i class="fa-brands fa-instagram" style="font-size: 1.15rem;"></i>
+                <span>@whimsicaldelulugirly</span>
+            </a>
+
+            <!-- 3. HisVera Studio LinkedIn -->
+            <a href="https://www.linkedin.com/company/hisvera-studio" target="_blank"
+                class="btn-action btn-studio-linkedin">
+                <i class="fa-brands fa-linkedin" style="font-size: 1rem;"></i>
+                <span>HisVera Studio</span>
+            </a>
+
+            <!-- 4. Stüdyo Instagram -->
+            <a href="https://www.instagram.com/hisvera.studio" target="_blank" class="btn-action btn-instagram-studio">
+                <i class="fa-brands fa-instagram" style="font-size: 1.1rem;"></i>
+                <span>@hisvera.studio</span>
+            </a>
+
+            <!-- 5. E-posta -->
+            <a href="mailto:hisvera.apps@gmail.com" class="btn-action btn-email">
+                <i class="fa-solid fa-envelope" style="font-size: 1rem;"></i>
+                <span>E-posta Gönder</span>
+            </a>
+
+            <!-- 6. Ana Web Sitesi -->
+            <a href="https://hisvera.com" class="btn-action btn-website">
+                <i class="fa-solid fa-globe" style="font-size: 1rem;"></i>
+                <span>hisvera.com</span>
+            </a>
+
+            <!-- 7. Ekip Arkadaşı / Founder & Dev (Cross-Link) -->
+            <a href="onur.html" class="btn-action btn-team-onur" title="HisVera Founder & Indie Mobile Developer">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <img src="assets/images/onur.jpg" alt="Onur Öztürk"
+                        style="width: 26px; height: 26px; border-radius: 8px; object-fit: cover;">
+                    <span style="font-size: 0.82rem;">Founder & Dev: <strong>Onur Öztürk</strong></span>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.8rem;"></i>
+            </a>
+        </div>
+
+        <!-- Mobil Uygulamalar Vitrini (Kuytu ve His) -->
+        <div class="section-title">
+            <h3><i class="fa-solid fa-layer-group" style="color: var(--primary);"></i> Canlı Uygulamalarımız</h3>
+            <span>02 Uygulama</span>
+        </div>
+
+        <div class="project-cards">
+            <!-- Kuytu -->
+            <a href="https://play.google.com/store/apps/details?id=com.hisvera.kuytu.app" target="_blank"
+                class="card-project">
+                <img src="assets/images/kuytu%20logo.png" alt="Kuytu" class="project-icon">
+                <div class="project-info">
+                    <div class="project-head">
+                        <span class="project-title">Kuytu</span>
+                        <span class="project-tag">Google Play</span>
+                        <span class="project-tag"
+                            style="background: rgba(255, 255, 255, 0.08); color: #94a3b8; border-color: rgba(255, 255, 255, 0.12);"><i
+                                class="fa-brands fa-apple"></i> iOS Yakında</span>
+                    </div>
+                    <div class="project-desc">Sessiz dijital günlük & kimsenin yargılamadığı güvenli sığınak</div>
+                </div>
+                <i class="fa-solid fa-chevron-right project-arrow"></i>
+            </a>
+
+            <!-- His Noktası -->
+            <a href="https://play.google.com/store/apps/details?id=com.hisvera.hisnoktasi.app" target="_blank"
+                class="card-project">
+                <img src="assets/images/his-noktas%C4%B1-logo.png" alt="His" class="project-icon">
+                <div class="project-info">
+                    <div class="project-head">
+                        <span class="project-title">His</span>
+                        <span class="project-tag">Google Play</span>
+                        <span class="project-tag"
+                            style="background: rgba(255, 255, 255, 0.08); color: #94a3b8; border-color: rgba(255, 255, 255, 0.12);"><i
+                                class="fa-brands fa-apple"></i> iOS Yakında</span>
+                    </div>
+                    <div class="project-desc">Şehirde duygularla iz bırak, dert feneri yak ve hisleri haritada keşfet
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right project-arrow"></i>
+            </a>
+        </div>
+
+        <!-- Product Management Stack -->
+        <div class="section-title">
+            <h3><i class="fa-solid fa-shapes" style="color: var(--secondary);"></i> Ürün & Yönetim Yığını</h3>
+            <span>Product Stack</span>
+        </div>
+
+        <div class="tech-card">
+            <div class="tech-list">
+                <span class="tech-item"><i class="fa-solid fa-route"></i> Product Roadmap</span>
+                <span class="tech-item"><i class="fa-solid fa-compass-drafting"></i> UX & User Journeys</span>
+                <span class="tech-item"><i class="fa-solid fa-list-check"></i> Feature Prioritization</span>
+                <span class="tech-item"><i class="fa-solid fa-comments"></i> Community Feedback Loops</span>
+                <span class="tech-item"><i class="fa-solid fa-chart-line"></i> Mobile App Growth</span>
+                <span class="tech-item"><i class="fa-solid fa-brain"></i> Product Psychology</span>
+                <span class="tech-item"><i class="fa-solid fa-users"></i> Agile & Sprint Vision</span>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-bar">
+            <div class="copyright">
+                &copy; 2026 <a href="https://hisvera.com">HisVera</a> • Zeynep Terzioğlu
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
