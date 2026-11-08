@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gizlilik Politikası | His & HisVera</title>
+    <link rel="icon" type="image/jpeg" href="assets/images/HisVera.jpg">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .policy-container {
+            max-width: 980px;
+            margin: 8rem auto 4rem;
+            padding: 3.5rem 4rem;
+            background: rgba(30, 41, 59, 0.75);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 28px;
+            color: var(--text-color);
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6);
+        }
+        .policy-header {
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 2rem;
+        }
+        .policy-container h1 {
+            color: var(--primary);
+            margin-bottom: 0.6rem;
+            font-size: 2.7rem;
+            font-weight: 800;
+            line-height: 1.25;
+            letter-spacing: -0.5px;
+        }
+        .policy-container .date {
+            color: var(--secondary);
+            font-size: 1rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: rgba(6, 182, 212, 0.12);
+            border: 1px solid rgba(6, 182, 212, 0.25);
+            margin-bottom: 1.5rem;
+        }
+        .policy-intro {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #f1f5f9;
+        }
+
+        /* --- İÇİNDEKİLER VE HIZLI GEZİNME (TOC) --- */
+        .toc-card {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 22px;
+            padding: 2.2rem;
+            margin: 2.5rem 0 3.5rem;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        .toc-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1.8rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 1rem;
+        }
+        .toc-header i {
+            color: var(--secondary);
+        }
+        .toc-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 2rem;
+        }
+        @media (max-width: 820px) {
+            .toc-grid {
+                grid-template-columns: 1fr;
+                gap: 1.8rem;
+            }
+            .policy-container {
+                padding: 2.2rem 1.8rem;
+                margin-top: 6rem;
+            }
+            .policy-container h1 {
+                font-size: 2.1rem;
+            }
+        }
+        .toc-column {
+            display: flex;
+            flex-direction: column;
+        }
+        .toc-column-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0.5rem;
+        }
+        .toc-email-badge {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 3px 10px;
+            border-radius: 8px;
+            width: fit-content;
+        }
+        .toc-list {
+            list-style: none !important;
+            padding-left: 0 !important;
+            margin: 0 !important;
+        }
+        .toc-list li {
+            padding-left: 0 !important;
+            margin-bottom: 0.55rem !important;
+        }
+        .toc-list li::before {
+            display: none !important;
+        }
+        .toc-list a {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            display: block;
+            padding: 4px 8px;
+            border-radius: 8px;
+            line-height: 1.5;
+        }
+        .toc-list a:hover {
+            color: #fff;
+            background: rgba(139, 92, 246, 0.15);
+            transform: translateX(4px);
+        }
+
+        /* --- BÖLÜM BANNERLARI --- */
+        .part-banner {
+            border-radius: 20px;
+            padding: 2rem 2.2rem;
+            margin: 4rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.5);
+        }
+        .part-banner.part-1 {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.18) 0%, rgba(30, 41, 59, 0.9) 100%);
+            border: 1px solid rgba(6, 182, 212, 0.4);
+        }
+        .part-banner.part-2 {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.18) 0%, rgba(30, 41, 59, 0.9) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.4);
+        }
+        .part-banner.part-3 {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.18) 0%, rgba(30, 41, 59, 0.9) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+        }
+        .part-badge {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 12px;
+            margin-bottom: 0.8rem;
+        }
+        .part-1 .part-badge {
+            background: rgba(6, 182, 212, 0.25);
+            color: #22d3ee;
+            border: 1px solid rgba(6, 182, 212, 0.4);
+        }
+        .part-2 .part-badge {
+            background: rgba(139, 92, 246, 0.25);
+            color: #c084fc;
+            border: 1px solid rgba(139, 92, 246, 0.4);
+        }
+        .part-3 .part-badge {
+            background: rgba(16, 185, 129, 0.25);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+        }
+        .part-banner h2 {
+            margin: 0 0 0.6rem 0 !important;
+            font-size: 1.85rem !important;
+            color: #fff !important;
+        }
+        .part-banner p {
+            margin: 0 !important;
+            font-size: 1.05rem !important;
+            color: #e2e8f0 !important;
+            line-height: 1.7 !important;
+        }
+
+        /* --- MADDELER VE İÇERİK --- */
+        .section-card {
+            scroll-margin-top: 100px;
+            margin-bottom: 2.8rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .section-card:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .section-card h2 {
+            color: var(--secondary);
+            font-size: 1.45rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-content {
+            color: var(--text-muted);
+            line-height: 1.95;
+            font-size: 1.12rem;
+        }
+        .section-content p {
+            margin-bottom: 1.2rem;
+        }
+        .section-content ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 1rem 0 1.5rem;
+        }
+        .section-content ul li {
+            margin-bottom: 0.9rem;
+            position: relative;
+            padding-left: 1.8rem;
+            line-height: 1.85;
+        }
+        .section-content ul li::before {
+            content: '\f054';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            top: 3px;
+            font-size: 0.85rem;
+        }
+        .section-content a {
+            color: #38bdf8;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-weight: 500;
+            transition: color 0.25s;
+        }
+        .section-content a:hover {
+            color: var(--primary);
+        }
+        .section-content code {
+            background: rgba(255, 255, 255, 0.08);
+            color: #38bdf8;
+            padding: 2px 7px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.95em;
+        }
+        .section-content strong {
+            color: #f8fafc;
+        }
+
+        /* --- GERİ DÖNÜŞ VE EN BAŞA ÇIK BUTONU --- */
+        .back-to-top {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 3rem;
+            padding: 0.75rem 1.6rem;
+            border-radius: 14px;
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.35);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .back-to-top:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.4);
+        }
+    </style>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0DRJXGNWT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-D0DRJXGNWT');
+    </script>
+</head>
+<body>
+    <div class="background-effects">
+        <div class="glow blob-1"></div>
+        <div class="glow blob-2"></div>
+    </div>
+
+    <nav class="navbar scrolled">
+        <div class="logo">HisVera</div>
+        <div class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/#ana-sayfa" class="btn secondary" style="padding: 0.5rem 1.2rem;" data-i18n="nav.back_to_home"><i class="fa-solid fa-arrow-left"></i> Ana Sayfaya Dön</a></li>
+            <li class="lang-switcher" style="display: flex; align-items: center; margin-left: 1rem;">
+                <a href="#" data-lang-switch="tr" class="active-lang" style="font-weight:600; font-size: 0.9rem;">TR</a>
+                <span style="color:var(--text-muted); font-size: 0.9rem; margin: 0 0.5rem;">|</span>
+                <a href="#" data-lang-switch="en" style="font-size: 0.9rem;">EN</a>
+            </li>
+        </ul>
+    </nav>
+
+    <main id="top">
+        <div class="policy-container">
+            <div class="policy-header">
+                <h1 data-i18n="legal.his_privacy.page_title">HİS uygulaması & HisVera Studio Gizlilik Politikası</h1>
+                <div class="date">
+                    <i class="fa-regular fa-calendar-check"></i>
+                    <span data-i18n="legal.his_privacy.last_update">Son Güncelleme: 8 Kasım 2026</span>
+                </div>
+                <p class="policy-intro" data-i18n="legal.his_privacy.intro"></p>
+            </div>
+
+            <!-- İÇİNDEKİLER VE HIZLI GEZİNME (TOC) -->
+            <div class="toc-card">
+                <div class="toc-header">
+                    <i class="fa-solid fa-list-ul"></i>
+                    <span data-i18n="legal.his_privacy.toc_title">İçindekiler ve Hızlı Gezinme</span>
+                </div>
+                <div class="toc-grid">
+                    <!-- Sütun 1: HİS Mobil Uygulaması -->
+                    <div class="toc-column">
+                        <div class="toc-column-title" style="color: var(--secondary);">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                            <span data-i18n="legal.his_privacy.part1_badge">BÖLÜM I: HİS MOBİL UYGULAMASI</span>
+                        </div>
+                        <div class="toc-email-badge">
+                            <i class="fa-solid fa-envelope"></i> hisnoktasi@gmail.com
+                        </div>
+                        <ul class="toc-list">
+                            <li><a href="#sec1" data-i18n="legal.his_privacy.sec1_title">1. HİS Mobil Uygulaması Kapsamı ve Toplanan Veriler</a></li>
+                            <li><a href="#sec2" data-i18n="legal.his_privacy.sec2_title">2. Profil Bilgileri, Mistik Avatarlar ve Burç/Element Rezonansı</a></li>
+                            <li><a href="#sec3" data-i18n="legal.his_privacy.sec3_title">3. Ruhun Şarkısı & Müzik Entegrasyonu (Apple iTunes API)</a></li>
+                            <li><a href="#sec4" data-i18n="legal.his_privacy.sec4_title">4. Profil Web Siteleri, Sosyal Medya Linkleri & URL Güvenlik Doğrulaması</a></li>
+                            <li><a href="#sec5" data-i18n="legal.his_privacy.sec5_title">5. Duygu Paylaşımları (Metin, Fotoğraf, Video ve Ses Kayıtları)</a></li>
+                            <li><a href="#sec6" data-i18n="legal.his_privacy.sec6_title">6. Konum Bilgileri ve His Haritası (MoodMap & GPS Hassasiyeti)</a></li>
+                            <li><a href="#sec7" data-i18n="legal.his_privacy.sec7_title">7. Fener Yolu, Aura Dilek Bahçesi, Gece Yarısı Portalı ve Zaman Kapsülü</a></li>
+                            <li><a href="#sec8" data-i18n="legal.his_privacy.sec8_title">8. Ruh Rezonansı, Karşılıklı Bağlar ve Spirit Harmony Puanlaması</a></li>
+                            <li><a href="#sec9" data-i18n="legal.his_privacy.sec9_title">9. Yapay Zeka Özellikleri (Google Gemini AI & Ruhani Geyik)</a></li>
+                            <li><a href="#sec10" data-i18n="legal.his_privacy.sec10_title">10. Ödemeler ve Abonelik Yönetimi (RevenueCat, App Store, Google Play)</a></li>
+                            <li><a href="#sec11" data-i18n="legal.his_privacy.sec11_title">11. Reklamlar ve Mobil İzleme Teknolojileri (Google AdMob)</a></li>
+                            <li><a href="#sec12" data-i18n="legal.his_privacy.sec12_title">12. Mobil Cihaz İzinleri Şeffaflık Tablosu (Permissions Matrix)</a></li>
+                            <li><a href="#sec13" data-i18n="legal.his_privacy.sec13_title">13. Topluluk Moderasyonu, Küfür/Nefret Filtresi, Şikayet ve Engelleme</a></li>
+                            <li><a href="#sec14" data-i18n="legal.his_privacy.sec14_title">14. Çocuk Güvenliği ve İstismarla Mücadele (CSAM Sıfır Tolerans)</a></li>
+                            <li><a href="#sec15" data-i18n="legal.his_privacy.sec15_title">15. Hesap ve Tüm Verileri Kalıcı Silme Güvencesi (Apple & Google)</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Sütun 2: HisVera Studio & Ortak Hükümler -->
+                    <div class="toc-column">
+                        <div class="toc-column-title" style="color: var(--primary);">
+                            <i class="fa-solid fa-globe"></i>
+                            <span data-i18n="legal.his_privacy.part2_badge">BÖLÜM II: HISVERA STUDIO WEB</span>
+                        </div>
+                        <div class="toc-email-badge">
+                            <a href="/#iletisim" style="color: inherit; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;"><i class="fa-solid fa-paper-plane"></i> Web İletişim Menüsü</a>
+                        </div>
+                        <ul class="toc-list">
+                            <li><a href="#sec16" data-i18n="legal.his_privacy.sec16_title">16. Web Sitesi Kapsamı, Ziyaretçi Verileri ve Sunucu Günlükleri</a></li>
+                            <li><a href="#sec17" data-i18n="legal.his_privacy.sec17_title">17. Web İletişim Formları ve İş Birliği Talepleri</a></li>
+                            <li><a href="#sec18" data-i18n="legal.his_privacy.sec18_title">18. Çerez (Cookie) Politikası ve Web Analitiği (Google Analytics GA4)</a></li>
+                            <li><a href="#sec19" data-i18n="legal.his_privacy.sec19_title">19. Fikri Mülkiyet, Tersine Mühendislik Yasağı ve Web Vitrini</a></li>
+                        </ul>
+
+                        <div class="toc-column-title" style="color: #34d399; margin-top: 1.8rem;">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                            <span data-i18n="legal.his_privacy.part3_badge">BÖLÜM III: ORTAK HÜKÜMLER</span>
+                        </div>
+                        <ul class="toc-list">
+                            <li><a href="#sec20" data-i18n="legal.his_privacy.sec20_title">20. Veri Güvenliği, 256-bit SSL/TLS ve Siber Olay Bildirimi</a></li>
+                            <li><a href="#sec21" data-i18n="legal.his_privacy.sec21_title">21. Veri Saklama Süreleri, Otomatik İmha ve Adli Talepler</a></li>
+                            <li><a href="#sec22" data-i18n="legal.his_privacy.sec22_title">22. Verilerin Uluslararası Aktarımı</a></li>
+                            <li><a href="#sec23" data-i18n="legal.his_privacy.sec23_title">23. Veri Sahibinin Kapsamlı Hakları (KVKK & GDPR)</a></li>
+                            <li><a href="#sec24" data-i18n="legal.his_privacy.sec24_title">24. İletişim Kanalları, Veri Sorumlusu ve Başvuru Usulü</a></li>
+                            <li><a href="#sec25" data-i18n="legal.his_privacy.sec25_title">25. Politika Güncellemeleri ve Yürürlük</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ======================================================== -->
+            <!-- BÖLÜM I: HİS MOBİL UYGULAMASI GİZLİLİK POLİTİKASI         -->
+            <!-- ======================================================== -->
+            <div class="part-banner part-1">
+                <span class="part-badge" data-i18n="legal.his_privacy.part1_badge">BÖLÜM I: HİS MOBİL UYGULAMASI</span>
+                <h2 data-i18n="legal.his_privacy.part1_title">Bölüm I: HİS Mobil Uygulaması Gizlilik Politikası</h2>
+                <p data-i18n="legal.his_privacy.part1_desc">Bu bölüm, Apple App Store ve Google Play Store üzerinden sunulan HİS mobil uygulaması kapsamındaki veri işleme faaliyetlerini düzenler. İletişim: hisnoktasi@gmail.com</p>
+            </div>
+
+            <div class="section-card" id="sec1">
+                <h2 data-i18n="legal.his_privacy.sec1_title">1. HİS Mobil Uygulaması Kapsamı ve Toplanan Veriler</h2>
+                <div class="section-content" data-i18n="legal.his_privacy.sec1_p"></div>
+            </div>
+
+            <div class="section-card" id="sec2">
+                <h2 data-i18n="legal.his_privacy.sec2_title">2. Profil Bilgileri, Mistik Avatarlar ve Burç/Element Rezonansı</h2>
+                <div class="section-content" data-i18n="legal.his_privacy.sec2_p"></div>
+            </div>
+
+            <div class="section-card" id="sec3">
+                <h2 data-i18n="legal.his_privacy.sec3_title">3. Ruhun Şarkısı & Müzik Entegrasyonu (Apple iTunes API)</h2>
+                <div class="section-content" data-i18n="legal.his_privacy.sec3_p"></div>
+            </div>
+
+            <div class="section-card" id="sec4">
+                <h2 data-i18n="legal.his_privacy.sec4_title">4. Profil Web Siteleri, Sosyal Medya Linkleri & URL Güvenlik Doğrulaması</h2>
+                <div class="section-content" data-i18n="legal.his_privacy.sec4_p"></div>
+            </div>
+
+            <div class="section-card" id="sec5">
+                <h2 data-i18n="legal.his_privacy.sec5_title">5. Duygu Paylaşımları (Metin, Fotoğraf, Video ve Ses Kayıtları)</h2>
+                <div class="section-content" data-i18n="legal.his_privacy.sec5_p"></div>
+            </div>
+
+            <div class="section-card" id="sec6">
+                <h2 data-i18n="legal.his_privacy.sec6_title">6. Konum Bilgileri ve His Haritası (MoodMap & GPS Hassasiyeti)</h2>
+                <div class="section-content" data-i18n="legal.his_privacy.sec6_p"></div>
+            </div>
+
+            <div class="section-card" id="sec7">
+                <h2 data-i18n="legal.his_privacy.sec7_title">7. Fener Yolu, Aura Dilek Bahçesi, Gece Yarısı Portalı ve Zaman Kapsülü</h2>
+                <div class="section-content" data-i18n="legal.his_privacy.sec7_p"></div>
+            </div>
+
+            <div class="section-card" id="sec8">
+                <h2 data-i18n="legal.his_privacy.sec8_title">8. Ruh Rezonansı, Karşılıklı Bağlar ve Spirit Harmony Puanlaması</h2>
+                <div class="section-content" data-i18n="legal.his_privacy.sec8_p"></div>
+            </div>
+
+            <div class="section-card" id="sec9">
+                <h2 data-i18n="legal.his_privacy.sec9_title">9. Yapay Zeka Özellikleri (Google Gemini AI & Ruhani Geyik)</h2>
+                <div class="section-content" data-i18n="legal.his_privacy.sec9_p"></div>
+            </div>
+
+            <div class="section-card" id="sec10">
+                <h2 data-i18n="legal.his_privacy.sec10_title">10. Ödemeler ve Abonelik Yönetimi (RevenueCat, App Store, Google Play)</h2>
+                <div class="section-content" data-i18n="legal.his_privacy.sec10_p"></div>
+            </div>
+
+            <div class="section-card" id="sec11">
+                <h2 data-i18n="legal.his_privacy.sec11_title">11. Reklamlar ve Mobil İzleme Teknolojileri (Google AdMob)</h2>
+                <div class="section-content" data-i18n="legal.his_privacy.sec11_p"></div>
+            </div>
+
+            <div class="section-card" id="sec12">
+                <h2 data-i18n="legal.his_privacy.sec12_title">12. Mobil Cihaz İzinleri Şeffaflık Tablosu (Permissions Matrix)</h2>
+                <div class="section-content" data-i18n="legal.his_privacy.sec12_p"></div>
+            </div>
+
+            <div class="section-card" id="sec13">
+                <h2 data-i18n="legal.his_privacy.sec13_title">13. Topluluk Moderasyonu, Küfür/Nefret Filtresi, Şikayet ve Engelleme</h2>
+                <div class="section-content" data-i18n="legal.his_privacy.sec13_p"></div>
+            </div>
+
+            <div class="section-card" id="sec14">
+                <h2 data-i18n="legal.his_privacy.sec14_title">14. Çocuk Güvenliği ve İstismarla Mücadele (CSAM Sıfır Tolerans)</h2>
+                <div class="section-content" data-i18n="legal.his_privacy.sec14_p"></div>
+            </div>
+
+            <div class="section-card" id="sec15">
+                <h2 data-i18n="legal.his_privacy.sec15_title">15. Hesap ve Tüm Verileri Kalıcı Silme Güvencesi (Apple & Google)</h2>
+                <div class="section-content" data-i18n="legal.his_privacy.sec15_p"></div>
+            </div>
+
+            <!-- ======================================================== -->
+            <!-- BÖLÜM II: HISVERA STUDIO WEB PLATFORMU GİZLİLİK POLİTİKASI-->
+            <!-- ======================================================== -->
+            <div class="part-banner part-2">
+                <span class="part-badge" data-i18n="legal.his_privacy.part2_badge">BÖLÜM II: HISVERA STUDIO WEB</span>
+                <h2 data-i18n="legal.his_privacy.part2_title">Bölüm II: HisVera Studio Web Platformu Gizlilik Politikası</h2>
+                <p data-i18n="legal.his_privacy.part2_desc">Bu bölüm, hisvera.com ve hisvera.studio web siteleri ile ajans/stüdyo hizmetleri kapsamındaki veri işleme faaliyetlerini kapsar. İletişim: <a href="/#iletisim" style="color:#38bdf8; text-decoration:underline;">Web İletişim Menüsü</a></p>
+            </div>
+
+            <div class="section-card" id="sec16">
+                <h2 data-i18n="legal.his_privacy.sec16_title">16. Web Sitesi Kapsamı, Ziyaretçi Verileri ve Sunucu Günlükleri</h2>
+                <div class="section-content" data-i18n="legal.his_privacy.sec16_p"></div>
+            </div>
+
+            <div class="section-card" id="sec17">
+                <h2 data-i18n="legal.his_privacy.sec17_title">17. Web İletişim Formları ve İş Birliği Talepleri</h2>
+                <div class="section-content" data-i18n="legal.his_privacy.sec17_p"></div>
+            </div>
+
+            <div class="section-card" id="sec18">
+                <h2 data-i18n="legal.his_privacy.sec18_title">18. Çerez (Cookie) Politikası ve Web Analitiği (Google Analytics GA4)</h2>
+                <div class="section-content" data-i18n="legal.his_privacy.sec18_p"></div>
+            </div>
+
+            <div class="section-card" id="sec19">
+                <h2 data-i18n="legal.his_privacy.sec19_title">19. Fikri Mülkiyet, Tersine Mühendislik Yasağı ve Web Vitrini</h2>
+                <div class="section-content" data-i18n="legal.his_privacy.sec19_p"></div>
+            </div>
+
+            <!-- ======================================================== -->
+            <!-- BÖLÜM III: ORTAK HUKUKİ HÜKÜMLER, GÜVENLİK VE HAKLAR      -->
+            <!-- ======================================================== -->
+            <div class="part-banner part-3">
+                <span class="part-badge" data-i18n="legal.his_privacy.part3_badge">BÖLÜM III: ORTAK HÜKÜMLER</span>
+                <h2 data-i18n="legal.his_privacy.part3_title">Bölüm III: Ortak Yasal Haklar, Güvenlik ve İletişim</h2>
+                <p data-i18n="legal.his_privacy.part3_desc">Bu bölüm, her iki platform için geçerli olan KVKK, GDPR, veri güvenliği ve silme haklarını düzenler.</p>
+            </div>
+
+            <div class="section-card" id="sec20">
+                <h2 data-i18n="legal.his_privacy.sec20_title">20. Veri Güvenliği, 256-bit SSL/TLS ve Siber Olay Bildirimi</h2>
+                <div class="section-content" data-i18n="legal.his_privacy.sec20_p"></div>
+            </div>
+
+            <div class="section-card" id="sec21">
+                <h2 data-i18n="legal.his_privacy.sec21_title">21. Veri Saklama Süreleri, Otomatik İmha ve Adli Talepler</h2>
+                <div class="section-content" data-i18n="legal.his_privacy.sec21_p"></div>
+            </div>
+
+            <div class="section-card" id="sec22">
+                <h2 data-i18n="legal.his_privacy.sec22_title">22. Verilerin Uluslararası Aktarımı</h2>
+                <div class="section-content" data-i18n="legal.his_privacy.sec22_p"></div>
+            </div>
+
+            <div class="section-card" id="sec23">
+                <h2 data-i18n="legal.his_privacy.sec23_title">23. Veri Sahibinin Kapsamlı Hakları (KVKK & GDPR)</h2>
+                <div class="section-content" data-i18n="legal.his_privacy.sec23_p"></div>
+            </div>
+
+            <div class="section-card" id="sec24">
+                <h2 data-i18n="legal.his_privacy.sec24_title">24. İletişim Kanalları, Veri Sorumlusu ve Başvuru Usulü</h2>
+                <div class="section-content" data-i18n="legal.his_privacy.sec24_p"></div>
+            </div>
+
+            <div class="section-card" id="sec25">
+                <h2 data-i18n="legal.his_privacy.sec25_title">25. Politika Güncellemeleri ve Yürürlük</h2>
+                <div class="section-content" data-i18n="legal.his_privacy.sec25_p"></div>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="#top" class="back-to-top">
+                    <i class="fa-solid fa-arrow-up"></i>
+                    <span data-i18n="nav.back_to_top">Sayfa Başına Dön</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer style="margin-top: 2rem; padding: 3rem 0; border-top: 1px solid var(--glass-border); text-align: center; background: rgba(15, 23, 42, 0.5);">
+        <div style="margin-bottom: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+            <a href="gizlilik-politikasi" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'" data-i18n="footer.privacy">Gizlilik Politikası</a>
+            <span style="color: rgba(255,255,255,0.1);">|</span>
+            <a href="kullanim-sartlari" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'" data-i18n="footer.terms">Kullanım Şartları</a>
+            <span style="color: rgba(255,255,255,0.1);">|</span>
+            <a href="hesap-silme" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'" data-i18n="footer.delete_account">Hesap Silme</a>
+        </div>
+        <p style="color: var(--text-muted);" data-i18n="footer.copyright">&copy; 2026 HisVera. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script src="i18n.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
