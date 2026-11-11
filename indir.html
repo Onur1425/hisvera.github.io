@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">His | Redirecting...</title>
+    <link rel="icon" type="image/png" href="assets/images/his-noktas%C4%B1-logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8B5CF6;
+            --primary-glow: rgba(139, 92, 246, 0.45);
+            --secondary: #EC4899;
+            --secondary-glow: rgba(236, 72, 153, 0.4);
+            --bg-dark: #080612;
+            --glass-bg: rgba(22, 16, 42, 0.72);
+            --glass-border: rgba(168, 85, 247, 0.22);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #FFFFFF;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 16px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient Cosmic Aura Background */
+        .ambient-glow-1 {
+            position: fixed;
+            top: -120px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 580px;
+            height: 580px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.32) 0%, rgba(236, 72, 153, 0.15) 50%, transparent 70%);
+            filter: blur(75px);
+            pointer-events: none;
+            z-index: 0;
+            animation: pulse-glow 7s ease-in-out infinite alternate;
+        }
+
+        .ambient-glow-2 {
+            position: fixed;
+            bottom: -150px;
+            right: 10%;
+            width: 480px;
+            height: 480px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.22) 0%, rgba(139, 92, 246, 0.1) 50%, transparent 70%);
+            filter: blur(85px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes pulse-glow {
+            0% { transform: translateX(-50%) scale(0.95); opacity: 0.75; }
+            100% { transform: translateX(-50%) scale(1.15); opacity: 1; }
+        }
+
+        /* Top Bar: Studio Branding on left, Language Switcher on right */
+        .top-bar {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        .studio-brand-link,
+        .lang-dropdown-wrapper {
+            pointer-events: auto;
+        }
+
+        .studio-brand-link {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #FFFFFF;
+            padding: 8px 14px 8px 9px;
+            border-radius: 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            backdrop-filter: blur(14px);
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .studio-brand-link:hover {
+            background: rgba(255, 255, 255, 0.14);
+            border-color: rgba(168, 85, 247, 0.5);
+            transform: translateY(-1px);
+        }
+
+        .top-studio-logo {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .lang-dropdown-wrapper {
+            position: relative;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #FFFFFF;
+            padding: 9px 15px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13.5px;
+            font-weight: 600;
+            cursor: pointer;
+            backdrop-filter: blur(14px);
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.14);
+            border-color: rgba(168, 85, 247, 0.5);
+            transform: translateY(-1px);
+        }
+
+        .lang-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        .lang-menu {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            width: 210px;
+            max-height: 340px;
+            overflow-y: auto;
+            background: #150F2C;
+            border: 1px solid rgba(168, 85, 247, 0.35);
+            border-radius: 18px;
+            padding: 8px;
+            display: none;
+            flex-direction: column;
+            gap: 2px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(139, 92, 246, 0.25);
+            z-index: 200;
+            backdrop-filter: blur(20px);
+        }
+
+        .lang-menu.open {
+            display: flex;
+            animation: fadeInMenu 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes fadeInMenu {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .lang-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.85);
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .lang-item:hover {
+            background: rgba(139, 92, 246, 0.25);
+            color: #FFFFFF;
+        }
+
+        .lang-item.active {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(236, 72, 153, 0.35));
+            color: #FFFFFF;
+            font-weight: 700;
+        }
+
+        /* Main Card */
+        .card {
+            position: relative;
+            z-index: 10;
+            max-width: 440px;
+            width: 100%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 32px;
+            padding: 42px 28px 32px;
+            text-align: center;
+            backdrop-filter: blur(28px);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.75), 0 0 45px rgba(139, 92, 246, 0.18);
+        }
+
+        /* App Icon with Radiant Aura */
+        .icon-wrapper {
+            position: relative;
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 20px;
+        }
+
+        .icon-aura-ring {
+            position: absolute;
+            inset: -10px;
+            border-radius: 32px;
+            background: linear-gradient(135deg, #8B5CF6, #EC4899);
+            filter: blur(14px);
+            opacity: 0.65;
+            animation: aura-pulse 3s infinite alternate;
+        }
+
+        @keyframes aura-pulse {
+            0% { transform: scale(0.96); opacity: 0.5; }
+            100% { transform: scale(1.08); opacity: 0.85; }
+        }
+
+        .app-icon {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 24px;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Status Pill */
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(139, 92, 246, 0.16);
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            padding: 5px 13px;
+            border-radius: 20px;
+            margin-bottom: 18px;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #A78BFA;
+            box-shadow: 0 0 10px #A78BFA;
+            animation: blink 1.4s infinite ease-in-out;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        .status-text {
+            color: #DDD6FE;
+            font-size: 11.5px;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: 23px;
+            font-weight: 800;
+            color: #FFFFFF;
+            letter-spacing: -0.4px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.72);
+            line-height: 1.6;
+            margin-bottom: 26px;
+            padding: 0 6px;
+        }
+
+        /* Store Buttons (Matching his-noktasi.html icons & aesthetic layout) */
+        .buttons-group {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+            width: 100%;
+        }
+
+        .store-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 15px 22px;
+            border-radius: 18px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: -0.2px;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .store-btn i {
+            font-size: 22px;
+            line-height: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .store-btn-apple {
+            background: #FFFFFF;
+            color: #000000;
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.18);
+        }
+
+        .store-btn-apple:hover {
+            transform: translateY(-2px);
+            background: #F8FAFC;
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.28);
+        }
+
+        .store-btn-google {
+            background: rgba(255, 255, 255, 0.08);
+            color: #FFFFFF;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .store-btn-google:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.14);
+            border-color: rgba(168, 85, 247, 0.45);
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.25);
+        }
+
+        /* Studio Signature & Footer */
+        .studio-signature {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 24px;
+            padding: 6px 14px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.72);
+        }
+
+        .studio-badge-logo {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .footer-tagline {
+            margin-top: 12px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 480px) {
+            .top-bar {
+                top: 14px;
+                left: 14px;
+                right: 14px;
+            }
+            .studio-brand-link span {
+                display: none;
+            }
+            .studio-brand-link {
+                padding: 7px;
+                border-radius: 50%;
+            }
+            .card {
+                padding: 34px 18px 26px;
+                margin-top: 40px;
+            }
+            h1 {
+                font-size: 20px;
+            }
+            p {
+                font-size: 13.5px;
+            }
+            .store-btn {
+                padding: 13px 18px;
+                font-size: 14.5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Auras -->
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <!-- Top Bar: Studio Link on Left, Language Dropdown on Right -->
+    <div class="top-bar">
+        <a href="https://hisvera.com" class="studio-brand-link" title="HisVera Studio">
+            <img class="top-studio-logo" src="assets/images/HisVera.jpg" onerror="this.onerror=null; this.src='HisVera.jpg';" alt="HisVera Studio">
+            <span>HisVera Studio</span>
+        </a>
+
+        <div class="lang-dropdown-wrapper">
+            <button class="lang-btn" id="langBtn" type="button" aria-label="Select Language">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+                <span id="currentLangLabel">Language</span>
+                <svg viewBox="0 0 24 24" style="width: 13px; height: 13px;">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </button>
+            <div class="lang-menu" id="langMenu">
+                <!-- Injected via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Central Hero Card -->
+    <main class="card">
+        <!-- Application Logo (HİS) -->
+        <div class="icon-wrapper">
+            <div class="icon-aura-ring"></div>
+            <img class="app-icon" src="assets/images/his-noktas%C4%B1-logo.png" onerror="this.onerror=null; this.src='assets/images/his-noktası-logo.png';" alt="HİS Logo">
+        </div>
+
+        <!-- Status Tag -->
+        <div class="status-pill">
+            <div class="status-dot"></div>
+            <span class="status-text" id="statusBadge">OTOMATİK YÖNLENDİRME</span>
+        </div>
+
+        <!-- Headings -->
+        <h1 id="heading">Mağazaya Yönlendiriliyorsunuz...</h1>
+        <p id="description">Telefonunuz için uygun uygulama mağazası açılıyor. Birkaç saniye içinde yönlendirilmezseniz aşağıdaki butona dokunabilirsiniz:</p>
+
+        <!-- Action Store Buttons with Official FontAwesome Brand Icons (like his-noktasi.html) -->
+        <div class="buttons-group">
+            <a id="btnApple" href="https://apps.apple.com/app/id6800705124" class="store-btn store-btn-apple">
+                <i class="fa-brands fa-apple"></i>
+                <span id="btnAppleText">App Store'da Aç</span>
+            </a>
+
+            <a id="btnGoogle" href="https://play.google.com/store/apps/details?id=com.hisvera.hisnoktasi.app" class="store-btn store-btn-google">
+                <i class="fa-brands fa-google-play"></i>
+                <span id="btnGoogleText">Google Play'de Aç</span>
+            </a>
+        </div>
+
+        <!-- HisVera Studio Creator Signature -->
+        <div class="studio-signature">
+            <img class="studio-badge-logo" src="assets/images/HisVera.jpg" onerror="this.onerror=null; this.src='HisVera.jpg';" alt="HisVera Studio">
+            <span id="makerText">HisVera Studio Sunar</span>
+        </div>
+
+        <div class="footer-tagline">
+            ✦ Bir yer • Bir his • Bir iz ✦
+        </div>
+    </main>
+
+    <script>
+        var languageConfig = [
+            { code: "tr", name: "Türkçe", flag: "🇹🇷" },
+            { code: "en", name: "English", flag: "🇬🇧" },
+            { code: "de", name: "Deutsch", flag: "🇩🇪" },
+            { code: "es", name: "Español", flag: "🇪🇸" },
+            { code: "fr", name: "Français", flag: "🇫🇷" },
+            { code: "it", name: "Italiano", flag: "🇮🇹" },
+            { code: "pt", name: "Português", flag: "🇵🇹" },
+            { code: "ru", name: "Русский", flag: "🇷🇺" },
+            { code: "hi", name: "हिन्दी", flag: "🇮🇳" },
+            { code: "id", name: "Bahasa Indonesia", flag: "🇮🇩" },
+            { code: "vi", name: "Tiếng Việt", flag: "🇻🇳" },
+            { code: "el", name: "Ελληνικά", flag: "🇬🇷" },
+            { code: "sv", name: "Svenska", flag: "🇸🇪" },
+            { code: "no", name: "Norsk", flag: "🇳🇴" }
+        ];
+
+        var translations = {
+            tr: {
+                title: "His | Yönlendiriliyorsunuz...",
+                badge: "OTOMATİK YÖNLENDİRME",
+                heading: "Mağazaya Yönlendiriliyorsunuz...",
+                desc: "Telefonunuz için uygun uygulama mağazası açılıyor. Birkaç saniye içinde yönlendirilmezseniz aşağıdaki butona dokunabilirsiniz:",
+                btnApple: "App Store'da Aç",
+                btnGoogle: "Google Play'de Aç",
+                maker: "HisVera Studio Sunar"
+            },
+            en: {
+                title: "His | Redirecting...",
+                badge: "AUTO-REDIRECTING",
+                heading: "Redirecting to Store...",
+                desc: "Opening the appropriate store for your device. If you are not redirected within a few seconds, please tap below:",
+                btnApple: "Open in App Store",
+                btnGoogle: "Open in Google Play",
+                maker: "Presented by HisVera Studio"
+            },
+            de: {
+                title: "His | Weiterleitung...",
+                badge: "AUTOMATISCHE WEITERLEITUNG",
+                heading: "Weiterleitung zum Store...",
+                desc: "Der passende Store für dein Gerät wird geöffnet. Falls die Weiterleitung nicht erfolgt, tippe bitte unten:",
+                btnApple: "Im App Store öffnen",
+                btnGoogle: "In Google Play öffnen",
+                maker: "Präsentiert von HisVera Studio"
+            },
+            es: {
+                title: "His | Redirigiendo...",
+                badge: "REDIRECCIÓN AUTOMÁTICA",
+                heading: "Redirigiendo a la tienda...",
+                desc: "Abriendo la tienda de aplicaciones para tu dispositivo. Si no se redirige en unos segundos, pulsa abajo:",
+                btnApple: "Abrir en App Store",
+                btnGoogle: "Abrir en Google Play",
+                maker: "Presentado por HisVera Studio"
+            },
+            fr: {
+                title: "His | Redirection...",
+                badge: "REDIRECTION AUTOMATIQUE",
+                heading: "Redirection vers le Store...",
+                desc: "Ouverture de la boutique d'applications pour votre appareil. Si la redirection ne s'effectue pas, appuyez ci-dessous :",
+                btnApple: "Ouvrir dans l'App Store",
+                btnGoogle: "Ouvrir dans Google Play",
+                maker: "Présenté par HisVera Studio"
+            },
+            it: {
+                title: "His | Reindirizzamento...",
+                badge: "REINDIRIZZAMENTO AUTOMATICO",
+                heading: "Reindirizzamento allo store...",
+                desc: "Apertura dello store di applicazioni per il tuo dispositivo. Se non vieni reindirizzato, tocca qui sotto:",
+                btnApple: "Apri su App Store",
+                btnGoogle: "Apri su Google Play",
+                maker: "Presentato da HisVera Studio"
+            },
+            pt: {
+                title: "His | Redirecionando...",
+                badge: "REDIRECIONAMENTO AUTOMÁTICO",
+                heading: "Redirecionando para a loja...",
+                desc: "Abrindo a loja de aplicativos para o seu dispositivo. Se não for redirecionado em alguns segundos, toque abaixo:",
+                btnApple: "Abrir na App Store",
+                btnGoogle: "Abrir no Google Play",
+                maker: "Apresentado por HisVera Studio"
+            },
+            ru: {
+                title: "His | Перенаправление...",
+                badge: "АВТОМАТИЧЕСКИЙ ПЕРЕХОД",
+                heading: "Перенаправление в магазин...",
+                desc: "Открываем магазин приложений для вашего устройства. Если переход не произошел, нажмите ниже:",
+                btnApple: "Открыть в App Store",
+                btnGoogle: "Открыть в Google Play",
+                maker: "Создано HisVera Studio"
+            },
+            hi: {
+                title: "His | रीडायरेक्ट हो रहा है...",
+                badge: "स्वचालित पुनर्निर्देशन",
+                heading: "स्टोर पर रीडायरेक्ट किया जा रहा है...",
+                desc: "आपके डिवाइस के लिए ऐप स्टोर खोला जा रहा है। यदि कुछ सेकंड में रीडायरेक्ट नहीं होता है, तो नीचे टैप करें:",
+                btnApple: "App Store में खोलें",
+                btnGoogle: "Google Play में खोलें",
+                maker: "HisVera Studio द्वारा प्रस्तुत"
+            },
+            id: {
+                title: "His | Mengalihkan...",
+                badge: "PENGALIHAN OTOMATIS",
+                heading: "Mengalihkan ke Toko Aplikasi...",
+                desc: "Membuka toko aplikasi yang sesuai untuk perangkat Anda. Jika tidak dialihkan dalam beberapa detik, ketuk di bawah:",
+                btnApple: "Buka di App Store",
+                btnGoogle: "Buka di Google Play",
+                maker: "Dipersembahkan oleh HisVera Studio"
+            },
+            vi: {
+                title: "His | Đang chuyển hướng...",
+                badge: "TỰ ĐỘNG CHUYỂN HƯỚNG",
+                heading: "Đang chuyển hướng đến cửa hàng...",
+                desc: "Đang mở cửa hàng ứng dụng phù hợp cho thiết bị của bạn. Eğer không tự động chuyển hướng, vui lòng nhấn bên dưới:",
+                btnApple: "Mở trong App Store",
+                btnGoogle: "Mở trong Google Play",
+                maker: "Được phát triển bởi HisVera Studio"
+            },
+            el: {
+                title: "His | Ανακατεύθυνση...",
+                badge: "ΑΥΤΟΜΑΤΗ ΑΝΑΚΑΤΕΥΘΥΝΣΗ",
+                heading: "Ανακατεύθυνση στο κατάστημα...",
+                desc: "Άνοιγμα του καταστήματος εφαρμογών για τη συσκευή σας. Εάν δεν ανακατευθυνθείτε σε λίγα δευτερόλεπτα, πατήστε παρακάτω:",
+                btnApple: "Άνοιγμα στο App Store",
+                btnGoogle: "Άνοιγμα στο Google Play",
+                maker: "Από τη HisVera Studio"
+            },
+            sv: {
+                title: "His | Omdirigerar...",
+                badge: "AUTOMATISK OMDIRIGERING",
+                heading: "Omdirigerar till butiken...",
+                desc: "Öppnar appbutiken för din enhet. Om du inte omdirigeras inom några sekunder, tryck nedan:",
+                btnApple: "Öppna i App Store",
+                btnGoogle: "Öppna i Google Play",
+                maker: "Presenteras av HisVera Studio"
+            },
+            no: {
+                title: "His | Omdirigerer...",
+                badge: "AUTOMATISK VIDERESENDING",
+                heading: "Omdirigerer til butikken...",
+                desc: "Åpner appbutikken for enheten din. Hvis du ikke blir videresendt innen noen sekunder, trykk nedenfor:",
+                btnApple: "Åpne i App Store",
+                btnGoogle: "Åpne i Google Play",
+                maker: "Presentert av HisVera Studio"
+            }
+        };
+
+        function getInitialLanguage() {
+            var saved = localStorage.getItem("his_selected_lang");
+            if (saved && translations[saved]) return saved;
+
+            var rawLang = (navigator.language || (navigator.languages && navigator.languages[0]) || 'en').toLowerCase();
+            var code = rawLang.split('-')[0].split('_')[0];
+            return translations[code] ? code : 'en';
+        }
+
+        var currentLang = getInitialLanguage();
+
+        function applyLanguage(code) {
+            currentLang = code;
+            localStorage.setItem("his_selected_lang", code);
+            var t = translations[code] || translations.en;
+
+            document.documentElement.lang = code;
+            document.title = t.title;
+            document.getElementById("statusBadge").textContent = t.badge;
+            document.getElementById("heading").textContent = t.heading;
+            document.getElementById("description").textContent = t.desc;
+            document.getElementById("btnAppleText").textContent = t.btnApple;
+            document.getElementById("btnGoogleText").textContent = t.btnGoogle;
+            document.getElementById("makerText").textContent = t.maker;
+
+            var activeObj = languageConfig.find(function(item) { return item.code === code; }) || languageConfig[1];
+            document.getElementById("currentLangLabel").textContent = activeObj.flag + " " + activeObj.name;
+
+            renderLanguageMenu();
+        }
+
+        function renderLanguageMenu() {
+            var menu = document.getElementById("langMenu");
+            menu.innerHTML = "";
+            languageConfig.forEach(function(item) {
+                var el = document.createElement("div");
+                el.className = "lang-item" + (item.code === currentLang ? " active" : "");
+                el.innerHTML = "<span>" + item.flag + " " + item.name + "</span>" + (item.code === currentLang ? "<span>✓</span>" : "");
+                el.onclick = function() {
+                    applyLanguage(item.code);
+                    toggleLangMenu(false);
+                };
+                menu.appendChild(el);
+            });
+        }
+
+        function toggleLangMenu(forceState) {
+            var menu = document.getElementById("langMenu");
+            if (typeof forceState === "boolean") {
+                if (forceState) menu.classList.add("open");
+                else menu.classList.remove("open");
+            } else {
+                menu.classList.toggle("open");
+            }
+        }
+
+        document.getElementById("langBtn").addEventListener("click", function(e) {
+            e.stopPropagation();
+            toggleLangMenu();
+        });
+
+        document.addEventListener("click", function() {
+            toggleLangMenu(false);
+        });
+
+        // Initialize UI
+        applyLanguage(currentLang);
+
+        // Smart Device Detection & Instant Auto-Redirect
+        var ua = navigator.userAgent || navigator.vendor || window.opera || '';
+        var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        var isAndroid = /Android/i.test(ua);
+
+        var appleStoreUrl = "https://apps.apple.com/app/id6800705124";
+        var googlePlayUrl = "https://play.google.com/store/apps/details?id=com.hisvera.hisnoktasi.app";
+
+        // Give a smooth 1.2s window for the user to see the aesthetic screen, then auto-route
+        setTimeout(function() {
+            if (isIOS) {
+                window.location.replace(appleStoreUrl);
+            } else if (isAndroid) {
+                window.location.replace(googlePlayUrl);
+            }
+        }, 1200);
+    </script>
+</body>
+</html>
