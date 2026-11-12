@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HİS • Global Reddit Growth Radar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg: #090a0f;
+      --card-bg: rgba(18, 20, 29, 0.85);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover: rgba(255, 255, 255, 0.16);
+      --text: #f0f2f5;
+      --text-muted: #8e95a5;
+      --accent-orange: #ff4500;
+      --accent-cyan: #00f2fe;
+      --accent-purple: #9d4edd;
+      --accent-green: #10b981;
+      --accent-amber: #f59e0b;
+      --font: 'Plus Jakarta Sans', sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      background-image: 
+        radial-gradient(circle at 10% 10%, rgba(255, 69, 0, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 90%, rgba(0, 242, 254, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(157, 78, 221, 0.04) 0%, transparent 60%);
+      color: var(--text);
+      font-family: var(--font);
+      min-height: 100vh;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    /* LOCK SCREEN OVERLAY */
+    #lockScreen {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(9, 10, 15, 0.96);
+      backdrop-filter: blur(25px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+
+    #lockScreen.unlocked {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .lock-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 69, 0, 0.3);
+      border-radius: 24px;
+      padding: 40px 32px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 40px rgba(255, 69, 0, 0.15);
+      position: relative;
+    }
+
+    .lock-icon-area {
+      width: 68px;
+      height: 68px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #ff4500, #ff8700);
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: #fff;
+      box-shadow: 0 10px 25px rgba(255, 69, 0, 0.4);
+    }
+
+    .lock-card h2 {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .lock-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .pass-input-box {
+      position: relative;
+      margin-bottom: 18px;
+    }
+
+    .pass-input-box i {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    .pass-input {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 13px 16px 13px 44px;
+      color: #fff;
+      font-size: 14px;
+      font-family: var(--mono);
+      outline: none;
+      transition: all 0.2s;
+      letter-spacing: 2px;
+    }
+
+    .pass-input:focus {
+      border-color: var(--accent-orange);
+      box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.25);
+    }
+
+    .btn-unlock {
+      width: 100%;
+      background: linear-gradient(135deg, #ff4500, #ff6b35);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 13px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-unlock:hover {
+      box-shadow: 0 6px 20px rgba(255, 69, 0, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .lock-error {
+      color: #ef4444;
+      font-size: 12px;
+      margin-top: 10px;
+      display: none;
+      font-weight: 600;
+    }
+
+    .shake {
+      animation: shake 0.35s ease-in-out;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-8px); }
+      40%, 80% { transform: translateX(8px); }
+    }
+
+    /* MAIN CONTAINER */
+    .container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 36px 20px;
+    }
+
+    /* HEADER */
+    header {
+      margin-bottom: 26px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .brand { display: flex; align-items: center; gap: 16px; }
+
+    .logo-badge {
+      width: 52px; height: 52px; border-radius: 14px;
+      background: linear-gradient(135deg, #ff4500, #ff8700);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; color: #fff;
+      box-shadow: 0 8px 24px rgba(255, 69, 0, 0.35);
+    }
+
+    .title-area h1 {
+      font-size: 26px; font-weight: 800; letter-spacing: -0.5px;
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+
+    .title-area h1 span {
+      background: linear-gradient(90deg, #ff4500, #ff8700, #00f2fe);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    .title-area p { color: var(--text-muted); font-size: 13.5px; margin-top: 3px; }
+
+    /* STATS BAR */
+    .stats-bar { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 10px 16px;
+      display: flex; align-items: center; gap: 12px;
+      backdrop-filter: blur(12px);
+    }
+
+    .stat-card i { font-size: 18px; }
+    .stat-val { font-size: 17px; font-weight: 700; font-family: var(--mono); }
+    .stat-lbl { font-size: 10.5px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* TEAM INFO BANNER */
+    .team-info-banner {
+      background: linear-gradient(90deg, rgba(255, 69, 0, 0.12), rgba(0, 242, 254, 0.1));
+      border: 1px solid rgba(255, 69, 0, 0.25);
+      border-radius: 14px;
+      padding: 14px 20px;
+      margin-bottom: 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+    }
+
+    .team-badge {
+      display: flex; align-items: center; gap: 10px; font-size: 13px; color: #e2e8f0;
+    }
+
+    .team-pill {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 11.5px;
+      color: var(--accent-orange);
+      border: 1px solid rgba(255, 69, 0, 0.25);
+    }
+
+    /* TOOLBAR */
+    .toolbar {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px; margin-bottom: 24px;
+    }
+
+    .filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    .filter-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 7px 14px; border-radius: 100px;
+      font-size: 12.5px; font-weight: 600; cursor: pointer;
+      transition: all 0.2s; display: flex; align-items: center; gap: 6px;
+    }
+
+    .filter-btn:hover { background: rgba(255, 255, 255, 0.1); color: var(--text); }
+    .filter-btn.active {
+      background: var(--accent-orange); color: white;
+      border-color: var(--accent-orange); box-shadow: 0 4px 16px rgba(255, 69, 0, 0.35);
+    }
+
+    .search-box { position: relative; min-width: 250px; }
+    .search-box i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 13px; }
+    .search-input {
+      width: 100%; background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 100px; padding: 8px 16px 8px 36px; color: var(--text);
+      font-size: 12.5px; outline: none; transition: all 0.2s;
+    }
+    .search-input:focus { border-color: var(--accent-orange); box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.2); }
+
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+      gap: 22px;
+    }
+
+    @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+
+    .sub-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 22px;
+      display: flex; flex-direction: column; gap: 16px;
+      backdrop-filter: blur(14px);
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+
+    .sub-card:hover {
+      border-color: var(--card-hover);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+      transform: translateY(-2px);
+    }
+
+    .sub-card.posted {
+      border-color: rgba(16, 185, 129, 0.4);
+      background: rgba(16, 185, 129, 0.04);
+    }
+
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+
+    .sub-identity { display: flex; align-items: center; gap: 12px; }
+
+    .sub-avatar {
+      width: 42px; height: 42px; border-radius: 12px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--card-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; color: var(--accent-orange); flex-shrink: 0;
+    }
+
+    .sub-name { font-size: 17px; font-weight: 800; color: #fff; }
+    .sub-members { font-size: 11.5px; color: var(--text-muted); font-family: var(--mono); }
+
+    .badge-category {
+      font-size: 11px; font-weight: 700; padding: 4px 10px;
+      border-radius: 100px; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+
+    .cat-indie { background: rgba(0, 242, 254, 0.15); color: #00f2fe; }
+    .cat-apple { background: rgba(255, 255, 255, 0.15); color: #f1f5f9; }
+    .cat-emotion { background: rgba(157, 78, 221, 0.15); color: #c77dff; }
+    .cat-urban { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+    .cat-student { background: rgba(236, 72, 153, 0.15); color: #f472b6; }
+
+    .rule-box {
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 10px;
+      padding: 9px 12px;
+      font-size: 12px;
+      color: #94a3b8;
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    .rule-box i { color: var(--accent-amber); font-size: 13px; flex-shrink: 0; }
+
+    .copy-section { display: flex; flex-direction: column; gap: 6px; }
+
+    .copy-label {
+      font-size: 11px; font-weight: 700; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.5px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .copy-box {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      padding: 12px;
+      position: relative;
+    }
+
+    .title-content {
+      font-size: 13.5px; font-weight: 700; color: #f8fafc;
+      padding-right: 70px; line-height: 1.4;
+    }
+
+    .body-preview {
+      font-size: 12px; color: #94a3b8;
+      max-height: 95px; overflow-y: auto;
+      white-space: pre-line; line-height: 1.5;
+      padding-right: 70px;
+    }
+
+    .btn-copy {
+      position: absolute; right: 10px; top: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+      color: #e2e8f0; padding: 6px 12px;
+      border-radius: 8px; font-size: 11px; font-weight: 600;
+      cursor: pointer; transition: all 0.2s;
+      display: flex; align-items: center; gap: 5px;
+    }
+
+    .btn-copy:hover { background: var(--accent-orange); color: white; border-color: var(--accent-orange); }
+
+    .card-actions {
+      display: flex; gap: 10px; margin-top: auto; padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .btn-direct {
+      flex: 1; background: linear-gradient(135deg, #ff4500, #ff6b35);
+      color: white; border: none; padding: 10px 14px;
+      border-radius: 10px; font-size: 12.5px; font-weight: 700;
+      cursor: pointer; text-decoration: none;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-direct:hover { opacity: 0.95; box-shadow: 0 6px 18px rgba(255, 69, 0, 0.4); transform: translateY(-1px); }
+
+    .btn-toggle-done {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted); padding: 10px 14px;
+      border-radius: 10px; font-size: 12.5px; cursor: pointer;
+      display: flex; align-items: center; gap: 6px; transition: all 0.2s;
+    }
+
+    .btn-toggle-done:hover { color: white; background: rgba(255, 255, 255, 0.12); }
+    .sub-card.posted .btn-toggle-done { background: rgba(16, 185, 129, 0.2); border-color: rgba(16, 185, 129, 0.4); color: #10b981; }
+
+    /* TOAST */
+    .toast {
+      position: fixed; bottom: 24px; right: 24px;
+      background: #1e293b; border: 1px solid var(--accent-orange);
+      color: white; padding: 12px 20px; border-radius: 12px;
+      font-size: 13px; font-weight: 600; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      display: flex; align-items: center; gap: 10px;
+      transform: translateY(100px); opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); z-index: 10000;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+  </style>
+</head>
+<body>
+
+<!-- PASSWORD LOCK SCREEN -->
+<div id="lockScreen">
+  <div class="lock-card" id="lockCard">
+    <div class="lock-icon-area">
+      <i class="fa-solid fa-lock"></i>
+    </div>
+    <h2>HİS Growth Radar</h2>
+    <p>HisVera Stüdyo İçi Erişim • “Şu an, tam burada ne hissediyorsun?”</p>
+    
+    <div class="pass-input-box">
+      <i class="fa-solid fa-key"></i>
+      <input type="password" id="radarPass" class="pass-input" placeholder="Giriş Şifresi..." autofocus>
+    </div>
+
+    <button class="btn-unlock" onclick="attemptUnlock()">
+      <span>Paneli Aç</span>
+      <i class="fa-solid fa-arrow-right"></i>
+    </button>
+    <div id="lockError" class="lock-error">Hatalı şifre! Lütfen tekrar deneyin.</div>
+  </div>
+</div>
+
+<div class="container">
+  <!-- HEADER -->
+  <header>
+    <div class="brand">
+      <div class="logo-badge"><i class="fa-brands fa-reddit-alien"></i></div>
+      <div class="title-area">
+        <h1>HİS <span>Reddit Growth Radar</span></h1>
+        <p>Bağımsız Geliştirici & Stüdyo Yayılım Paneli • 25+ Özel Topluluk</p>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-bar">
+      <div class="stat-card">
+        <i class="fa-solid fa-users-viewfinder" style="color: #ff4500;"></i>
+        <div>
+          <div class="stat-val" id="totalAudience">24M+</div>
+          <div class="stat-lbl">Toplam Kitle</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <i class="fa-solid fa-satellite-dish" style="color: #00f2fe;"></i>
+        <div>
+          <div class="stat-val" id="totalSubsCount">25</div>
+          <div class="stat-lbl">Topluluk Sayısı</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <i class="fa-solid fa-circle-check" style="color: #10b981;"></i>
+        <div>
+          <div class="stat-val" id="postedCount">0 / 25</div>
+          <div class="stat-lbl">Tamamlanan</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SLOGAN BANNER -->
+  <div class="team-info-banner">
+    <div class="team-badge">
+      <i class="fa-solid fa-fire-flame-curved" style="color: var(--accent-orange); font-size: 18px;"></i>
+      <span>Stüdyo: <strong>HisVera</strong></span>
+      <span style="color: rgba(255, 255, 255, 0.2); margin: 0 6px;">•</span>
+      <span style="color: #cbd5e1; font-style: italic; font-weight: 500; font-size: 13.5px;">“Şu an, tam burada ne hissediyorsun?” — Duyguların Yaşayan Haritası</span>
+    </div>
+    <div style="font-size: 12px; color: #94a3b8; font-family: var(--mono);">
+      <i class="fa-solid fa-shield-halved" style="color: #10b981;"></i> Şifreli Güvenli Erişim
+    </div>
+  </div>
+
+  <!-- TOOLBAR -->
+  <div class="toolbar">
+    <div class="filter-tabs">
+      <button class="filter-btn active" data-filter="all"><i class="fa-solid fa-border-all"></i> Tümü (25)</button>
+      <button class="filter-btn" data-filter="indie"><i class="fa-solid fa-laptop-code"></i> Indie & Girişim (6)</button>
+      <button class="filter-btn" data-filter="apple"><i class="fa-brands fa-apple"></i> Apple & iOS (5)</button>
+      <button class="filter-btn" data-filter="emotion"><i class="fa-solid fa-heart-pulse"></i> Duygu & Empati (6)</button>
+      <button class="filter-btn" data-filter="urban"><i class="fa-solid fa-moon"></i> Gece & Şehir (5)</button>
+      <button class="filter-btn" data-filter="student"><i class="fa-solid fa-compass"></i> Topluluk & Yaşam (3)</button>
+    </div>
+
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="searchInput" class="search-input" placeholder="Topluluk ara (örn: roast, lonely, ios)...">
+    </div>
+  </div>
+
+  <!-- GRID -->
+  <div class="grid" id="subredditGrid"></div>
+</div>
+
+<div id="toast" class="toast">
+  <i class="fa-solid fa-check" style="color: #10b981;"></i>
+  <span id="toastMsg">Panoya kopyalandı!</span>
+</div>
+
+<script>
+// PASSWORD GATE LOGIC
+const SECRET_KEY = "HisVera#2026!Radar"; // Yeni Güçlü Giriş Şifresi
+
+function checkAuth() {
+  if (sessionStorage.getItem("his_radar_authenticated") === "true") {
+    document.getElementById("lockScreen").classList.add("unlocked");
+  }
+}
+
+function attemptUnlock() {
+  const input = document.getElementById("radarPass");
+  const errorMsg = document.getElementById("lockError");
+  const card = document.getElementById("lockCard");
+
+  if (input.value.trim() === SECRET_KEY) {
+    sessionStorage.setItem("his_radar_authenticated", "true");
+    document.getElementById("lockScreen").classList.add("unlocked");
+    errorMsg.style.display = "none";
+  } else {
+    errorMsg.style.display = "block";
+    card.classList.add("shake");
+    setTimeout(() => card.classList.remove("shake"), 400);
+    input.value = "";
+    input.focus();
+  }
+}
+
+document.getElementById("radarPass").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") attemptUnlock();
+});
+
+checkAuth();
+
+// CAMPAIGNS: STRICTLY "AN INDEPENDENT DEVELOPER / INDIE STUDIO" (SINGULAR DEVELOPER)
+const REDDIT_CAMPAIGNS = [
+  // 1. INDIE & GİRİŞİM
+  {
+    id: "sideproject",
+    sub: "r/SideProject",
+    category: "indie",
+    categoryName: "Indie Geliştirici",
+    catClass: "cat-indie",
+    members: "510k üye",
+    rule: "Her gün serbest. 'Feedback' etiketi seç. Bağımsız geliştirici projelerine çok destek verirler.",
+    submitUrl: "https://www.reddit.com/r/SideProject/submit",
+    title: "As an independent developer, I built an interactive living emotion map instead of another photo-feed: 'HİS' (Feedback wanted!)",
+    body: `Hey r/SideProject!
+
+I am an independent developer from Turkey, working with our indie studio HisVera.
+
+We’ve long felt that modern social media is broken—it's obsessed with "What are you doing?" and vanity metrics (likes, followers, clout). It fosters urban isolation instead of authentic human connection.
+
+So I spent the last few months developing **HİS** as an independent passion project:
+Instead of photos and profiles, HİS turns cities into a **living, breathing emotion map**:
+
+• **Emotional Traces:** Users drop anonymous whispers and feelings onto physical streets, parks, cafes, or landmarks.
+• **The Night Pass (Gece Geçidi):** Every night, people can release glowing lanterns on the map to let anyone awake and feeling down know they aren't alone.
+• **Spatial Vibe Rooms:** Dynamic geo-rooms that emerge for city hubs and gathering spots.
+• **Zero Clout / OLED Sanctuary:** No followers, no public likes, pure dark-mode peace.
+
+It's completely free on iOS. We'd genuinely love your honest feedback on the UI/UX, fluid map interactions, and overall concept!
+
+App Store: https://apps.apple.com/us/app/his-emotion-map/id6800705124
+
+Thank you for supporting independent software! ❤️`
+  },
+  {
+    id: "roastmystartup",
+    sub: "r/roastmystartup",
+    category: "indie",
+    categoryName: "Acımasız Eleştiri",
+    catClass: "cat-indie",
+    members: "85k üye",
+    rule: "Acımasız eleştiri isterler. Bağımsız stüdyo olarak fikri masaya yatır.",
+    submitUrl: "https://www.reddit.com/r/roastmystartup/submit",
+    title: "Roast our indie app: An anonymous emotion map where people drop raw feelings instead of curated Instagram highlights",
+    body: `We run an independent studio and recently launched 'HİS' (Emotion Map) on iOS.
+
+The Pitch:
+Modern social apps make everyone feel lonely by showing curated highlights. HİS takes the opposite approach:
+1. No profiles, no followers, no likes.
+2. An interactive OLED map where users anchor anonymous feelings and whispers to physical spots.
+3. A nightly lantern ritual where strangers send quiet beacons of light to each other.
+
+Our Biggest Doubts:
+• Will people actually stay vulnerable enough to post real emotions without vanity metrics?
+• How to solve geographic density in early stages as a bootstrapped indie team?
+
+Roast the product vision, the UX, the concept. Don't hold back:
+iOS Link: https://apps.apple.com/us/app/his-emotion-map/id6800705124`
+  },
+  {
+    id: "indiedev",
+    sub: "r/IndieDev",
+    category: "indie",
+    categoryName: "Indie Geliştirici",
+    catClass: "cat-indie",
+    members: "340k üye",
+    rule: "Bağımsız geliştirici zorluklarını ve $0 bütçeyle tasarım tecrübelerini paylaş.",
+    submitUrl: "https://www.reddit.com/r/IndieDev/submit",
+    title: "Independent developer with $0 budget: Why adding a daily midnight lantern ritual changed user retention completely",
+    body: `Hey fellow indies!
+
+When I first coded and released our emotion map app 'HİS', early users loved exploring the map, but daily retention was unpredictable.
+
+Then we designed a daily mechanic: **The Night Pass (Gece Geçidi)**.
+Between 9 PM and dawn, the UI shifts into an ultra-deep OLED black, and users can release a floating lantern on the city map. Other users awake late at night can tap it and send a glowing pulse back.
+
+Result: Nighttime DAU shot up 4x with zero marketing spend. Shared nighttime rituals create an emotional habit that push notifications never could.
+
+Check it out on iOS if you study indie UX mechanics:
+https://apps.apple.com/us/app/his-emotion-map/id6800705124
+
+Happy to discuss how I built the clustering and animations as an independent developer!`
+  },
+  {
+    id: "alphaandbetausers",
+    sub: "r/alphaandbetausers",
+    category: "indie",
+    categoryName: "Beta & Erken Kitle",
+    catClass: "cat-indie",
+    members: "42k üye",
+    rule: "Erken test kullanıcıları ve bağımsız geliştiriciye samimi geri bildirim arayanlar.",
+    submitUrl: "https://www.reddit.com/r/alphaandbetausers/submit",
+    title: "[iOS Launch] Independent studio looking for early testers to drop emotional whispers on their local city maps (HİS)",
+    body: `Hi everyone!
+
+We just launched version 2.1 of **HİS (Emotion Map)** on iOS, and as an independent studio, we're looking for thoughtful users from different cities around the world to test the spatial vibe rooms.
+
+What you test:
+• Dropping an anonymous whisper or feeling at your favorite local spot.
+• Testing the Night Pass lantern flow at nighttime.
+• Performance on map gestures and battery usage.
+
+Completely free, no ads, no sign-up required:
+https://apps.apple.com/us/app/his-emotion-map/id6800705124
+
+Please comment with your city and how the UI feels on your device!`
+  },
+  {
+    id: "entrepreneurridealong",
+    sub: "r/EntrepreneurRideAlong",
+    category: "indie",
+    categoryName: "Girişim Günlüğü",
+    catClass: "cat-indie",
+    members: "310k üye",
+    rule: "Bağımsız geliştirici olarak sıfırdan ürün geliştirme yolculuğunu anlat.",
+    submitUrl: "https://www.reddit.com/r/EntrepreneurRideAlong/submit",
+    title: "Building an anti-dopamine social app as an independent studio — Month 1 update",
+    body: `Wanted to share a candid milestone from our independent journey:
+
+Everyone told us: "Social networks are impossible for an independent team. If there's no viral loop with follower counts, you'll fail."
+
+We chose the opposite path:
+• Built 'HİS' without follower numbers, without photo uploads, and without likes.
+• Grounded it in geographical empathy—leaving anonymous feelings on real-world streets.
+• Focused 100% on craft: fluid gesture controls, OLED battery conservation, and soothing nighttime design.
+
+We just submitted our nomination to Apple's App Store editorial team, and early organic retention in night hours has been incredible.
+
+If you are building independent software against established giants, would love to connect:
+App Store: https://apps.apple.com/us/app/his-emotion-map/id6800705124`
+  },
+  {
+    id: "indiebiz",
+    sub: "r/indiebiz",
+    category: "indie",
+    categoryName: "Mikro Girişim",
+    catClass: "cat-indie",
+    members: "35k üye",
+    rule: "Bağımsız ve butik teknoloji ürünlerine çok sıcaktırlar.",
+    submitUrl: "https://www.reddit.com/r/indiebiz/submit",
+    title: "Our boutique indie app: HİS — Turning city loneliness into an anonymous shared emotion map",
+    body: `Hello indiebiz!
+
+We are HisVera, an independent development studio.
+
+Our newly released iOS app 'HİS' is an experiment in slow, mindful software. Instead of screaming for your attention with bright red badges, it acts as a digital sanctuary where you can map feelings to physical locations and light quiet lanterns at night.
+
+Built with extreme attention to aesthetic detail:
+https://apps.apple.com/us/app/his-emotion-map/id6800705124
+
+Feedback on the product-market fit for mindful apps is super appreciated!`
+  },
+
+  // 2. APPLE & iOS
+  {
+    id: "iosapps",
+    sub: "r/iosapps",
+    category: "apple",
+    categoryName: "iOS Topluluğu",
+    catClass: "cat-apple",
+    members: "145k üye",
+    rule: "'Showcase' veya 'Dev' etiketi seç. Bağımsız iOS tasarım kalitesine vurgu yap.",
+    submitUrl: "https://www.reddit.com/r/iosapps/submit",
+    title: "[Free] I built 'HİS' — An independent, mindful emotion map designed for nighttime peace and mental well-being",
+    body: `Hi everyone!
+
+As an independent iOS developer, I wanted to create an app that respects your screen time and mental space. 
+
+Most location apps are about finding coffee or checking where friends are. **HİS** is designed for emotional presence:
+
+1. **Pure OLED & Night Design:** Built specifically to be used in the quietest hours without hurting your eyes or stimulating anxiety.
+2. **Interactive Emotion Map:** Leave a feeling on a specific corner of the city. Someone walking past tomorrow can read your whisper.
+3. **Lantern Ritual (Night Pass):** Send light to anonymous souls feeling down or awake at 3 AM.
+4. **Privacy-First:** No accounts tied to real identities, no tracking ads, no follower dopamine traps.
+
+Would love to hear your thoughts on the animations and overall vibe:
+https://apps.apple.com/us/app/his-emotion-map/id6800705124
+
+Any feedback from iOS design enthusiasts is greatly appreciated!`
+  },
+  {
+    id: "iosprogramming",
+    sub: "r/iOSProgramming",
+    category: "apple",
+    categoryName: "iOS Yazılım & Kod",
+    catClass: "cat-apple",
+    members: "190k üye",
+    rule: "Yazılımcı diliyle konuş. Harita mimarisini ve optimizasyon kararlarını anlat.",
+    submitUrl: "https://www.reddit.com/r/iOSProgramming/submit",
+    title: "Showcase: Handling 500+ dynamic emotion pins on custom dark-mode vector maps with zero stutter",
+    body: `Hey iOS devs!
+
+Wanted to share some architecture decisions from my work as an independent developer on 'HİS' (Emotion Map):
+
+1. **Tile Caching & Cluster Optimization:** Instead of re-rendering pins on every pan/zoom, I implemented spatial coordinate hashing to keep map gestures at locked 60 FPS.
+2. **Night Glow Shader Effect:** Custom glowing beacons during the Night Pass ritual required custom layer blending to avoid memory spikes on older iPhones.
+3. **Privacy by Design:** Location coordinates are fuzzed with random radius offsets on the client before being sent, ensuring exact user homes are never recorded.
+
+Curious to hear your thoughts on the fluid gesture mechanics:
+https://apps.apple.com/us/app/his-emotion-map/id6800705124`
+  },
+  {
+    id: "apphookup",
+    sub: "r/AppHookup",
+    category: "apple",
+    categoryName: "Apple & İndirim",
+    catClass: "cat-apple",
+    members: "380k üye",
+    rule: "DİKKAT: Başlık formatı katıdır! [iOS] [Uygulama Adı] [Free] şeklinde olmalıdır.",
+    submitUrl: "https://www.reddit.com/r/AppHookup/submit",
+    title: "[iOS] [HİS - Living Emotion Map] [Free] A mindful dark-mode spatial emotion map with zero ads and no vanity metrics",
+    body: `App Store Link: https://apps.apple.com/us/app/his-emotion-map/id6800705124
+
+Description:
+HİS is an independent iOS app that turns cities into an anonymous living emotion map.
+• Drop emotional traces and whispers at locations.
+• Night Pass: send glowing lanterns to people feeling isolated at night.
+• Vibe Rooms for parks, beaches, and historic landmarks.
+• Mindful OLED night design, no toxic likes/followers, 100% privacy-first.
+
+Price: Free (No subscription, No third-party ads). Developed by an independent studio.`
+  },
+  {
+    id: "iossetups",
+    sub: "r/iOSsetups",
+    category: "apple",
+    categoryName: "Minimalist Kurulumlar",
+    catClass: "cat-apple",
+    members: "240k üye",
+    rule: "OLED siyahı, minimalist simgeler ve estetik ana ekran meraklıları.",
+    submitUrl: "https://www.reddit.com/r/iOSsetups/submit",
+    title: "Designed an OLED pitch-black app icon and interface for minimalists: HİS (Living Emotion Map)",
+    body: `If you love pure dark-mode setups with zero bright UI clutter, you might appreciate this.
+
+We designed 'HİS' specifically to sit cleanly on minimalist dark setups. When you open it, there are no neon banners or algorithmic feeds—just a deep-space map canvas with subtle amber and purple emotion lanterns.
+
+Made by an independent studio:
+https://apps.apple.com/us/app/his-emotion-map/id6800705124`
+  },
+  {
+    id: "apple",
+    sub: "r/apple",
+    category: "apple",
+    categoryName: "Apple (Pazar Günü)",
+    catClass: "cat-apple",
+    members: "4.8M üye",
+    rule: "ÖNEMLİ: Sadece PAZAR günleri [Promo Sunday] etiketiyle paylaşılabilir!",
+    submitUrl: "https://www.reddit.com/r/apple/submit",
+    title: "[Promo Sunday] HİS — An indie living emotion map crafted for iOS with mindful OLED aesthetics and spatial rooms",
+    body: `Happy Promo Sunday r/apple!
+
+As an independent developer behind HisVera studio, I'd love to share our passion project: **HİS**.
+
+Instead of traditional social feeds filled with infinite scrolling and engagement farming, HİS is built around emotional presence:
+
+• **Living Emotion Map:** Leave quiet, anonymous whispers and feelings anchored to geographical spots.
+• **Night Pass:** An evening ritual connecting lonely souls through glowing lanterns.
+• **Spatial Vibe Rooms:** Localized real-time rooms for campus, parks, and seaside corners.
+• **iOS First Mindset:** Deep dark mode designed specifically for OLED screens, haptic feedback, and buttery smooth gesture animations.
+
+Free on the App Store:
+https://apps.apple.com/us/app/his-emotion-map/id6800705124
+
+Would love your thoughts and feedback!`
+  },
+
+  // 3. DUYGU & EMPATİ
+  {
+    id: "lonely",
+    sub: "r/lonely",
+    category: "emotion",
+    categoryName: "Yalnızlık & Dayanışma",
+    catClass: "cat-emotion",
+    members: "420k üye",
+    rule: "Reklam gibi görünmemeli! Samimi bir empati sığınağı olduğunu hissettir.",
+    submitUrl: "https://www.reddit.com/r/lonely/submit",
+    title: "We built a free sanctuary where you can leave your true, unspoken feelings anonymously on the city map",
+    body: `Living in crowded cities can paradoxically feel like the loneliest thing in the world. Everyone is looking at their phones, pretending to live perfect lives on Instagram.
+
+We created **HİS** as an independent initiative because we wanted a place where no one has to fake being happy.
+
+You open the map, and you can see real, raw feelings left by strangers nearby—loneliness, hope, nostalgia, late-night thoughts. At night, there's a simple lantern feature where you can send a gentle light to anyone who is hurting or sitting alone.
+
+It is 100% free, has no ads, and requires no personal info. We hope it helps even one person feel a little less isolated tonight.
+
+iOS: https://apps.apple.com/us/app/his-emotion-map/id6800705124`
+  },
+  {
+    id: "mentalhealth",
+    sub: "r/MentalHealth",
+    category: "emotion",
+    categoryName: "Ruh Sağlığı",
+    catClass: "cat-emotion",
+    members: "410k üye",
+    rule: "Sosyal medyanın toksik etkilerine karşı 'dijital sığınak' yaklaşımını öne çıkar.",
+    submitUrl: "https://www.reddit.com/r/MentalHealth/submit",
+    title: "Why we built an anti-metric social space to help combat urban isolation and social comparison anxiety",
+    body: `Studies constantly show that follower counts, likes, and comment sections amplify anxiety and social comparison.
+
+As independent creators passionate about digital well-being, we asked: *What if technology helped us acknowledge our shared human fragility instead of hiding it?*
+
+That led to **HİS**:
+• No profiles or selfies.
+• You simply anchor an honest whisper to a spot on the map.
+• You see that someone who walked past your favorite park bench also felt overwhelmed today.
+
+Realizing you're not the only one feeling lost in this city can be profoundly healing.
+
+Free for iOS users:
+https://apps.apple.com/us/app/his-emotion-map/id6800705124`
+  },
+  {
+    id: "socialanxiety",
+    sub: "r/socialanxiety",
+    category: "emotion",
+    categoryName: "Sosyal Fobi",
+    catClass: "cat-emotion",
+    members: "390k üye",
+    rule: "Sosyal fobisi olanların kimliksiz ve yargılanmadan bağ kurabilmesini vurgula.",
+    submitUrl: "https://www.reddit.com/r/socialanxiety/submit",
+    title: "For those of us who get terrified of traditional social media: An anonymous, zero-judgment emotion map",
+    body: `If you have social anxiety, posting on typical apps feels like walking onto a stage with bright spotlights. The fear of being judged or ignored is exhausting.
+
+We built **HİS** as an independent sanctuary with zero spotlights:
+• No usernames, no face photos.
+• No likes to chase or feel bad about.
+• Just a quiet, dark map where you can leave your thoughts at a bus stop, a cafe corner, or under a tree.
+• Read what others felt there in silence.
+
+It lets you feel connected to humanity without any social performance pressure:
+https://apps.apple.com/us/app/his-emotion-map/id6800705124`
+  },
+  {
+    id: "kindvoice",
+    sub: "r/KindVoice",
+    category: "emotion",
+    categoryName: "Şefkat & Nezaket",
+    catClass: "cat-emotion",
+    members: "120k üye",
+    rule: "Çok kibar ve şefkatli bir topluluktur. Fener yoluyla gönderilen ışığı anlat.",
+    submitUrl: "https://www.reddit.com/r/KindVoice/submit",
+    title: "Sending a quiet lantern to anyone who had a heavy day today 🕯️",
+    body: `If today was difficult and you feel like nobody noticed your silent battle, please know that your presence matters.
+
+We built an independent passion project called **HİS**. Every night, people around the world release small digital lanterns on the city map, holding anonymous whispers of hope and resilience.
+
+You can release a lantern to vent, or tap someone else's light to send them warm solidarity.
+
+Hope this brings some comfort to your evening:
+https://apps.apple.com/us/app/his-emotion-map/id6800705124`
+  },
+  {
+    id: "mindfulness",
+    sub: "r/mindfulness",
+    category: "emotion",
+    categoryName: "Farkındalık",
+    catClass: "cat-emotion",
+    members: "1.1M üye",
+    rule: "Anda kalma, mekana dikkat etme ve dijital dinginlik felsefesini aktar.",
+    submitUrl: "https://www.reddit.com/r/mindfulness/submit",
+    title: "Emotional Geography: A mindful exercise in noticing the invisible feelings anchored to physical spaces",
+    body: `Every street corner, old bench, and seashore carries thousands of unseen memories and emotions.
+
+We built a mindful iOS companion called **HİS** to help us slow down and practice presence in our environments:
+Instead of looking at your phone to escape reality, you look at the map to tune into the emotional atmosphere of where you are standing right now.
+
+No notifications, no endless feeds—just mindful pauses in the city:
+https://apps.apple.com/us/app/his-emotion-map/id6800705124`
+  },
+  {
+    id: "casualconversation",
+    sub: "r/CasualConversation",
+    category: "emotion",
+    categoryName: "Samimi Sohbet",
+    catClass: "cat-emotion",
+    members: "2.4M üye",
+    rule: "Soru sorarak başlat. Samimi bir dille anı paylaşımına teşvik et.",
+    submitUrl: "https://www.reddit.com/r/CasualConversation/submit",
+    title: "What is an emotion or thought you felt in a specific place in your city, but never told anyone?",
+    body: `Have you ever walked past a bench in a quiet park, or sat on a harbor dock at night, feeling an intense wave of nostalgia or unspoken thought that nobody around you knew about?
+
+We've been fascinated by this concept of "emotional geography"—how physical places hold invisible memories. As an independent project, we actually built an app (HİS) just so people could drop those anonymous feelings on the exact physical spot they felt them.
+
+What's a memory or feeling tied to a corner of your town that only you know? We’d love to read your stories!`
+  },
+
+  // 4. GECE & ŞEHİR
+  {
+    id: "thenightfeeling",
+    sub: "r/TheNightFeeling",
+    category: "urban",
+    categoryName: "Gece Hissiyatı",
+    catClass: "cat-urban",
+    members: "260k üye",
+    rule: "Gece hüznü, ıslak kaldırımlar ve sokak lambaları aşığı bir topluluk.",
+    submitUrl: "https://www.reddit.com/r/TheNightFeeling/submit",
+    title: "Created a quiet digital lantern ritual for everyone who wanders the streets at night or sits awake at 3 AM",
+    body: `Whenever you walk empty city streets under orange streetlights late at night, you wonder: *who else is awake right now, looking out of their window or feeling alone in this exact city?*
+
+That exact feeling led us to build an independent app called **HİS**.
+
+Every night, there is a ritual called **The Night Pass**:
+You light an anonymous lantern on the map and release a quiet whisper. People across the dark streets can see your light, tap it, and send a silent beacon of solidarity back to you.
+
+No profiles, no comments, no noise—just quiet lights in the dark acknowledging each other.
+
+If you love the calm, melancholic beauty of the night, hope it brings a little peace to your screen:
+iOS: https://apps.apple.com/us/app/his-emotion-map/id6800705124`
+  },
+  {
+    id: "nightwalk",
+    sub: "r/nightwalk",
+    category: "urban",
+    categoryName: "Gece Yürüyüşçüleri",
+    catClass: "cat-urban",
+    members: "65k üye",
+    rule: "Gece yürüyüşçülerine fener bırakma ritüelini tanıt.",
+    submitUrl: "https://www.reddit.com/r/nightwalk/submit",
+    title: "Made a quiet companion app for fellow nightwalkers to leave anonymous thoughts and light lanterns across the city",
+    body: `If you also take quiet midnight walks to clear your mind, we made something for our tribe.
+
+It's called **HİS**. When you're out walking at night:
+• You can leave a quiet whisper at a street corner or bench you stopped by.
+• You can look at the map and see subtle glows left by other nightwalkers.
+• During the night pass, you can release a glowing lantern that others can spot.
+
+It has zero notifications, no followers, pure OLED black UI that won't ruin your night vision.
+
+Free on iOS: https://apps.apple.com/us/app/his-emotion-map/id6800705124
+
+Stay safe on your night walks tonight 🌙`
+  },
+  {
+    id: "liminalspace",
+    sub: "r/LiminalSpace",
+    category: "urban",
+    categoryName: "Liminal & Sessiz",
+    catClass: "cat-urban",
+    members: "650k üye",
+    rule: "Geceleyin terk edilmiş gibi duran boş sokaklar ve koridorların ruhu.",
+    submitUrl: "https://www.reddit.com/r/LiminalSpace/submit",
+    title: "Mapping the liminal emotional traces left behind in empty nighttime spaces (HİS)",
+    body: `There is a surreal feeling when you stand in a completely empty plaza, subway station, or highway overpass at 2 AM. These liminal spaces hold the emotional echoes of thousands of people who passed through during the day.
+
+We built an independent minimalist iOS map called **HİS** where users anchor anonymous whispers to these liminal coordinates.
+
+Looking at an empty spot on the map and reading what someone felt there at 3 AM hits differently:
+https://apps.apple.com/us/app/his-emotion-map/id6800705124`
+  },
+  {
+    id: "solotravel",
+    sub: "r/solotravel",
+    category: "urban",
+    categoryName: "Tek Başına Seyahat",
+    catClass: "cat-urban",
+    members: "3.2M üye",
+    rule: "Yabancı bir şehirde tek başına yürürken lokal duyguları keşfetme açısı.",
+    submitUrl: "https://www.reddit.com/r/solotravel/submit",
+    title: "Solo travelers: We built an app to discover the hidden emotional whispers of a city instead of tourist traps",
+    body: `When traveling alone, TripAdvisor lists rarely show the soul of a place. The real question is: *What do people who live here actually feel? What happened on that quiet bridge?*
+
+That inspired **HİS**:
+An independent emotion map where travelers and locals leave whispers and memories anchored to physical coordinates. You can open the map anywhere in the world and see raw human moments left behind.
+
+Free on iOS: https://apps.apple.com/us/app/his-emotion-map/id6800705124`
+  },
+  {
+    id: "citywalk",
+    sub: "r/citywalk",
+    category: "urban",
+    categoryName: "Şehir Yürüyüşleri",
+    catClass: "cat-urban",
+    members: "25k üye",
+    rule: "Yavaş şehir turları ve sokakların gizli hikayeleri.",
+    submitUrl: "https://www.reddit.com/r/citywalk/submit",
+    title: "Turning city walks into an emotional treasure hunt: Leaving whispers on street corners",
+    body: `For those who love aimless urban wandering, we built an independent iOS app called **HİS**.
+
+It turns every city walk into a quiet dialogue with strangers:
+Leave an anonymous note about how the breeze felt at the harbor, or read a bittersweet confession left on an old alley staircase.
+
+Completely free & private:
+https://apps.apple.com/us/app/his-emotion-map/id6800705124`
+  },
+
+  // 5. TOPLULUK & YAŞAM
+  {
+    id: "college",
+    sub: "r/college",
+    category: "student",
+    categoryName: "Kampüs Yaşamı",
+    catClass: "cat-student",
+    members: "1.2M üye",
+    rule: "Kampüs yalnızlığı, vize/final geceleri ve kütüphane fısıltıları.",
+    submitUrl: "https://www.reddit.com/r/college/submit",
+    title: "An anonymous emotion map to vent during late-night study grinds without social media anxiety (HİS)",
+    body: `Between exams, imposter syndrome, and sitting in silent libraries at midnight, campus life can feel surprisingly isolating.
+
+We built **HİS** as an independent app where people can drop anonymous whispers onto campus buildings, dorms, and libraries.
+
+Realizing that someone studying on the floor above you is just as anxious or nostalgic makes the load feel a little lighter:
+Free on iOS: https://apps.apple.com/us/app/his-emotion-map/id6800705124`
+  },
+  {
+    id: "introvert",
+    sub: "r/introvert",
+    category: "student",
+    categoryName: "İçedönükler",
+    catClass: "cat-student",
+    members: "490k üye",
+    rule: "Kamera açmadan, profil kasmadan sessizce var olma arzusu.",
+    submitUrl: "https://www.reddit.com/r/introvert/submit",
+    title: "A social network for introverts who hate profiles, photos, and competing for attention (HİS)",
+    body: `Most social networks force you to perform: take good photos, come up with witty captions, count your followers.
+
+We built **HİS** as an independent anti-performance space. You just drop an anonymous feeling on a dark map or release a quiet lantern. No chat requests, no DM pressure, no public scrutiny. Just quiet presence.
+
+iOS Link: https://apps.apple.com/us/app/his-emotion-map/id6800705124`
+  },
+  {
+    id: "digitaldetox",
+    sub: "r/digitaldetox",
+    category: "student",
+    categoryName: "Dijital Detoks",
+    catClass: "cat-student",
+    members: "115k üye",
+    rule: "Dopamin tuzaklarından arınmış, yavaş teknoloji savunucuları.",
+    submitUrl: "https://www.reddit.com/r/digitaldetox/submit",
+    title: "Can social software be calm? An independent app with zero algorithmic feeds and zero notifications",
+    body: `Endless feeds and algorithmic scrolls ruin our attention spans, yet we still crave genuine human connection.
+
+So we built **HİS**:
+• No endless feed.
+• No push notifications dragging you back.
+• No like counts or streaks.
+• Just a quiet map that you open once a day to check or light a lantern.
+
+Technology should respect our stillness.
+iOS: https://apps.apple.com/us/app/his-emotion-map/id6800705124`
+  }
+];
+
+// STATE MANAGEMENT
+let postedList = JSON.parse(localStorage.getItem('his_reddit_posted') || '[]');
+let currentFilter = 'all';
+let searchQuery = '';
+
+function renderCards() {
+  const container = document.getElementById('subredditGrid');
+  container.innerHTML = '';
+
+  const filtered = REDDIT_CAMPAIGNS.filter(item => {
+    const matchesCat = currentFilter === 'all' || item.category === currentFilter;
+    const matchesSearch = item.sub.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          item.categoryName.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCat && matchesSearch;
+  });
+
+  filtered.forEach(c => {
+    const isPosted = postedList.includes(c.id);
+    const card = document.createElement('div');
+    card.className = `sub-card ${isPosted ? 'posted' : ''}`;
+    card.id = `card-${c.id}`;
+
+    card.innerHTML = `
+      <div class="card-top">
+        <div class="sub-identity">
+          <div class="sub-avatar">
+            <i class="fa-brands fa-reddit"></i>
+          </div>
+          <div>
+            <div class="sub-name">${c.sub}</div>
+            <div class="sub-members">${c.members}</div>
+          </div>
+        </div>
+        <span class="badge-category ${c.catClass}">${c.categoryName}</span>
+      </div>
+
+      <div class="rule-box">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span>${c.rule}</span>
+      </div>
+
+      <!-- TITLE SECTION -->
+      <div class="copy-section">
+        <div class="copy-label">
+          <span>Gönderi Başlığı</span>
+          <span style="font-family: var(--mono);">${c.title.length} karakter</span>
+        </div>
+        <div class="copy-box">
+          <div class="title-content">${escapeHtml(c.title)}</div>
+          <button class="btn-copy" onclick="copyText('${c.id}', 'title')">
+            <i class="fa-regular fa-copy"></i> Kopyala
+          </button>
+        </div>
+      </div>
+
+      <!-- BODY SECTION -->
+      <div class="copy-section">
+        <div class="copy-label">
+          <span>Özgün Gönderi Metni (Bağımsız Geliştirici & Stüdyo Dili)</span>
+        </div>
+        <div class="copy-box">
+          <div class="body-preview">${escapeHtml(c.body)}</div>
+          <button class="btn-copy" onclick="copyText('${c.id}', 'body')">
+            <i class="fa-regular fa-copy"></i> Kopyala
+          </button>
+        </div>
+      </div>
+
+      <!-- ACTIONS -->
+      <div class="card-actions">
+        <a href="${c.submitUrl}" target="_blank" class="btn-direct">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> Reddit'te Aç & Paylaş
+        </a>
+        <button class="btn-toggle-done" onclick="togglePosted('${c.id}')">
+          <i class="fa-${isPosted ? 'solid' : 'regular'} fa-circle-check"></i>
+          <span>${isPosted ? 'Paylaşıldı' : 'Yapıldı'}</span>
+        </button>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+
+  updateStats();
+}
+
+function updateStats() {
+  document.getElementById('totalSubsCount').textContent = REDDIT_CAMPAIGNS.length;
+  document.getElementById('postedCount').textContent = `${postedList.length} / ${REDDIT_CAMPAIGNS.length}`;
+}
+
+function copyText(id, type) {
+  const item = REDDIT_CAMPAIGNS.find(x => x.id === id);
+  if (!item) return;
+
+  const textToCopy = type === 'title' ? item.title : item.body;
+  navigator.clipboard.writeText(textToCopy).then(() => {
+    showToast(type === 'title' ? '📌 Başlık kopyalandı!' : '📝 Bağımsız stüdyo metni kopyalandı!');
+  });
+}
+
+function togglePosted(id) {
+  if (postedList.includes(id)) {
+    postedList = postedList.filter(x => x !== id);
+  } else {
+    postedList.push(id);
+    showToast('🎉 Tebrikler! Paylaşıldı olarak işaretlendi.');
+  }
+  localStorage.setItem('his_reddit_posted', JSON.stringify(postedList));
+  renderCards();
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2400);
+}
+
+function escapeHtml(text) {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+// FILTER HANDLERS
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.getAttribute('data-filter');
+    renderCards();
+  });
+});
+
+document.getElementById('searchInput').addEventListener('input', (e) => {
+  searchQuery = e.target.value;
+  renderCards();
+});
+
+// INITIAL RENDER
+renderCards();
+</script>
+
+</body>
+</html>
