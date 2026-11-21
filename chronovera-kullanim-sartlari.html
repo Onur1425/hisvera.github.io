@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-cv-i18n="terms.meta_title">Kullanım Şartları ve Fikri Mülkiyet | ChronoVera</title>
+    <link rel="icon" type="image/jpeg" href="assets/images/chronovera_logo.jpg">
+    <meta name="description" data-cv-i18n-content="terms.meta_description" content="ChronoVera resmi son kullanıcı lisans sözleşmesi (EULA), kullanım şartları, fikri mülkiyet koruması ve sorumluluk sınırları.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --cv-gold: #f59e0b;
+            --cv-gold-light: #fde68a;
+            --cv-obsidian: #05070a;
+            --cv-card-bg: rgba(15, 23, 42, 0.82);
+            --cv-border: rgba(245, 158, 11, 0.25);
+            --cv-glow: rgba(245, 158, 11, 0.35);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--cv-obsidian);
+            color: #f8fafc;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.85;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .background-effects {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .glow-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.15;
+        }
+        .blob-1 {
+            width: 45vw; height: 45vw;
+            background: radial-gradient(circle, #f59e0b 0%, transparent 70%);
+            top: -10%; right: -10%;
+        }
+        .blob-2 {
+            width: 45vw; height: 45vw;
+            background: radial-gradient(circle, #38bdf8 0%, transparent 70%);
+            bottom: 10%; left: -10%;
+        }
+
+        /* Navbar */
+        .policy-nav {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            padding: 1.1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: rgba(5, 7, 10, 0.92);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .policy-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .policy-logo img {
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            border: 1px solid var(--cv-border);
+            object-fit: cover;
+        }
+        .policy-logo span {
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: #fff;
+        }
+        .policy-nav-back {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.88rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        .policy-nav-back:hover {
+            border-color: var(--cv-gold);
+            color: var(--cv-gold);
+            transform: translateX(-3px);
+            background: rgba(245, 158, 11, 0.15);
+        }
+        .policy-nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-shrink: 0;
+        }
+        .cv-lang-switch {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            border-radius: 20px;
+            padding: 3px;
+            gap: 2px;
+        }
+        .cv-lang-btn {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            padding: 5px 10px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            line-height: 1;
+        }
+        .cv-lang-btn:hover {
+            color: #f8fafc;
+        }
+        .cv-lang-btn.active {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.28), rgba(217, 119, 6, 0.32));
+            color: var(--cv-gold-light);
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
+        }
+        .cv-lang-sep {
+            color: rgba(255, 255, 255, 0.16);
+            font-size: 0.72rem;
+            user-select: none;
+            line-height: 1;
+        }
+
+        /* Container */
+        .policy-container {
+            max-width: 960px;
+            margin: 7.5rem auto 4rem;
+            padding: 4rem 3.5rem;
+            background: var(--cv-card-bg);
+            backdrop-filter: blur(24px);
+            border: 1px solid var(--cv-border);
+            border-radius: 28px;
+            color: #cbd5e1;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.75), 0 0 40px rgba(245, 158, 11, 0.1);
+        }
+
+        .policy-header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(245, 158, 11, 0.12);
+            color: #f59e0b;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+        .policy-container h1 {
+            color: #fff;
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.2rem, 4vw, 3rem);
+            margin-bottom: 0.6rem;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #fff 40%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .policy-container .date {
+            color: #64748b;
+            margin-bottom: 2.2rem;
+            font-size: 0.95rem;
+            font-style: italic;
+            font-family: 'Space Grotesk', monospace;
+        }
+
+        .policy-highlight {
+            background: rgba(245, 158, 11, 0.08);
+            border-left: 4px solid var(--cv-gold);
+            padding: 1.6rem;
+            border-radius: 0 16px 16px 0;
+            margin-bottom: 2.5rem;
+            font-size: 1.05rem;
+            color: #f8fafc;
+            line-height: 1.85;
+        }
+
+        /* --- İçindekiler Kartı (TOC) --- */
+        .toc-card {
+            background: rgba(10, 15, 28, 0.75);
+            border: 1px solid var(--cv-border);
+            border-radius: 20px;
+            padding: 2.2rem;
+            margin: 2.5rem 0 3.5rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.08);
+        }
+        .toc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .toc-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .toc-email-badge {
+            font-family: 'Space Grotesk', monospace;
+            font-size: 0.85rem;
+            color: #94a3b8;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(245, 158, 11, 0.08);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+        }
+        .toc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem 2.2rem;
+        }
+        .toc-group-label {
+            font-family: 'Space Grotesk', monospace;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
+            margin-bottom: 0.65rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .toc-group-label.part-gold { color: var(--cv-gold); }
+        .toc-group-label.part-cyan { color: #38bdf8; }
+        .toc-group-label.part-emerald { color: #34d399; margin-top: 1.4rem; }
+        @media (max-width: 768px) {
+            .toc-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .toc-card {
+                padding: 1.6rem 1.2rem;
+            }
+        }
+        .toc-list {
+            list-style: none !important;
+            padding-left: 0 !important;
+            margin: 0 !important;
+        }
+        .toc-list li {
+            padding-left: 0 !important;
+            margin-bottom: 0.5rem !important;
+        }
+        .toc-list li::before {
+            display: none !important;
+        }
+        .toc-list a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.94rem;
+            transition: all 0.25s;
+            display: block;
+            padding: 5px 10px;
+            border-radius: 8px;
+            line-height: 1.5;
+        }
+        .toc-list a:hover {
+            color: var(--cv-gold-light);
+            background: rgba(245, 158, 11, 0.12);
+            transform: translateX(4px);
+        }
+
+        /* --- Bölüm Bannerları (ChronoVera Obsidian & Accent Theme) --- */
+        .part-banner {
+            border-radius: 20px;
+            padding: 1.9rem 2.2rem;
+            margin: 3.5rem 0 2.2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6);
+        }
+        .part-banner.part-1 {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.16) 0%, rgba(10, 15, 28, 0.92) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.4);
+        }
+        .part-banner.part-2 {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(10, 15, 28, 0.92) 100%);
+            border: 1px solid rgba(56, 189, 248, 0.38);
+        }
+        .part-banner.part-3 {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(10, 15, 28, 0.92) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.38);
+        }
+        .part-badge {
+            display: inline-block;
+            font-family: 'Space Grotesk', monospace;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+        }
+        .part-1 .part-badge {
+            background: rgba(245, 158, 11, 0.22);
+            color: var(--cv-gold-light);
+            border: 1px solid rgba(245, 158, 11, 0.4);
+        }
+        .part-2 .part-badge {
+            background: rgba(56, 189, 248, 0.2);
+            color: #7dd3fc;
+            border: 1px solid rgba(56, 189, 248, 0.4);
+        }
+        .part-3 .part-badge {
+            background: rgba(16, 185, 129, 0.2);
+            color: #6ee7b7;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+        }
+        .part-banner h2 {
+            margin: 0 0 0.5rem 0 !important;
+            font-size: 1.65rem !important;
+            color: #fff !important;
+            font-family: 'Cinzel', serif;
+        }
+        .part-banner p {
+            margin: 0 !important;
+            font-size: 0.98rem !important;
+            color: #cbd5e1 !important;
+            line-height: 1.75 !important;
+        }
+
+        /* Uyarı Kutusu */
+        .policy-warning-box {
+            background: rgba(239, 68, 68, 0.09);
+            border: 1px solid rgba(239, 68, 68, 0.35);
+            border-radius: 18px;
+            padding: 1.8rem;
+            margin: 2rem 0;
+            color: #fca5a5;
+            line-height: 1.85;
+        }
+        .policy-warning-box strong {
+            color: #ef4444;
+            font-size: 1.08rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0.6rem;
+        }
+
+        /* Bölüm Kartları */
+        .section-card {
+            scroll-margin-top: 100px;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .section-card:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .policy-container h2 {
+            color: var(--cv-gold);
+            font-family: 'Cinzel', serif;
+            margin-top: 1rem;
+            margin-bottom: 1.1rem;
+            font-size: 1.55rem;
+            letter-spacing: 0.8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .policy-container p {
+            color: #cbd5e1;
+            line-height: 1.9;
+            margin-bottom: 1.2rem;
+            font-size: 1.02rem;
+        }
+        .policy-container ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1.5rem;
+        }
+        .policy-container ul li {
+            margin-bottom: 0.85rem;
+            position: relative;
+            padding-left: 1.8rem;
+            color: #cbd5e1;
+            font-size: 1rem;
+            line-height: 1.85;
+        }
+        .policy-container ul li::before {
+            content: '\f054';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--cv-gold);
+            position: absolute;
+            left: 0;
+            top: 4px;
+            font-size: 0.8rem;
+        }
+        .policy-container code {
+            background: rgba(255, 255, 255, 0.08);
+            color: #38bdf8;
+            padding: 2px 7px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.92em;
+        }
+
+        /* Sayfa Başına Dön Butonu */
+        .back-to-top {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 3.5rem;
+            padding: 0.8rem 1.8rem;
+            border-radius: 20px;
+            background: rgba(245, 158, 11, 0.12);
+            border: 1px solid var(--cv-border);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.92rem;
+            transition: all 0.3s;
+        }
+        .back-to-top:hover {
+            background: var(--cv-gold);
+            color: #000;
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .policy-footer {
+            margin-top: 5rem;
+            padding: 3.5rem 5% 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(3, 5, 8, 0.96);
+            text-align: center;
+        }
+        .policy-footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.6rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.6rem;
+        }
+        .policy-footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.92rem;
+            transition: color 0.3s;
+        }
+        .policy-footer-links a:hover {
+            color: var(--cv-gold);
+        }
+        .policy-footer p {
+            color: #64748b;
+            font-size: 0.86rem;
+        }
+
+        @media (max-width: 768px) {
+            .policy-container {
+                padding: 2.2rem 1.5rem;
+                margin-top: 5.5rem;
+            }
+            .part-banner {
+                padding: 1.5rem 1.3rem;
+            }
+        }
+        @media (max-width: 520px) {
+            .policy-nav {
+                padding: 0.9rem 4%;
+            }
+            .policy-logo img {
+                width: 32px;
+                height: 32px;
+            }
+            .policy-logo span {
+                font-size: 1rem;
+                letter-spacing: 1px;
+            }
+            .policy-nav-actions {
+                gap: 0.5rem;
+            }
+            .cv-lang-btn {
+                padding: 5px 8px;
+                font-size: 0.72rem;
+            }
+            .policy-nav-back {
+                padding: 8px 11px;
+            }
+            .policy-nav-back span {
+                display: none;
+            }
+        }
+    </style>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0DRJXGNWT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-D0DRJXGNWT');
+    </script>
+</head>
+<body id="top">
+    <div class="background-effects">
+        <div class="glow-blob blob-1"></div>
+        <div class="glow-blob blob-2"></div>
+    </div>
+
+    <!-- 🏛 Navigation Bar -->
+    <nav class="policy-nav">
+        <a href="chronovera.html" class="policy-logo">
+            <img src="assets/images/chronovera_logo.jpg" alt="ChronoVera Logo">
+            <span>CHRONOVERA</span>
+        </a>
+        <div class="policy-nav-actions">
+            <div class="cv-lang-switch" role="group" aria-label="Language Switcher">
+                <button type="button" class="cv-lang-btn active" data-cv-lang-switch="tr" aria-pressed="true">TR</button>
+                <span class="cv-lang-sep" aria-hidden="true">|</span>
+                <button type="button" class="cv-lang-btn" data-cv-lang-switch="en" aria-pressed="false">EN</button>
+            </div>
+            <a href="chronovera.html" class="policy-nav-back">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span data-cv-i18n="common.legal_back_cv">ChronoVera'ya Dön</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- 📜 Main Document -->
+    <main>
+        <div class="policy-container">
+            <div class="policy-header-badge">
+                <i class="fa-solid fa-scale-balanced"></i>
+                <span data-cv-i18n="terms.badge">Resmi Şartlar, EULA ve Fikri Mülkiyet Koruması</span>
+            </div>
+            <h1 data-cv-i18n="terms.title">ChronoVera: Kullanım Şartları ve Telif Hakları</h1>
+            <p class="date" data-cv-i18n="terms.date">Son Güncelleme: 21 Kasım 2026 // Yürürlük Tarihi: 21 Kasım 2026</p>
+
+            <div class="policy-highlight" data-cv-i18n-html="terms.highlight_html">
+                Bu yasal belge; Apple App Store (iOS / iPadOS) ve Google Play Store (Android) platformlarında sunulan <strong>ChronoVera</strong> mobil oyununun tam sürümünün, Kapalı Beta / TestFlight erken erişim sürümlerinin, resmi web tanıtım sayfasının, interaktif simülatörünün ve bekleme listesi/iletişim kanallarının kullanım şartlarını,
+                son kullanıcı lisans sözleşmesini (EULA) ve fikri mülkiyet haklarını düzenler.
+                Oyunu indirerek, kurarak veya web mecralarımızı kullanarak bu şartları peşinen kabul etmiş olursunuz.
+            </div>
+
+            <!-- 📑 İÇİNDEKİLER VE HIZLI GEZİNME (TOC) -->
+            <div class="toc-card">
+                <div class="toc-header">
+                    <div class="toc-title-wrap">
+                        <i class="fa-solid fa-list-ul" style="color: var(--cv-gold);"></i>
+                        <span data-cv-i18n="common.legal_toc_title">İçindekiler ve Hızlı Gezinme</span>
+                    </div>
+                    <div class="toc-email-badge">
+                        <i class="fa-solid fa-envelope" style="color: var(--cv-gold);"></i> chronovera@hisvera.com
+                    </div>
+                </div>
+                <div class="toc-grid">
+                    <div>
+                        <div class="toc-group-label part-gold">
+                            <i class="fa-solid fa-gamepad"></i>
+                            <span data-cv-i18n="terms.toc.group1">Bölüm I: ChronoVera Mobil Oyunu &amp; EULA</span>
+                        </div>
+                        <ul class="toc-list">
+                            <li><a href="#sec1" data-cv-i18n="terms.toc.sec1">1. Taraflar, Kapsam, Yaş Sınırı ve Sözleşmenin Kabulü</a></li>
+                            <li><a href="#sec2" data-cv-i18n="terms.toc.sec2">2. Son Kullanıcı Lisansı (EULA), Oyun Modları ve Yerel Yedekleme</a></li>
+                            <li><a href="#sec3" data-cv-i18n="terms.toc.sec3">3. Sanal Varlıklar, Kozmetikler, ChronoPass ve İadeler</a></li>
+                            <li><a href="#sec4" data-cv-i18n="terms.toc.sec4">4. Liderlik Tabloları, Çevrimiçi Eşleşme ve Adil Oyun</a></li>
+                            <li><a href="#sec5" data-cv-i18n="terms.toc.sec5">5. Oyuncu Sağlığı, Işık Duyarlılığı ve Tıbbi Feragatname</a></li>
+                            <li><a href="#sec6" data-cv-i18n="terms.toc.sec6">6. Hizmet Sürekliliği, Güncellemeler ve Lisansın Feshi</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="toc-group-label part-cyan">
+                            <i class="fa-solid fa-globe"></i>
+                            <span data-cv-i18n="terms.toc.group2">Bölüm II: Web Platformu &amp; Erken Erişim</span>
+                        </div>
+                        <ul class="toc-list">
+                            <li><a href="#sec7" data-cv-i18n="terms.toc.sec7">7. Web Tanıtım Sayfası, Simülatör ve İletişim Formları</a></li>
+                            <li><a href="#sec8" data-cv-i18n="terms.toc.sec8">8. Kapalı Beta, TestFlight ve Erken Erişim Kuralları</a></li>
+                        </ul>
+
+                        <div class="toc-group-label part-emerald">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                            <span data-cv-i18n="terms.toc.group3">Bölüm III: Fikri Mülkiyet, Sorumluluk &amp; Hukuki Hükümler</span>
+                        </div>
+                        <ul class="toc-list">
+                            <li><a href="#sec9" data-cv-i18n="terms.toc.sec9">9. Fikri ve Sınai Mülkiyet Hakları (FSEK &amp; Berne)</a></li>
+                            <li><a href="#sec10" data-cv-i18n="terms.toc.sec10">10. Tersine Mühendislik, Klonlama, Bot ve Hile Yasağı</a></li>
+                            <li><a href="#sec11" data-cv-i18n="terms.toc.sec11">11. Kapsamlı Sorumluluk Reddi (AS-IS) ve Garanti Sınırları</a></li>
+                            <li><a href="#sec12" data-cv-i18n="terms.toc.sec12">12. Tazminat (Indemnification) ve Mücbir Sebepler</a></li>
+                            <li><a href="#sec13" data-cv-i18n="terms.toc.sec13">13. Apple App Store EULA &amp; Google Play Mağaza Uyumu</a></li>
+                            <li><a href="#sec14" data-cv-i18n="terms.toc.sec14">14. Bölünebilirlik, Yetkili Hukuk ve Mahkeme</a></li>
+                            <li><a href="#sec15" data-cv-i18n="terms.toc.sec15">15. Hak Sahibi, Resmi İletişim, Değişiklikler ve Yürürlük</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ======================================================== -->
+            <!-- BÖLÜM I: CHRONOVERA MOBİL OYUNU & LİSANS (EULA)          -->
+            <!-- ======================================================== -->
+            <div class="part-banner part-1">
+                <span class="part-badge" data-cv-i18n="terms.parts.p1_badge">Bölüm I // Mobil Oyun &amp; Lisans (EULA)</span>
+                <h2 data-cv-i18n="terms.parts.p1_title">Bölüm I: ChronoVera Mobil Oyunu Kullanım Şartları</h2>
+                <p data-cv-i18n="terms.parts.p1_desc">Apple App Store ve Google Play tam sürümü, oyun modları, oyun içi satın alımlar ve oyuncu haklarını kapsar.</p>
+            </div>
+
+            <!-- BÖLÜM 1 -->
+            <div class="section-card" id="sec1" data-cv-i18n-html="terms.sections.sec1">
+                <h2>1. Taraflar, Kapsam, Yaş Sınırı ve Sözleşmenin Kabulü</h2>
+                <p>
+                    İşbu Kullanım Şartları ve Son Kullanıcı Lisans Sözleşmesi (EULA); <strong>HisVera Studio</strong> ve bireysel geliştirici/hak sahibi <strong>Onur Öztürk</strong> (bundan böyle "HisVera" veya "Stüdyo" olarak anılacaktır) ile
+                    ChronoVera mobil oyununu (iOS ve Android tam sürümleri ile test sürümleri), web tanıtım mecralarını, mekanik simülatörünü ve bekleme listesi/iletişim araçlarını kullanan gerçek kişi ("Kullanıcı") arasında akdedilmiştir.
+                </p>
+                <p>
+                    ChronoVera mobil oyununu cihazınıza yükleyerek, sitemiz üzerinden bekleme listesine/iletişime başvurarak veya oyunu herhangi bir şekilde kullanarak işbu şartların tamamını okuduğunuzu, anladığınızı ve sözleşme maddelerine uymayı gayrikabili rücu kabul ettiğinizi beyan edersiniz.
+                </p>
+                <ul>
+                    <li><strong>Yaş Sınırı ve Ebeveyn Sorumluluğu:</strong> ChronoVera genel izleyici kitlesine uygun, şiddet veya uygunsuz içerik barındırmayan bir yapımdır. Bununla birlikte yürürlükteki hukuk gereğince 18 yaşından (veya bulunduğu ülkedeki yasal reşit olma yaşından) küçük kullanıcıların oyunu ve varsa oyun içi satın alma özelliklerini yalnızca ebeveyn veya yasal vasilerinin bilgisi ve gözetimi altında kullanması gerekmektedir. Reşit olmayan kişilerin cihaz içi satın almalarından ve kullanım tercihlerinden yasal velileri sorumludur.</li>
+                </ul>
+            </div>
+
+            <!-- BÖLÜM 2 -->
+            <div class="section-card" id="sec2" data-cv-i18n-html="terms.sections.sec2">
+                <h2>2. Son Kullanıcı Lisansı (EULA), Oyun Modları ve Yerel Yedekleme</h2>
+                <p>
+                    HisVera, kullanıcıya ChronoVera mobil oyununu yalnızca kişisel, ticari olmayan, devredilemez ve münhasır olmayan bir şekilde
+                    kendi uyumlu mobil cihazında çalıştırması ve oynaması için sınırlı bir son kullanıcı lisansı (EULA) verir. Bu lisans hiçbir surette oyunun mülkiyetinin veya telif haklarının devri anlamına gelmez.
+                </p>
+                <ul>
+                    <li><strong>Kapsanan Oyun Modülleri:</strong> İşbu lisans; 24 hikaye bölümünü, ChronoMaze labirent modunu, Zaman Çarkları modunu, Zaman Bahçesi'ni, Zaman Kapsülleri mektup defterini, Zaman Aynası'nı, tek ekranda iki kişilik rezonans modunu ve Sonsuz Zen Modu'nu kapsar.</li>
+                    <li><strong>Ticari Kullanım ve Devir Yasağı:</strong> Oyuncu oyunu kiralayamaz, satamaz, alt lisanslayamaz veya ticari mekanlarda ücret karşılığı oynatamaz.</li>
+                    <li><strong>Çevrimdışı Depolama &amp; Kullanıcı Kontrollü Yerel Yedekleme:</strong> ChronoVera'nın çevrimdışı (offline) oynanış yapısı gereği tüm yerel kayıtlar cihazın kendi belleğinde saklanır. Kullanıcı dilerse oyun içindeki <strong>Ayarlar</strong> menüsünden verilerini kendi cihazına yerel yedek dosyası olarak kaydedebilir ve gerektiğinde geri yükleyebilir; ancak bu yedek dosyasını güvenli şekilde saklama, koruma, üçüncü kişilerle paylaşmama ve cihaz değişiminde taşıma sorumluluğu münhasıran kullanıcıya aittir.</li>
+                </ul>
+            </div>
+
+            <!-- BÖLÜM 3 -->
+            <div class="section-card" id="sec3" data-cv-i18n-html="terms.sections.sec3">
+                <h2>3. Sanal Varlıklar, Estetik Kozmetikler, ChronoPass ve İadeler</h2>
+                <p>
+                    ChronoVera etik ve şeffaf bir gelir modeli benimser. Oyunumuz "kazanmak için öde" (pay-to-win), kumar, şans kutusu (loot box) veya bağımlılık tuzakları içermez:
+                </p>
+                <ul>
+                    <li><strong>Ücretsiz Bölüm Erişimi:</strong> 24 hikaye bölümünün tamamı, ChronoMaze, Zaman Çarkları ve Sonsuz Zen Modu tüm oyunculara ücretsiz açıktır. Hikayeyi bitirmek için herhangi bir ödeme yapma zorunluluğu yoktur.</li>
+                    <li><strong>Kozmetik Ürünler &amp; Auralar:</strong> Oyunda satın alınabilecek ışık auraları veya Zaman Bahçesi tohumları yalnızca estetik nitelikte olup hiçbir mekanik avantaj sağlamaz.</li>
+                    <li><strong>Nakit Değeri ve Devredilmezlik:</strong> Oyun içi kristaller, auralar, zaman kapsülleri ve dijital bahçe öğeleri yalnızca oyun içi kullanım içindir; gerçek para karşılığı yoktur, nakde çevrilemez, satılamaz veya başka bir cihaza/kişiye devredilemez.</li>
+                    <li><strong>ChronoPass Aboneliği ve Otomatik Yenileme:</strong> Sembolik bir destekçi aboneliği modeli olup bölümlerdeki geri sarım hakkını sınırsız kılma ve bağımsız stüdyomuzu destekleme amacı taşır. Abonelik bazlı planlarda kullanıcı, mevcut abonelik döneminin bitiminden <strong>en az 24 saat önce</strong> Apple App Store veya Google Play hesap ayarlarından iptal etmediği sürece abonelik ilgili mağaza kuralları uyarınca otomatik olarak yenilenebilir.</li>
+                    <li><strong>Mağaza İade Koşulları:</strong> Tüm uygulama içi alımlar Apple App Store (StoreKit) ve Google Play Store (Billing) platform kurallarına tabidir; dijital içerik teslim edildikten sonraki iade ve faturalandırma süreçleri doğrudan ilgili mağazanın tüketici politikaları çerçevesinde yürütülür.</li>
+                </ul>
+            </div>
+
+            <!-- BÖLÜM 4 -->
+            <div class="section-card" id="sec4" data-cv-i18n-html="terms.sections.sec4">
+                <h2>4. Liderlik Tabloları, Çevrimiçi Eşleşme ve Adil Oyun</h2>
+                <p>
+                    ChronoVera'nın tam sürümünde veya gelecek güncellemelerinde sunulabilecek isteğe bağlı sosyal ve rekabetçi özellikler adil oyun (Fair Play) ilkesine tabidir:
+                </p>
+                <ul>
+                    <li><strong>Liderlik Tabloları ve Başarımlar:</strong> İlerleyen güncellemelerde Apple Game Center veya Google Play Games Services üzerinden isteğe bağlı skor ve başarım tabloları sunulduğunda; hata istismarı, manipüle edilmiş zaman değeri veya üçüncü taraf botlar ile elde edildiği tespit edilen skorların ilgili tablodan silinmesi veya gizlenmesi hakkı saklıdır.</li>
+                    <li><strong>Olası Çevrimiçi Eşleşme (Online Co-op):</strong> Gelecek güncellemelerde oda kodu ile uzaktan iki kişilik rezonans eşleşmesi sunulduğunda oyuncular karşılıklı nezaket kurallarına uymakla yükümlüdür; servisi kasıtlı olarak kilitlemeye veya kötüye kullanmaya yönelik bağlantılar sonlandırılabilir.</li>
+                </ul>
+            </div>
+
+            <!-- BÖLÜM 5 -->
+            <div class="section-card" id="sec5" data-cv-i18n-html="terms.sections.sec5">
+                <h2>5. Oyuncu Sağlığı, Işık Duyarlılığı ve Tıbbi Feragatname</h2>
+                <p>
+                    ChronoVera sakinleştirici ve meditatif bir oyun deneyimi olarak tasarlanmış olmakla birlikte, görsel efektler, ses frekansları ve haptik titreşimler içerir:
+                </p>
+                <ul>
+                    <li><strong>Tıbbi ve Psikolojik Feragatname (Medical Disclaimer):</strong> ChronoVera; sanatsal bir mobil oyun ve odaklanma deneyimidir. Kesinlikle bir tıbbi cihaz, psikoterapi aracı, klinik tedavi, tanı veya sağlık tavsiyesi niteliği taşımaz. Oyun içindeki 432 Hz tonlar, nefes ritmini çağrıştıran görseller ve kalp atışı titreşimleri yalnızca sanatsal amaçlıdır; herhangi bir fiziksel veya psikolojik rahatsızlığınız için profesyonel tıbbi destek yerine geçmez.</li>
+                    <li><strong>Işığa Duyarlı Nöbetler (Fotosensitivite):</strong> Nadir durumlarda ekranda hızla genişleyen ışık halkaları veya şok dalgaları ışığa duyarlı epilepsi geçmişi olan bireylerde rahatsızlık yaratabilir. Baş dönmesi, görme bulanıklığı veya kas seğirmesi hissederseniz oyunu derhal durdurunuz ve dinleniniz.</li>
+                    <li><strong>Sağlıklı Molalar:</strong> Göz sağlığı ve eklem rahatlığı için her 30-45 dakikalık oyun sürecinin ardından kısa molalar verilmesi tavsiye edilir.</li>
+                    <li><strong>Ses Seviyesi:</strong> 432 Hz Solfeggio müziklerinin en iyi deneyimi kulaklıkla dinlendiğinde elde edilir; ancak işitme sağlığınız için kulaklık ses seviyesini makul düzeyde tutunuz.</li>
+                </ul>
+            </div>
+
+            <!-- BÖLÜM 6 -->
+            <div class="section-card" id="sec6" data-cv-i18n-html="terms.sections.sec6">
+                <h2>6. Hizmet Sürekliliği, Güncellemeler ve Lisansın Feshi</h2>
+                <p>
+                    HisVera; oyun dengesini geliştirmek, seviye zorluklarını optimize etmek, yeni bulmacalar ve çağlar eklemek veya işletim sistemi (iOS / Android) güncellemelerine uyum sağlamak amacıyla oyun dosyalarını güncelleme, değiştirme veya yamalama hakkını saklı tutar.
+                </p>
+                <ul>
+                    <li><strong>Zorunlu Güncellemeler:</strong> Güvenlik veya platform uyumluluğu gerektiğinde oyunun eski sürümlerine destek sonlandırılabilir ve devam için mağazadan güncel sürümün yüklenmesi gerekebilir.</li>
+                    <li><strong>Tek Taraflı Fesih Hakkı:</strong> Kullanıcının işbu sözleşmedeki tersine mühendislik, klonlama, hile veya ticari dağıtım yasaklarını ihlal etmesi hâlinde HisVera Studio kullanıcının oyun lisansını ve varsa liderlik tablosu/beta erişimini derhal ve tek taraflı olarak sonlandırabilir. Kullanıcı da oyunu cihazından silerek sözleşmeyi dilediği an sonlandırabilir.</li>
+                </ul>
+            </div>
+
+            <!-- ======================================================== -->
+            <!-- BÖLÜM II: WEB PLATFORMU & ERKEN ERİŞİM (BETA)            -->
+            <!-- ======================================================== -->
+            <div class="part-banner part-2">
+                <span class="part-badge" data-cv-i18n="terms.parts.p2_badge">Bölüm II // Web Platformu &amp; Erken Erişim</span>
+                <h2 data-cv-i18n="terms.parts.p2_title">Bölüm II: Web Sitesi, Simülatör ve Beta Programı</h2>
+                <p data-cv-i18n-html="terms.parts.p2_desc_html"><a href="chronovera.html" style="color: var(--cv-gold-light); text-decoration: underline;">ChronoVera tanıtım sayfası</a>, interaktif simülatör, iletişim formları ve TestFlight / Google Play Beta test süreçlerini düzenler.</p>
+            </div>
+
+            <!-- BÖLÜM 7 -->
+            <div class="section-card" id="sec7" data-cv-i18n-html="terms.sections.sec7">
+                <h2>7. Web Tanıtım Sayfası, Simülatör ve İletişim Formları</h2>
+                <p>
+                    Resmi web sitemizde yer alan <a href="chronovera.html" style="color: var(--cv-gold); text-decoration: underline;">ChronoVera tanıtım sayfası</a>, <a href="chronovera.html#simulator" style="color: var(--cv-gold); text-decoration: underline;">interaktif Zamansal Simülatör</a> (HTML5 Canvas), <a href="chronovera.html#bekleme-listesi" style="color: var(--cv-gold); text-decoration: underline;">bekleme listesi</a> ve <a href="index.html#iletisim" style="color: var(--cv-gold); text-decoration: underline;">ana sayfa iletişim formu</a> yalnızca bilgilendirme ve meşru başvuru amaçlıdır:
+                </p>
+                <ul>
+                    <li>Web sayfalarımıza otomatik botlar, spam içerikler veya sahte e-posta/başvuru gönderimleri yapmak kesinlikle yasaktır.</li>
+                    <li>Web sitesindeki görsel unsurların, 432 Hz web sentezleyici kodlarının ve arayüz tasarımlarının izinsiz kazınması (scraping) veya kopyalanması fikri mülkiyet ihlali sayılır.</li>
+                </ul>
+            </div>
+
+            <!-- BÖLÜM 8 -->
+            <div class="section-card" id="sec8" data-cv-i18n-html="terms.sections.sec8">
+                <h2>8. Kapalı Beta, TestFlight ve Erken Erişim Kuralları</h2>
+                <p>
+                    ChronoVera'nın henüz kamuya açık mağazalarda yayınlanmamış Kapalı Beta / Erken Erişim sürümlerine (Google Play Beta veya Apple TestFlight) ve ilerideki yeni bölüm/güncelleme test dalgalarına katılan kullanıcılar:
+                </p>
+                <ul>
+                    <li>Geliştirme aşamasındaki tamamlanmamış bölümleri, hikaye finalini veya sürpriz anlatı kartlarını HisVera'nın yazılı onayı olmaksızın kamuya sızdırmamayı,</li>
+                    <li>Test kurulum paketlerini (APK, IPA, dahili test bağlantıları vb.) yetkisiz forumlara veya dosya paylaşım sitelerine yüklememeyi,</li>
+                    <li>Beta sürümlerin test amaçlı olduğunu, tam sürüme geçerken test içi verilerin sıfırlanabileceğini veya değişebileceğini bildiğini ve geri bildirimlerini stüdyomuza <a href="mailto:chronovera@hisvera.com" style="color: var(--cv-gold); text-decoration: underline;">chronovera@hisvera.com</a> veya resmi test kanalları üzerinden yapıcı bir dille iletmeyi taahhüt ederler.</li>
+                </ul>
+            </div>
+
+            <!-- ======================================================== -->
+            <!-- BÖLÜM III: FİKRİ MÜLKİYET, SORUMLULUK & HUKUKİ HÜKÜMLER  -->
+            <!-- ======================================================== -->
+            <div class="part-banner part-3">
+                <span class="part-badge" data-cv-i18n="terms.parts.p3_badge">Bölüm III // Fikri Mülkiyet, Sorumluluk &amp; Hukuki Hükümler</span>
+                <h2 data-cv-i18n="terms.parts.p3_title">Bölüm III: Mülkiyet Koruması, Sorumluluk Reddi ve Hukuk</h2>
+                <p data-cv-i18n="terms.parts.p3_desc">5846 FSEK ve Berne Konvansiyonu kapsamındaki telif koruması, sorumluluk muafiyeti, Apple/Google mağaza şartları ve yetkili mahkemeleri kapsar.</p>
+            </div>
+
+            <!-- BÖLÜM 9 -->
+            <div class="section-card" id="sec9" data-cv-i18n-html="terms.sections.sec9">
+                <h2>9. Fikri ve Sınai Mülkiyet Hakları (FSEK &amp; Berne)</h2>
+                <p>
+                    ChronoVera'nın tüm bileşenleri, sanatsal varlıkları, matematiksel modelleri ve anlatı kurgusu ulusal ve uluslararası fikri mülkiyet hukuku koruması altındadır:
+                </p>
+                <ul>
+                    <li><strong>Ticari Marka ve Kimlik:</strong> "ChronoVera" ve "HisVera" ticari unvanları, logoları, tipografisi, sloganları (<em>"Birlikteyken zaman hızlanır, yalnızken donar"</em>) ve kurumsal görsel kimliği münhasıran Stüdyo'ya aittir.</li>
+                    <li><strong>Özgün Oyun Mekaniği (İzafiyet Matematiği):</strong> Ekrana dokunan iki temas noktası arasındaki Öklid mesafesinin doğrudan oyun içi zaman akış çarpanını belirlemesine dayanan kinetik görelilik mekaniği (0.1x mermi zamanı ile 8.0x hiper akış arası bükülme), oyun tasarım dokümanları (GDD) ve seviye matematik modelleri HisVera'nın özgün fikri emeğidir.</li>
+                    <li><strong>Bölüm ve Bulmaca Mimarisi:</strong> 24 bölümlük anlatı kurgusu, 4 büyük çağ tasarımı (Uyanış, Prizmalar, Entropi, Ahenk), ChronoMaze labirentleri, Zaman Çarkları, Zaman Kapsülleri, Zaman Terazisi, Astrolab kilitleri ve "Zaman Aynası" felsefi kart sistemi Stüdyo'ya aittir.</li>
+                    <li><strong>Görsel ve İşitsel Eserler:</strong> Minimalist obsidiyen/astrolab sanat tarzı, parçacık efektleri, 432 Hz Solfeggio harmonik ses kompozisyonları ve haptik titreşim tasarımları <strong>5846 Sayılı Fikir ve Sanat Eserleri Kanunu (FSEK)</strong> ile uluslararası <strong>Berne Konvansiyonu</strong> gereğince tescillidir.</li>
+                </ul>
+            </div>
+
+            <!-- BÖLÜM 10 -->
+            <div class="section-card" id="sec10" data-cv-i18n-html="terms.sections.sec10">
+                <h2>10. Tersine Mühendislik, Klonlama, Bot ve Hile Yasağı</h2>
+                <div class="policy-warning-box">
+                    <strong><i class="fa-solid fa-triangle-exclamation"></i> KESİNLİKLE YASAKLANMIŞ EYLEMLER (MÜHENDİSLİK VE KLONLAMA YASAĞI):</strong>
+                    ChronoVera'nın derlenmiş binary kodlarını dekompile etmek (decompile), parçalamak, kaynak koduna dönüştürmek (reverse engineering), API uçlarını manipüle etmek,
+                    oyunun özgün mesafe-zaman mekaniğini veya görsel stilini kopyalayarak türev/klon mobil oyunlar üretmek ve üçüncü taraflara dağıtmak kesinlikle yasaktır.
+                    Fikri mülkiyet ihlallerinde Türkiye Cumhuriyeti Fikri ve Sınai Haklar Ceza ve Hukuk Mahkemeleri ile uluslararası telif mahkemelerinde maddi/manevi tazminat ve ceza davaları gecikmeksizin açılacaktır.
+                </div>
+                <p>
+                    Ayrıca oyuncuların oyun içi zaman mekaniklerini harici yazılımlarla (memory editor, speed hack, bot, script vb.) tahrif etmesi lisans ihlali sayılır ve ilgili cihazın beta/mağaza erişimi tek taraflı feshedilir.
+                </p>
+            </div>
+
+            <!-- BÖLÜM 11 -->
+            <div class="section-card" id="sec11" data-cv-i18n-html="terms.sections.sec11">
+                <h2>11. Kapsamlı Sorumluluk Reddi (AS-IS) ve Garanti Sınırları</h2>
+                <p>
+                    ChronoVera kullanıcılara yürürlükteki mevzuatın izin verdiği azami ölçüde <strong>"olduğu gibi" (as-is)</strong> ve <strong>"mevcut olduğu şekilde"</strong> sunulmaktadır. <strong>HisVera Studio</strong> ve yapımcı/geliştirici (<strong>Onur Öztürk</strong>), oluşabilecek hiçbir olumsuz durumdan veya zarardan sorumlu tutulamaz:
+                </p>
+                <ul>
+                    <li><strong>Performans &amp; Kullanım Sonuçları:</strong> Oyunun veya web mecralarının kullanımından, kullanılamamasından, beklenmedik teknik hatalardan, piyasadaki donanım/işletim sistemi farklılıklarından ya da aşırı ısınma gibi cihaz kaynaklı sorunlardan doğabilecek doğrudan, dolaylı, arızi, özel veya maddi/manevi hiçbir zarardan yapımcı sorumlu tutulamaz.</li>
+                    <li><strong>Veri Kaybı &amp; Yerel Yedekleme Sorumluluğu:</strong> Kullanıcının kendi cihazındaki donanım arızaları, depolama yetersizliği, cihazın kaybolması/sıfırlanması ya da kullanıcının Ayarlar üzerinden kendi cihazına dışa aktardığı yedek dosyasını kaybetmesi, silmesi, bozması veya üçüncü kişilerle paylaşması sonucu ortaya çıkabilecek hiçbir veri kaybından veya olumsuz durumdan HisVera Studio ve yapımcı sorumlu değildir.</li>
+                    <li><strong>Üçüncü Taraf Hizmetler &amp; Kesintiler:</strong> Apple App Store, Google Play Store, ödeme/reklam/analitik sağlayıcıları, harici bağlantılar, internet kesintileri veya yetkisiz siber müdahalelerden doğabilecek kesinti ve aksaklıklardan geliştirici sorumlu tutulamaz.</li>
+                    <li><strong>Kullanıcı İçeriği:</strong> Kullanıcının Zaman Kapsülleri, Zaman Aynası veya partner adı alanlarına kendi iradesiyle girdiği tüm metin ve içeriklerin sorumluluğu yalnızca kullanıcıya aittir.</li>
+                </ul>
+            </div>
+
+            <!-- BÖLÜM 12 -->
+            <div class="section-card" id="sec12" data-cv-i18n-html="terms.sections.sec12">
+                <h2>12. Tazminat (Indemnification) ve Mücbir Sebepler</h2>
+                <p>
+                    Kullanıcı; işbu sözleşme hükümlerine aykırı davranışlarından, izinsiz kopyalama/tersine mühendislik girişimlerinden veya hukuka aykırı kullanımından ötürü üçüncü kişiler veya resmî merciler nezdinde <strong>HisVera Studio</strong> ve yapımcı/geliştirici (<strong>Onur Öztürk</strong>) aleyhine doğabilecek her türlü talep, zarar, yargılama gideri ve tazminatı karşılamayı kabul eder.
+                </p>
+                <p>
+                    <strong>Mücbir Sebepler (Force Majeure):</strong> Doğal afetler, savaş, salgın, genel elektrik/internet altyapı kesintileri, mağaza platformlarının (Apple/Google) teknik veya idari durdurmaları, siber saldırılar ve yasal düzenlemeler gibi geliştiricinin makul kontrolü dışındaki mücbir sebep hâllerinde yaşanan gecikme veya kesintilerden dolayı HisVera Studio ve yapımcı sorumlu tutulamaz.
+                </p>
+            </div>
+
+            <!-- BÖLÜM 13 -->
+            <div class="section-card" id="sec13" data-cv-i18n-html="terms.sections.sec13">
+                <h2>13. Apple App Store EULA &amp; Google Play Mağaza Uyumu</h2>
+                <p>
+                    ChronoVera'yı Apple App Store veya Google Play Store üzerinden indiren kullanıcılar için aşağıdaki zorunlu platform hükümleri geçerlidir:
+                </p>
+                <ul>
+                    <li><strong>Sözleşmenin Tarafları ve Platform Şartlarına Tabiyet:</strong> İşbu son kullanıcı lisans sözleşmesi Kullanıcı ile <strong>Onur Öztürk / HisVera Studio</strong> arasında akdedilmiştir; Apple Inc. veya Google LLC işbu sözleşmenin tarafı değildir. Oyunun ve içeriğinin sunulması, işbu sözleşmedeki sorumluluk sınırları (Madde 11) saklı kalmak kaydıyla geliştiriciye aittir; bununla birlikte oyunun indirilmesi, kullanımı, ödemeleri ve dağıtımı aynı zamanda <strong>Apple App Store (Apple Standart EULA ve Apple Medya Hizmetleri Hüküm ve Koşulları)</strong> ile <strong>Google Play (Google Play Hizmet Şartları)</strong> sözleşmelerinin ilgili hükümlerine de tabidir. Mağaza politikaları ile işbu sözleşme arasında zorunlu bir çelişki doğması hâlinde, ilgili mağazanın zorunlu kuralları öncelikli olarak uygulanır.</li>
+                    <li><strong>Platformların Bakım ve Garanti Muafiyeti:</strong> Apple Inc. ve Google LLC'nin ChronoVera ile ilgili herhangi bir bakım, teknik destek, garanti, ürün sorumluluğu veya iade yükümlülüğü bulunmamaktadır; ilgili talepler yürürlükteki mevzuat çerçevesinde geliştiriciye veya mağaza iade kanallarına yönlendirilir.</li>
+                    <li><strong>Üçüncü Taraf Lehtar (Apple Third-Party Beneficiary):</strong> Apple Inc. ve bağlı kuruluşları işbu EULA'nın üçüncü taraf lehtarlarıdır; kullanıcının bu şartları kabul etmesiyle birlikte Apple, üçüncü taraf lehtar sıfatıyla işbu sözleşmeyi kullanıcıya karşı uygulama hakkına sahip olur.</li>
+                    <li><strong>Mağaza Kurallarına Uyum:</strong> Kullanıcı ayrıca Apple Medya Hizmetleri Hüküm ve Koşulları ile Google Play Hizmet Şartları'na uymayı kabul eder.</li>
+                </ul>
+            </div>
+
+            <!-- BÖLÜM 14 -->
+            <div class="section-card" id="sec14" data-cv-i18n-html="terms.sections.sec14">
+                <h2>14. Bölünebilirlik, Yetkili Hukuk ve Mahkeme</h2>
+                <p>
+                    <strong>Bölünebilirlik (Severability) ve Feragat Etmeme:</strong> İşbu sözleşmenin herhangi bir maddesinin yetkili mahkemelerce geçersiz veya uygulanamaz bulunması hâlinde söz konusu hüküm dışındaki tüm maddeler geçerliliğini aynen korur. HisVera Studio'nun bu sözleşmeden doğan herhangi bir hakkını gecikmeli kullanması veya kullanmaması o haktan feragat ettiği anlamına gelmez.
+                </p>
+                <p>
+                    <strong>Yetkili Hukuk ve Mahkeme:</strong> İşbu sözleşmeden doğabilecek tüm hukuki uyuşmazlıklarda Türkiye Cumhuriyeti Hukuku uygulanacak olup,
+                    <strong>Ankara Mahkemeleri ve İcra Daireleri</strong> münhasır yetkilidir.
+                </p>
+            </div>
+
+            <!-- BÖLÜM 15 -->
+            <div class="section-card" id="sec15" data-cv-i18n-html="terms.sections.sec15">
+                <h2>15. Hak Sahibi, Resmi İletişim, Değişiklikler ve Yürürlük</h2>
+                <p>
+                    Telif hakları, lisanslama talepleri, basın kitleri veya kullanım şartlarına dair tüm resmi başvurularınız için iletişim bilgileri aşağıdadır:
+                </p>
+                <ul>
+                    <li><strong>Geliştirici &amp; Hak Sahibi (Apple Developer &amp; Yayıncı):</strong> Onur Öztürk / HisVera Studio</li>
+                    <li><strong>ChronoVera Destek &amp; İletişim E-Postası:</strong> <a href="mailto:chronovera@hisvera.com" style="color: var(--cv-gold); text-decoration: none;">chronovera@hisvera.com</a></li>
+                    <li><strong>Resmi Web İletişim Kanalı:</strong> <a href="index.html#iletisim" style="color: var(--cv-gold); text-decoration: underline;">Web İletişim Menüsü (hisvera.com/#iletisim)</a></li>
+                    <li><strong>Kişisel Verilerin Korunması:</strong> Kullanıcı mahremiyeti ve veri haklarına ilişkin ayrıntılı şartlar için lütfen <a href="chronovera-gizlilik-politikasi.html" style="color: var(--cv-gold); text-decoration: underline;">ChronoVera Gizlilik Politikası</a> belgemizi inceleyiniz.</li>
+                </ul>
+                <p>
+                    <strong>Değişiklikler ve Yürürlük:</strong> İşbu kullanım şartları yeni oyun modülleri, mağaza güncellemeleri veya mevzuat değişiklikleri doğrultusunda güncellenebilir. Güncellenen metin web sitemizde yayınlandığı tarihte yürürlüğe girer.
+                </p>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="#top" class="back-to-top">
+                    <i class="fa-solid fa-arrow-up"></i>
+                    <span data-cv-i18n="common.legal_back_top">Sayfa Başına Dön</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- 🏛 Footer (ChronoVera'ya Özel) -->
+    <footer class="policy-footer">
+        <div class="policy-footer-links">
+            <a href="chronovera.html" data-cv-i18n="common.footer_cv_home">ChronoVera Ana Sayfa</a>
+            <span style="color: rgba(255,255,255,0.15);">|</span>
+            <a href="chronovera-gizlilik-politikasi.html" data-cv-i18n="common.footer_privacy">Gizlilik Politikası</a>
+            <span style="color: rgba(255,255,255,0.15);">|</span>
+            <a href="index.html" data-cv-i18n="common.footer_home">HisVera Ana Sayfa</a>
+            <span style="color: rgba(255,255,255,0.15);">|</span>
+            <a href="mailto:chronovera@hisvera.com"><i class="fa-solid fa-envelope" style="margin-right: 4px;"></i> chronovera@hisvera.com</a>
+        </div>
+        <p data-cv-i18n="common.footer_copyright">&copy; 2026 ChronoVera — HisVera Studio. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script src="chronovera-locales/tr.js"></script>
+    <script src="chronovera-locales/en.js"></script>
+    <script src="chronovera-locales/terms-tr.js"></script>
+    <script src="chronovera-locales/terms-en.js"></script>
+    <script src="chronovera-locales/i18n.js"></script>
+</body>
+</html>
